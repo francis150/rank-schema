@@ -26,11 +26,31 @@ add_action( 'wp_head', function () {
             echo '
             <!-- Schema Markup by Rank Tools Generator-->
             <script type="application/ld+json">
-            '.str_replace("\/","/",json_encode($markup)).'
+            '.str_replace("\/","/",json_encode($markup, JSON_PRETTY_PRINT)).'
             </script>
             
             ';
 
+        }
+
+    } else {
+
+        foreach ($res_array['results'] as $entity) {
+            if ( $entity['url'] == get_page_link() ) {
+                
+                foreach ($entity['schemaMarkups'] as $markup) {
+                    
+                    echo '
+                    <!-- Schema Markup for '.$entity['url'].' by Rank Tools Generator-->
+                    <script type="application/ld+json">
+                    '.str_replace("\/","/",json_encode($markup, JSON_PRETTY_PRINT)).'
+                    </script>
+                    
+                    ';
+
+                }
+
+            }
         }
 
     }
