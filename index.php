@@ -1,0 +1,2 @@
+<?php
+// Beware of dogs!
