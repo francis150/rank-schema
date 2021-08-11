@@ -1,13 +1,110 @@
-<!-- Get Started Styles -->
+<?php 
+  $SERVER = "https://rank-schema-plugin-server.herokuapp.com/";
+
+  $CONFIG_AVAILABLE = file_exists(WP_PLUGIN_DIR . "/rank-schema/config.json");
+
+  // If config.json is available, go to main form
+  if ($CONFIG_AVAILABLE) {
+    $CONFIG = json_decode(file_get_contents(WP_PLUGIN_DIR . "/rank-schema/config.json"), true);
+  }
+?>
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
   * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
   }
+</style>
 
+<!-- ADD SERVICE OVERLAY -->
+<style>
+  .add-service-overlay {
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px;
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    z-index: 20;
+    background: rgba(0,0,0,0.8);
+  }
+
+  .add-service-overlay form {
+    transform: translateX(-100px);
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 40px;
+    border-radius: 5px;
+
+  }
+
+  .add-service-overlay form h2 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 36px;
+    margin-top: -16px;
+  }
+
+  .add-service-overlay form .call-to-actions {
+    margin-top: 20px;
+    display: flex;
+  }
+
+  .add-service-overlay form input[type=submit],
+  .add-service-overlay form input[type=button] {
+    cursor: pointer;
+    transition: all;
+    font-size: 16px;
+    font-weight: 600;
+    height: 40px;
+    padding: 0 20px;
+    transition: .3s all ease-in-out;
+  }
+
+  .add-service-overlay form input[name=add-service-btn] {
+    border-radius: 5px;
+    color: #fff;
+    background: #B50000;
+    border: none;
+    outline: none;
+    margin-left: auto;
+  }
+
+  .add-service-overlay form input[name=add-service-btn]:hover {
+    opacity: 0.9; 
+    color: #fff;
+    transform: scale(1.05);
+  }
+
+  .add-service-overlay form input[name=cancel-service-btn] {
+    margin-left: 10px;
+    color: #363636;
+    height: 40px;
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+    background: #F7F8FA;
+    transition: .3s all ease-in-out;
+  }
+
+  .add-service-overlay form input[name=cancel-service-btn]:hover {
+    background: #E2E2E2;
+    transform: scale(1.05);
+  }
+</style>
+
+<!-- Get Started Styles -->
+<style>
   .get-started-container {
     display: grid;
+    /* display: grid; */
     grid-template-rows: 0.9fr 2.4fr 1fr;
     width: 1000px;
     height: 550px;
@@ -81,13 +178,14 @@
     border: none;
     outline: none;
     color: #fff;
-    text-decoration: none;
+    font-size: 16px;
+    transition: all .2s ease-in-out;
   }
 
   .get-started-btn:hover {
-    opacity: 0.95;
+    opacity: 0.9;
     color: #fff;
-    transform: scale(1.01);
+    animation: loading .3s ease infinite alternate;
     transition: 0.5 all ease-in-out;
     cursor: pointer;
   }
@@ -97,6 +195,15 @@
     top: 100px;
     left: 380px;
     z-index: -10;
+  }
+
+  @keyframes loading {
+    from{
+        transform: scale(1);
+    } 
+    to {
+        transform: scale(1.05);
+    }
   }
 </style>
 
@@ -109,6 +216,7 @@
 
   .form-container {
     display: none;
+    /* display: grid; */
     grid-template-rows: 0.01fr 1fr;
     width: 1000px;
     height: auto;
@@ -168,6 +276,69 @@
     letter-spacing: 0em;
   }
 
+  .form-group-control h2 img {
+    opacity: .8;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: all .2s ease-in-out;
+  }
+
+  .form-group-control h2 img:hover {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+
+  .form-group-control .services-container,
+  .form-group-control .service-areas-container {
+  }
+
+  .form-group-control .services-container .service-wrapper,
+  .form-group-control .service-areas-container .service-area-wrapper {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: #F7F8FA;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: border .3s ease-in-out;
+  }
+
+  .form-group-control .services-container .service-wrapper:hover,
+  .form-group-control .service-areas-container .service-area-wrapper:hover {
+    background: #f5f5f5;
+  }
+
+  .form-group-control .services-container .service-wrapper .service,
+  .form-group-control .service-areas-container .service-area-wrapper .service-area {
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+
+  .form-group-control .services-container .service-wrapper .service p span,
+  .form-group-control .service-areas-container .service-area-wrapper .service-area p span {
+    font-weight: 600;
+  }
+
+  .form-group-control .services-container .service-wrapper .service img,
+  .form-group-control .service-areas-container .service-area-wrapper .service-area img {
+    cursor: pointer;
+    opacity: .3;
+    width: 15px;
+    transition: opacity .3s ease-in-out;
+    margin-left: 10px;
+  }
+
+  .form-group-control .services-container .service-wrapper .service img:hover,
+  .form-group-control .service-areas-container .service-area-wrapper .service-area img:hover {
+    opacity: 1;
+  }
+
+  .form-group-control .services-container .service-wrapper .service img.add-btn,
+  .form-group-control .service-areas-container .service-area-wrapper .service-area img.add-btn {
+    margin-left: auto;
+  }
+
   .form-group div {
     padding: 5px 0;
     padding-right: 10px;
@@ -215,36 +386,82 @@
 
 <!-- Submit Group Styles -->
 <style>
-  .submit-group-container {}
+  .submit-group-container {
+    margin-top: 40px;
+  }
 
   .submit-group-container input[type="submit"] {
     cursor: pointer;
-    margin-left: 10px;
+    margin-right: 10px;
+    transition: all 
+    transition: 0.5 all ease-in-out;
+    font-size: 16px;
+    font-weight: 600;
   }
 
   #buildSchemaBtn {
     height: 40px;
     width: 301px;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #fff;
     background: #B50000;
     border: none;
     outline: none;
   }
 
+  #buildSchemaBtn:hover {
+    opacity: 0.9; 
+    color: #fff;
+    animation: loading .3s ease infinite alternate;
+  }
+
   #saveSchemaBtn {
+    color: #363636;
     height: 40px;
     width: 179px;
     border: 1px solid #E2E2E2;
-    border-radius: 10px;
+    border-radius: 5px;
     background: #F7F8FA;
+    transition: .3s all ease-in-out;
+  }
+
+  #saveSchemaBtn:hover {
+    background: #E2E2E2;
+    transform: scale(1.05);
   }
 </style>
+
+<div class="add-service-overlay">
+  <form method="POST">
+    <h2>Add a Service</h2>
+
+    <div class="form-control">
+      <label>Service Name <span>*</span></label>
+      <input name="serviceName" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>Service Page URL <span>*</span></label>
+      <input name="serviceUrl" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>Description <span>*</span></label>
+      <textarea name="serviceDescription" cols="15" rows="10" required></textarea>
+    </div>
+
+    <div class="call-to-actions">
+      <input name="add-service-btn" type="submit" value="Add Service">
+      <input name="cancel-service-btn" type="button" value="Cancel ">
+    </div>
+
+  </form>
+</div>
 
 
 <div class="get-started-container">
   <div class="logo-container">
-    <img id="rt-logo" src="https://rank-schema-plugin-server.herokuapp.com/images/logo.png">
+    <img id="rt-logo" src="<?php echo $SERVER . "images/logo.png" ?>">
     <p>Schema Markup</p>
   </div>
   <div class="content-container">
@@ -257,11 +474,10 @@
   </div>
   <div class="button-container">
     <form method="POST">
-      <input class="get-started-btn" type="submit" name="btn" value="Get Started!" onclick="return true;" />
+      <input class="get-started-btn" type="submit" name="get-started-btn" value="Get Started!" onclick="return true;" />
     </form>
   </div>
-
-  <img id="landing-img" src="https://rank-schema-plugin-server.herokuapp.com/images/landing_illustration.svg">
+  <img id="landing-img" src="<?php echo $SERVER . "images/landing_illustration.svg" ?>">
 </div>
 
 
@@ -279,29 +495,29 @@
       <div class="form-control">
         <label for="schemaType">Schema Type <span>*</span></label>
         <select id="schemaType" autocomplete="on" name="schemaType" required>
-          <option value="AnimalShelter">AnimalShelter</option>
+          <option value="LocalBusiness" selected>LocalBusiness</option>
 
           <option value="ArchiveOrganization">ArchiveOrganization</option>
 
           <option value="AutomotiveBusiness">AutomotiveBusiness</option>
 
-          <option value="AutoBodyShop">— AutoBodyShop</option>
+          <option value="AutoBodyShop">&nbsp;&nbsp;&nbsp;&nbsp;AutoBodyShop</option>
 
-          <option value="AutoDealer">— AutoDealer</option>
+          <option value="AutoDealer">&nbsp;&nbsp;&nbsp;&nbsp;AutoDealer</option>
 
-          <option value="AutoPartsStore">— AutoPartsStore</option>
+          <option value="AutoPartsStore">&nbsp;&nbsp;&nbsp;&nbsp;AutoPartsStore</option>
 
-          <option value="AutoRental">— AutoRental</option>
+          <option value="AutoRental">&nbsp;&nbsp;&nbsp;&nbsp;AutoRental</option>
 
-          <option value="AutoRepair">— AutoRepair</option>
+          <option value="AutoRepair">&nbsp;&nbsp;&nbsp;&nbsp;AutoRepair</option>
 
-          <option value="AutoWash">— AutoWash</option>
+          <option value="AutoWash">&nbsp;&nbsp;&nbsp;&nbsp;AutoWash</option>
 
-          <option value="GasStation">— GasStation</option>
+          <option value="GasStation">&nbsp;&nbsp;&nbsp;&nbsp;GasStation</option>
 
-          <option value="MotorcycleDealer">— MotorcycleDealer</option>
+          <option value="MotorcycleDealer">&nbsp;&nbsp;&nbsp;&nbsp;MotorcycleDealer</option>
 
-          <option value="MotorcycleRepair">— MotorcycleRepair</option>
+          <option value="MotorcycleRepair">&nbsp;&nbsp;&nbsp;&nbsp;MotorcycleRepair</option>
 
           <option value="ChildCare">ChildCare</option>
 
@@ -311,171 +527,171 @@
 
           <option value="EmergencyService">EmergencyService</option>
 
-          <option value="FireStation">— FireStation</option>
+          <option value="FireStation">&nbsp;&nbsp;&nbsp;&nbsp;FireStation</option>
 
-          <option value="Hospital">— Hospital</option>
+          <option value="Hospital">&nbsp;&nbsp;&nbsp;&nbsp;Hospital</option>
 
-          <option value="PoliceStation">— PoliceStation</option>
+          <option value="PoliceStation">&nbsp;&nbsp;&nbsp;&nbsp;PoliceStation</option>
 
           <option value="EmploymentAgency">EmploymentAgency</option>
 
           <option value="EntertainmentBusiness">EntertainmentBusiness</option>
 
-          <option value="AdultEntertainment">— AdultEntertainment</option>
+          <option value="AdultEntertainment">&nbsp;&nbsp;&nbsp;&nbsp;AdultEntertainment</option>
 
-          <option value="AmusementPark">— AmusementPark</option>
+          <option value="AmusementPark">&nbsp;&nbsp;&nbsp;&nbsp;AmusementPark</option>
 
-          <option value="ArtGallery">— ArtGallery</option>
+          <option value="ArtGallery">&nbsp;&nbsp;&nbsp;&nbsp;ArtGallery</option>
 
-          <option value="Casino">— Casino</option>
+          <option value="Casino">&nbsp;&nbsp;&nbsp;&nbsp;Casino</option>
 
-          <option value="ComedyClub">— ComedyClub</option>
+          <option value="ComedyClub">&nbsp;&nbsp;&nbsp;&nbsp;ComedyClub</option>
 
-          <option value="MovieTheater">— MovieTheater</option>
+          <option value="MovieTheater">&nbsp;&nbsp;&nbsp;&nbsp;MovieTheater</option>
 
-          <option value="NightClub">— NightClub</option>
+          <option value="NightClub">&nbsp;&nbsp;&nbsp;&nbsp;NightClub</option>
 
           <option value="FinancialService">FinancialService</option>
 
-          <option value="AccountingService">— AccountingService</option>
+          <option value="AccountingService">&nbsp;&nbsp;&nbsp;&nbsp;AccountingService</option>
 
-          <option value="AutomatedTeller">— AutomatedTeller</option>
+          <option value="AutomatedTeller">&nbsp;&nbsp;&nbsp;&nbsp;AutomatedTeller</option>
 
-          <option value="BankOrCreditUnion">— BankOrCreditUnion</option>
+          <option value="BankOrCreditUnion">&nbsp;&nbsp;&nbsp;&nbsp;BankOrCreditUnion</option>
 
-          <option value="InsuranceAgency">— InsuranceAgency</option>
+          <option value="InsuranceAgency">&nbsp;&nbsp;&nbsp;&nbsp;InsuranceAgency</option>
 
           <option value="FoodEstablishment">FoodEstablishment</option>
 
-          <option value="Bakery">— Bakery</option>
+          <option value="Bakery">&nbsp;&nbsp;&nbsp;&nbsp;Bakery</option>
 
-          <option value="BarOrPub">— BarOrPub</option>
+          <option value="BarOrPub">&nbsp;&nbsp;&nbsp;&nbsp;BarOrPub</option>
 
-          <option value="Brewery">— Brewery</option>
+          <option value="Brewery">&nbsp;&nbsp;&nbsp;&nbsp;Brewery</option>
 
-          <option value="CafeOrCoffeeShop">— CafeOrCoffeeShop</option>
+          <option value="CafeOrCoffeeShop">&nbsp;&nbsp;&nbsp;&nbsp;CafeOrCoffeeShop</option>
 
-          <option value="Distillery">— Distillery</option>
+          <option value="Distillery">&nbsp;&nbsp;&nbsp;&nbsp;Distillery</option>
 
-          <option value="FastFoodRestaurant">— FastFoodRestaurant</option>
+          <option value="FastFoodRestaurant">&nbsp;&nbsp;&nbsp;&nbsp;FastFoodRestaurant</option>
 
-          <option value="IceCreamShop">— IceCreamShop</option>
+          <option value="IceCreamShop">&nbsp;&nbsp;&nbsp;&nbsp;IceCreamShop</option>
 
-          <option value="Restaurant">— Restaurant</option>
+          <option value="Restaurant">&nbsp;&nbsp;&nbsp;&nbsp;Restaurant</option>
 
-          <option value="Winery">— Winery</option>
+          <option value="Winery">&nbsp;&nbsp;&nbsp;&nbsp;Winery</option>
 
           <option value="GovernmentOffice">GovernmentOffice</option>
 
-          <option value="PostOffice">— PostOffice</option>
+          <option value="PostOffice">&nbsp;&nbsp;&nbsp;&nbsp;PostOffice</option>
 
           <option value="HealthAndBeautyBusiness">HealthAndBeautyBusiness</option>
 
-          <option value="BeautySalon">— BeautySalon</option>
+          <option value="BeautySalon">&nbsp;&nbsp;&nbsp;&nbsp;BeautySalon</option>
 
-          <option value="DaySpa">— DaySpa</option>
+          <option value="DaySpa">&nbsp;&nbsp;&nbsp;&nbsp;DaySpa</option>
 
-          <option value="HairSalon">— HairSalon</option>
+          <option value="HairSalon">&nbsp;&nbsp;&nbsp;&nbsp;HairSalon</option>
 
-          <option value="HealthClub">— HealthClub</option>
+          <option value="HealthClub">&nbsp;&nbsp;&nbsp;&nbsp;HealthClub</option>
 
-          <option value="NailSalon">— NailSalon</option>
+          <option value="NailSalon">&nbsp;&nbsp;&nbsp;&nbsp;NailSalon</option>
 
-          <option value="TattooParlor">— TattooParlor</option>
+          <option value="TattooParlor">&nbsp;&nbsp;&nbsp;&nbsp;TattooParlor</option>
 
           <option value="HomeAndConstructionBusiness">HomeAndConstructionBusiness</option>
 
-          <option value="Electrician">— Electrician</option>
+          <option value="Electrician">&nbsp;&nbsp;&nbsp;&nbsp;Electrician</option>
 
-          <option value="GeneralContractor">— GeneralContractor</option>
+          <option value="GeneralContractor">&nbsp;&nbsp;&nbsp;&nbsp;GeneralContractor</option>
 
-          <option value="HVACBusiness">— HVACBusiness</option>
+          <option value="HVACBusiness">&nbsp;&nbsp;&nbsp;&nbsp;HVACBusiness</option>
 
-          <option value="HousePainter">— HousePainter</option>
+          <option value="HousePainter">&nbsp;&nbsp;&nbsp;&nbsp;HousePainter</option>
 
-          <option value="Locksmith">— Locksmith</option>
+          <option value="Locksmith">&nbsp;&nbsp;&nbsp;&nbsp;Locksmith</option>
 
-          <option value="MovingCompany">— MovingCompany</option>
+          <option value="MovingCompany">&nbsp;&nbsp;&nbsp;&nbsp;MovingCompany</option>
 
-          <option value="Plumber">— Plumber</option>
+          <option value="Plumber">&nbsp;&nbsp;&nbsp;&nbsp;Plumber</option>
 
-          <option value="RoofingContractor">— RoofingContractor</option>
+          <option value="RoofingContractor">&nbsp;&nbsp;&nbsp;&nbsp;RoofingContractor</option>
 
           <option value="InternetCafe">InternetCafe</option>
 
           <option value="LegalService">LegalService</option>
 
-          <option value="Attorney">— Attorney</option>
+          <option value="Attorney">&nbsp;&nbsp;&nbsp;&nbsp;Attorney</option>
 
-          <option value="Notary">— Notary</option>
+          <option value="Notary">&nbsp;&nbsp;&nbsp;&nbsp;Notary</option>
 
           <option value="Library">Library</option>
 
           <option value="LodgingBusiness">LodgingBusiness</option>
 
-          <option value="BedAndBreakfast">— BedAndBreakfast</option>
+          <option value="BedAndBreakfast">&nbsp;&nbsp;&nbsp;&nbsp;BedAndBreakfast</option>
 
-          <option value="Campground">— Campground</option>
+          <option value="Campground">&nbsp;&nbsp;&nbsp;&nbsp;Campground</option>
 
-          <option value="Hostel">— Hostel</option>
+          <option value="Hostel">&nbsp;&nbsp;&nbsp;&nbsp;Hostel</option>
 
-          <option value="Hotel">— Hotel</option>
+          <option value="Hotel">&nbsp;&nbsp;&nbsp;&nbsp;Hotel</option>
 
-          <option value="Motel">— Motel</option>
+          <option value="Motel">&nbsp;&nbsp;&nbsp;&nbsp;Motel</option>
 
-          <option value="Resort">— Resort</option>
+          <option value="Resort">&nbsp;&nbsp;&nbsp;&nbsp;Resort</option>
 
-          <option value="SkiResort">—— SkiResort</option>
+          <option value="SkiResort">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SkiResort</option>
 
           <option value="MedicalBusiness">MedicalBusiness</option>
 
-          <option value="CommunityHealth">— CommunityHealth</option>
+          <option value="CommunityHealth">&nbsp;&nbsp;&nbsp;&nbsp;CommunityHealth</option>
 
-          <option value="Dentist">— Dentist</option>
+          <option value="Dentist">&nbsp;&nbsp;&nbsp;&nbsp;Dentist</option>
 
-          <option value="Dermatology">— Dermatology</option>
+          <option value="Dermatology">&nbsp;&nbsp;&nbsp;&nbsp;Dermatology</option>
 
-          <option value="DietNutrition">— DietNutrition</option>
+          <option value="DietNutrition">&nbsp;&nbsp;&nbsp;&nbsp;DietNutrition</option>
 
-          <option value="Emergency">— Emergency</option>
+          <option value="Emergency">&nbsp;&nbsp;&nbsp;&nbsp;Emergency</option>
 
-          <option value="Geriatric">— Geriatric</option>
+          <option value="Geriatric">&nbsp;&nbsp;&nbsp;&nbsp;Geriatric</option>
 
-          <option value="Gynecologic">— Gynecologic</option>
+          <option value="Gynecologic">&nbsp;&nbsp;&nbsp;&nbsp;Gynecologic</option>
 
-          <option value="MedicalClinic">— MedicalClinic</option>
+          <option value="MedicalClinic">&nbsp;&nbsp;&nbsp;&nbsp;MedicalClinic</option>
 
-          <option value="Midwifery">— Midwifery</option>
+          <option value="Midwifery">&nbsp;&nbsp;&nbsp;&nbsp;Midwifery</option>
 
-          <option value="Nursing">— Nursing</option>
+          <option value="Nursing">&nbsp;&nbsp;&nbsp;&nbsp;Nursing</option>
 
-          <option value="Obstetric">— Obstetric</option>
+          <option value="Obstetric">&nbsp;&nbsp;&nbsp;&nbsp;Obstetric</option>
 
-          <option value="Oncologic">— Oncologic</option>
+          <option value="Oncologic">&nbsp;&nbsp;&nbsp;&nbsp;Oncologic</option>
 
-          <option value="Optician">— Optician</option>
+          <option value="Optician">&nbsp;&nbsp;&nbsp;&nbsp;Optician</option>
 
-          <option value="Optometric">— Optometric</option>
+          <option value="Optometric">&nbsp;&nbsp;&nbsp;&nbsp;Optometric</option>
 
-          <option value="Otolaryngologic">— Otolaryngologic</option>
+          <option value="Otolaryngologic">&nbsp;&nbsp;&nbsp;&nbsp;Otolaryngologic</option>
 
-          <option value="Pediatric">— Pediatric</option>
+          <option value="Pediatric">&nbsp;&nbsp;&nbsp;&nbsp;Pediatric</option>
 
-          <option value="Pharmacy">— Pharmacy</option>
+          <option value="Pharmacy">&nbsp;&nbsp;&nbsp;&nbsp;Pharmacy</option>
 
-          <option value="Physician">— Physician</option>
+          <option value="Physician">&nbsp;&nbsp;&nbsp;&nbsp;Physician</option>
 
-          <option value="Physiotherapy">— Physiotherapy</option>
+          <option value="Physiotherapy">&nbsp;&nbsp;&nbsp;&nbsp;Physiotherapy</option>
 
-          <option value="PlasticSurgery">— PlasticSurgery</option>
+          <option value="PlasticSurgery">&nbsp;&nbsp;&nbsp;&nbsp;PlasticSurgery</option>
 
-          <option value="Podiatric">— Podiatric</option>
+          <option value="Podiatric">&nbsp;&nbsp;&nbsp;&nbsp;Podiatric</option>
 
-          <option value="PrimaryCare">— PrimaryCare</option>
+          <option value="PrimaryCare">&nbsp;&nbsp;&nbsp;&nbsp;PrimaryCare</option>
 
-          <option value="Psychiatric">— Psychiatric</option>
+          <option value="Psychiatric">&nbsp;&nbsp;&nbsp;&nbsp;Psychiatric</option>
 
-          <option value="PublicHealth">— PublicHealth</option>
+          <option value="PublicHealth">&nbsp;&nbsp;&nbsp;&nbsp;PublicHealth</option>
 
           <option value="ProfessionalService">ProfessionalService</option>
 
@@ -491,85 +707,85 @@
 
           <option value="SportsActivityLocation">SportsActivityLocation</option>
 
-          <option value="BowlingAlley">— BowlingAlley</option>
+          <option value="BowlingAlley">&nbsp;&nbsp;&nbsp;&nbsp;BowlingAlley</option>
 
-          <option value="ExerciseGym">— ExerciseGym</option>
+          <option value="ExerciseGym">&nbsp;&nbsp;&nbsp;&nbsp;ExerciseGym</option>
 
-          <option value="GolfCourse">— GolfCourse</option>
+          <option value="GolfCourse">&nbsp;&nbsp;&nbsp;&nbsp;GolfCourse</option>
 
-          <option value="HealthClub">— HealthClub</option>
+          <option value="HealthClub">&nbsp;&nbsp;&nbsp;&nbsp;HealthClub</option>
 
-          <option value="PublicSwimmingPool">— PublicSwimmingPool</option>
+          <option value="PublicSwimmingPool">&nbsp;&nbsp;&nbsp;&nbsp;PublicSwimmingPool</option>
 
-          <option value="SkiResort">— SkiResort</option>
+          <option value="SkiResort">&nbsp;&nbsp;&nbsp;&nbsp;SkiResort</option>
 
-          <option value="SportsClub">— SportsClub</option>
+          <option value="SportsClub">&nbsp;&nbsp;&nbsp;&nbsp;SportsClub</option>
 
-          <option value="StadiumOrArena">— StadiumOrArena</option>
+          <option value="StadiumOrArena">&nbsp;&nbsp;&nbsp;&nbsp;StadiumOrArena</option>
 
-          <option value="TennisComplex">— TennisComplex</option>
+          <option value="TennisComplex">&nbsp;&nbsp;&nbsp;&nbsp;TennisComplex</option>
 
           <option value="Store">Store</option>
 
-          <option value="AutoPartsStore">— AutoPartsStore</option>
+          <option value="AutoPartsStore">&nbsp;&nbsp;&nbsp;&nbsp;AutoPartsStore</option>
 
-          <option value="BikeStore">— BikeStore</option>
+          <option value="BikeStore">&nbsp;&nbsp;&nbsp;&nbsp;BikeStore</option>
 
-          <option value="BookStore">— BookStore</option>
+          <option value="BookStore">&nbsp;&nbsp;&nbsp;&nbsp;BookStore</option>
 
-          <option value="ClothingStore">— ClothingStore</option>
+          <option value="ClothingStore">&nbsp;&nbsp;&nbsp;&nbsp;ClothingStore</option>
 
-          <option value="ComputerStore">— ComputerStore</option>
+          <option value="ComputerStore">&nbsp;&nbsp;&nbsp;&nbsp;ComputerStore</option>
 
-          <option value="ConvenienceStore">— ConvenienceStore</option>
+          <option value="ConvenienceStore">&nbsp;&nbsp;&nbsp;&nbsp;ConvenienceStore</option>
 
-          <option value="DepartmentStore">— DepartmentStore</option>
+          <option value="DepartmentStore">&nbsp;&nbsp;&nbsp;&nbsp;DepartmentStore</option>
 
-          <option value="ElectronicsStore">— ElectronicsStore</option>
+          <option value="ElectronicsStore">&nbsp;&nbsp;&nbsp;&nbsp;ElectronicsStore</option>
 
-          <option value="Florist">— Florist</option>
+          <option value="Florist">&nbsp;&nbsp;&nbsp;&nbsp;Florist</option>
 
-          <option value="FurnitureStore">— FurnitureStore</option>
+          <option value="FurnitureStore">&nbsp;&nbsp;&nbsp;&nbsp;FurnitureStore</option>
 
-          <option value="GardenStore">— GardenStore</option>
+          <option value="GardenStore">&nbsp;&nbsp;&nbsp;&nbsp;GardenStore</option>
 
-          <option value="GroceryStore">— GroceryStore</option>
+          <option value="GroceryStore">&nbsp;&nbsp;&nbsp;&nbsp;GroceryStore</option>
 
-          <option value="HardwareStore">— HardwareStore</option>
+          <option value="HardwareStore">&nbsp;&nbsp;&nbsp;&nbsp;HardwareStore</option>
 
-          <option value="HobbyShop">— HobbyShop</option>
+          <option value="HobbyShop">&nbsp;&nbsp;&nbsp;&nbsp;HobbyShop</option>
 
-          <option value="HomeGoodsStore">— HomeGoodsStore</option>
+          <option value="HomeGoodsStore">&nbsp;&nbsp;&nbsp;&nbsp;HomeGoodsStore</option>
 
-          <option value="JewelryStore">— JewelryStore</option>
+          <option value="JewelryStore">&nbsp;&nbsp;&nbsp;&nbsp;JewelryStore</option>
 
-          <option value="LiquorStore">— LiquorStore</option>
+          <option value="LiquorStore">&nbsp;&nbsp;&nbsp;&nbsp;LiquorStore</option>
 
-          <option value="MensClothingStore">— MensClothingStore</option>
+          <option value="MensClothingStore">&nbsp;&nbsp;&nbsp;&nbsp;MensClothingStore</option>
 
-          <option value="MobilePhoneStore">— MobilePhoneStore</option>
+          <option value="MobilePhoneStore">&nbsp;&nbsp;&nbsp;&nbsp;MobilePhoneStore</option>
 
-          <option value="MovieRentalStore">— MovieRentalStore</option>
+          <option value="MovieRentalStore">&nbsp;&nbsp;&nbsp;&nbsp;MovieRentalStore</option>
 
-          <option value="MusicStore">— MusicStore</option>
+          <option value="MusicStore">&nbsp;&nbsp;&nbsp;&nbsp;MusicStore</option>
 
-          <option value="OfficeEquipmentStore">— OfficeEquipmentStore</option>
+          <option value="OfficeEquipmentStore">&nbsp;&nbsp;&nbsp;&nbsp;OfficeEquipmentStore</option>
 
-          <option value="OutletStore">— OutletStore</option>
+          <option value="OutletStore">&nbsp;&nbsp;&nbsp;&nbsp;OutletStore</option>
 
-          <option value="PawnShop">— PawnShop</option>
+          <option value="PawnShop">&nbsp;&nbsp;&nbsp;&nbsp;PawnShop</option>
 
-          <option value="PetStore">— PetStore</option>
+          <option value="PetStore">&nbsp;&nbsp;&nbsp;&nbsp;PetStore</option>
 
-          <option value="ShoeStore">— ShoeStore</option>
+          <option value="ShoeStore">&nbsp;&nbsp;&nbsp;&nbsp;ShoeStore</option>
 
-          <option value="SportingGoodsStore">— SportingGoodsStore</option>
+          <option value="SportingGoodsStore">&nbsp;&nbsp;&nbsp;&nbsp;SportingGoodsStore</option>
 
-          <option value="TireShop">— TireShop</option>
+          <option value="TireShop">&nbsp;&nbsp;&nbsp;&nbsp;TireShop</option>
 
-          <option value="ToyStore">— ToyStore</option>
+          <option value="ToyStore">&nbsp;&nbsp;&nbsp;&nbsp;ToyStore</option>
 
-          <option value="WholesaleStore">— WholesaleStore</option>
+          <option value="WholesaleStore">&nbsp;&nbsp;&nbsp;&nbsp;WholesaleStore</option>
 
           <option value="TelevisionStation">TelevisionStation</option>
 
@@ -590,38 +806,38 @@
         <div>
           <div class="form-control">
             <label>Business Name <span>*</span></label>
-            <input type="text" required>
+            <input name="businessName" type="text" required>
 
           </div>
 
 
           <div class="form-control">
             <label>Slogan <span>*</span></label>
-            <input type="text" required>
+            <input name="slogan" type="text" required>
 
           </div>
 
           <div class="form-control">
             <label>Street Address <span>*</span></label>
-            <input type="text" required>
+            <input name="streetAddress" type="text" required>
 
           </div>
 
           <div class="form-control">
             <label>State <span>*</span></label>
-            <input type="text" required>
+            <input name="state" type="text" required>
 
           </div>
 
           <div class="form-control">
             <label>Business Email <span>*</span></label>
-            <input type="text" required>
+            <input name="email" type="text" required>
 
           </div>
 
           <div class="form-control">
             <label>Description <span>*</span></label>
-            <textarea cols="15" rows="10" required></textarea>
+            <textarea name="description" cols="15" rows="10" required></textarea>
 
           </div>
         </div>
@@ -629,37 +845,37 @@
         <div>
           <div class="form-control">
             <label>Owner’s Name</label>
-            <input type="text">
+            <input name="ownersName" type="text">
 
           </div>
 
 
           <div class="form-control">
             <label>Country <span>*</span></label>
-            <input type="text" required>
+            <input name="country" type="text" required>
 
           </div>
 
           <div class="form-control">
             <label>City/Town <span>*</span></label>
-            <input type="text" required>
+            <input name="cityTown" type="text" required>
           </div>
 
           <div class="form-control">
             <label>ZIP Code <span>*</span></label>
-            <input type="text" required>
+            <input name="zipCode" type="text" required>
 
           </div>
 
           <div class="form-control">
             <label>Business Contact Number <span>*</span></label>
-            <input type="text" required>
+            <input name="phone" type="text" required>
 
           </div>
 
           <div class="form-control">
             <label>Disambiguating Description<span>*</span></label>
-            <textarea cols="15" rows="10" required></textarea>
+            <textarea name="disambiguatingDescription" cols="15" rows="10" required></textarea>
           </div>
         </div>
 
@@ -674,14 +890,14 @@
 
         <div class="form-control">
           <label>Image URL<span>*</span></label>
-          <input type="text" required>
+          <input name="imageURL" type="text" required>
 
         </div>
 
 
         <div class="form-control">
           <label>About Us Page URL</label>
-          <input type="text">
+          <input name="aboutUrl" type="text">
 
         </div>
 
@@ -692,12 +908,12 @@
 
         <div class="form-control">
           <label>Privacy Policy URL</label>
-          <input type="text">
+          <input name="privacyPolicyURL" type="text">
         </div>
 
         <div class="form-control">
           <label>Contact Us Page URL</label>
-          <input type="text">
+          <input name="contactUrl" type="text">
         </div>
 
 
@@ -712,25 +928,25 @@
       <div class="form-group">
         <div class="form-control">
           <label>Primary Keyword <span>*</span></label>
-          <input type="text" required>
+          <input name="primaryKeyword" type="text" required>
 
         </div>
         <div class="form-control">
           <label>Niche <span>*</span></label>
-          <input type="text" required>
+          <input name="query" type="text" required>
         </div>
       </div>
 
       <div>
         <div class="form-control" style="width:97%;">
           <label>Keywords <span>*</span></label>
-          <input type="text" style="width:100%;" required>
+          <input name="keywords" type="text" style="width:100%;" required>
           <p style="font-size:10px">Separate each keyword with a comma (,)</p>
         </div>
         <div class="form-control" style="width:97%;">
           <label>Backlinks/Citations</label>
-          <textarea style="width:100%;"></textarea>
-          <p style="font-size:10px">Separate each link by line.</p>
+          <textarea name="backlinks" style="width:100%;"></textarea>
+          <p style="font-size:10px">The more the merrier! Separate each link by line.</p>
 
         </div>
       </div>
@@ -738,14 +954,99 @@
 
 
     <div class="form-group-control">
-      <h2>Services <img style="cursor:pointer; margin-left:10px;"
-          src="https://rank-schema-plugin-server.herokuapp.com/images/add_icon.svg"></h2>
+      <h2>Services <img class="open-add-service-form" src="<?php echo $SERVER . "images/add_icon.svg" ?>"></h2>
+
+      <div class="services-container">
+        
+        <!-- SERVICE -->
+        <div class="service-wrapper">
+          <div class="service">
+            <p><span class="name">Landscape Design</span> - https://mexlandscaping.com/landscaping/</p>
+            <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
+            <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
+            <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
+          </div>
+          <div class="sub-services">
+            <!-- CONTAINS SERVICES SUCH AS THIS -->
+
+            <!-- SERVICE -->
+            <div class="service-wrapper">
+              <div class="service">
+                <p><span class="name">Lawn Installation</span> - https://mexlandscaping.com/lawn-installation/</p>
+                <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
+                <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
+                <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
+              </div>
+              <div class="sub-services">
+                <!-- CONTAINS SERVICES SUCH AS THIS -->
+              </div>
+            </div>
+
+            <!-- SERVICE -->
+            <div class="service-wrapper">
+              <div class="service">
+                <p><span class="name">Landscape Lighting</span> - https://mexlandscaping.com/landscape-lighting/</p>
+                <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
+                <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
+                <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
+              </div>
+              <div class="sub-services">
+                <!-- CONTAINS SERVICES SUCH AS THIS -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- SERVICE -->
+        <div class="service-wrapper">
+          <div class="service">
+            <p><span class="name">Hardscape Services</span> - https://mexlandscaping.com/hardscaping/</p>
+            <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
+            <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
+            <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
+          </div>
+          <div class="sub-services">
+            <!-- CONTAINS SERVICES SUCH AS THIS -->
+
+            <div class="service-wrapper">
+              <div class="service">
+                <p><span class="name">Drainage & Grading</span> - https://mexlandscaping.com/drainage-grading/</p>
+                <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
+                <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
+                <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
+              </div>
+              <div class="sub-services">
+                <!-- CONTAINS SERVICES SUCH AS THIS -->
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
 
     <div class="form-group-control">
-      <h2>Areas Served <img style="cursor:pointer; margin-left:10px;"
-          src="https://rank-schema-plugin-server.herokuapp.com/images/add_icon.svg"></h2>
+      <h2>Areas Served <img src="<?php echo $SERVER . "images/add_icon.svg" ?>"></h2>
+
+      <div class="service-areas-container">
+
+      <!-- SERVICE AREA -->
+        <div class="service-area-wrapper">
+          <div class="service-area">
+            <p><span class="name">Drainage & Grading</span> - https://mexlandscaping.com/drainage-grading/</p>
+            <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
+            <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
+            <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
+          </div>
+        </div>
+
+      </div>
+
     </div>
 
 
@@ -759,15 +1060,61 @@
 
 </div>
 
+<!-- MAIN SCRIPTS -->
+<script>
+  // Open add service form
+  document.querySelector('.form-container form .open-add-service-form').addEventListener('click', () => {
+    document.querySelector('.add-service-overlay').style.display = "flex";
+  })
+
+  // Add Service form cancel btn
+  document.querySelector('.add-service-overlay form .call-to-actions input[name=cancel-service-btn]').addEventListener('click', () => {
+    document.querySelector('.add-service-overlay form').reset()
+    document.querySelector('.add-service-overlay').style.display = "none"
+  })
+
+</script>
 
 <?php
-    if(isset($_POST['btn'])){
-        echo "
-            <script type=\"text/javascript\">
-            document.querySelector('.get-started-container').style.display = 'none';
+  // If config.json available, proceed to main form
+  if ($CONFIG_AVAILABLE) {
+    
+  }
 
-            document.querySelector('.form-container').style.display = 'grid';
-            </script>
-        ";
-     }
-  ?>
+  // Get Started Button
+  if(isset($_POST['get-started-btn'])){
+
+    $skeletonData = array (
+      'schemaType' => '',
+      'businessName' => '',
+      'ownersName' => '',
+      'websiteURL' => '',
+      'imageURL' => '',
+      'description' => '',
+      'disambiguatingDescription' => '',
+      'slogan' => '',
+      'privacyPolicyURL' => '',
+      'aboutUrl' => '',
+      'contactUrl' => '',
+      'email' => '',
+      'phone' => '',
+      'streetAddress' => '',
+      'cityTown' => '',
+      'state' => '',
+      'zipCode' => '',
+      'country' => '',
+      'query' => '',
+      'services' => array (),
+      'keywords' => array (),
+      'areasServed' => array (),
+      'backlinks' => array ()
+    );
+
+    echo "
+      <script type=\"text/javascript\">
+      document.querySelector('.get-started-container').style.display = 'none';
+      document.querySelector('.form-container').style.display = 'grid';
+      </script>
+    ";
+  }
+?>
