@@ -69,7 +69,8 @@
     transition: .3s all ease-in-out;
   }
 
-  .add-service-overlay form input[name=add-service-btn] {
+  .add-service-overlay form input[name=add-service-btn],
+  .add-service-overlay form input[name=add-sub-service-btn] {
     border-radius: 5px;
     color: #fff;
     background: #B50000;
@@ -78,13 +79,15 @@
     margin-left: auto;
   }
 
-  .add-service-overlay form input[name=add-service-btn]:hover {
+  .add-service-overlay form input[name=add-service-btn]:hover,
+  .add-service-overlay form input[name=add-sub-service-btn]:hover {
     opacity: 0.9; 
     color: #fff;
     transform: scale(1.05);
   }
 
-  .add-service-overlay form input[name=cancel-service-btn] {
+  .add-service-overlay form input[name=cancel-service-btn],
+  .add-service-overlay form input[name=cancel-sub-service-btn] {
     margin-left: 10px;
     color: #363636;
     height: 40px;
@@ -94,9 +97,17 @@
     transition: .3s all ease-in-out;
   }
 
-  .add-service-overlay form input[name=cancel-service-btn]:hover {
+  .add-service-overlay form input[name=cancel-service-btn]:hover,
+  .add-service-overlay form input[name=cancel-sub-service-btn]:hover {
     background: #E2E2E2;
     transform: scale(1.05);
+  }
+</style>
+
+<!-- ADD SUB SERVICE OVERLAY -->
+<style>
+  .sub-service-overlay {
+    display: none;
   }
 </style>
 
@@ -453,6 +464,33 @@
     <div class="call-to-actions">
       <input name="add-service-btn" type="submit" value="Add Service">
       <input name="cancel-service-btn" type="button" value="Cancel ">
+    </div>
+
+  </form>
+</div>
+
+<div class="sub-service-overlay add-service-overlay">
+  <form method="POST">
+    <h2>Add a Sub Service</h2>
+    <input type="hidden" class="key" name="key" value="">
+    <div class="form-control">
+      <label>Service Name <span>*</span></label>
+      <input name="serviceName" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>Service Page URL <span>*</span></label>
+      <input name="serviceUrl" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>Description <span>*</span></label>
+      <textarea name="serviceDescription" cols="15" rows="10" required></textarea>
+    </div>
+
+    <div class="call-to-actions">
+      <input name="add-sub-service-btn" type="submit" value="Add Service">
+      <input class="cancel-sub-service-btn" type="button" value="Cancel ">
     </div>
 
   </form>
@@ -958,72 +996,75 @@
 
       <div class="services-container">
         
-        <!-- SERVICE -->
-        <div class="service-wrapper">
-          <div class="service">
-            <p><span class="name">Landscape Design</span> - https://mexlandscaping.com/landscaping/</p>
-            <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-            <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-            <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-          </div>
-          <div class="sub-services">
-            <!-- CONTAINS SERVICES SUCH AS THIS -->
+        <?php
+          if (isset($CONFIG)) {
+            foreach ($CONFIG['services'] as $service) {
+              echo 
+              "
+              <!-- SERVICE -->
+              <div class=\"service-wrapper\" id=\"".$service['serviceUrl']."\">
+                <div class=\"service\">
+                  <p><span class=\"name\">".$service['serviceName']."</span> - ".$service['serviceUrl']."</p>
+                  <img data-key=\"".$service['serviceUrl']."\" class=\"add-btn\" src=\"".$SERVER . "images/add_icon_small.svg\">
+                  <img data-key=\"".$service['serviceUrl']."\" class=\"edit-btn\" src=\"".$SERVER . "images/edit_icon.svg\">
+                  <img data-key=\"".$service['serviceUrl']."\" class=\"trash-btn\" src=\"".$SERVER . "images/trash_icon.svg\">
+                </div>
+                <div class=\"sub-services\">
+                <!-- CONTAINS SERVICES SUCH AS THIS -->";
+                  
+                if (isset($service['subServices'])) {
+                  foreach ($service['subServices'] as $subService) {
+                    
+                    // SubServices
+                    echo 
+                    "
+                    <!-- SERVICE -->
+                    <div class=\"service-wrapper\" id=\"".$subService['serviceUrl']."\">
+                      <div class=\"service\">
+                        <p><span class=\"name\">".$subService['serviceName']."</span> - ".$subService['serviceUrl']."</p>
+                        <img data-key=\"".$subService['serviceUrl']."\" class=\"add-btn\" src=\"".$SERVER . "images/add_icon_small.svg\">
+                        <img data-key=\"".$subService['serviceUrl']."\" class=\"edit-btn\" src=\"".$SERVER . "images/edit_icon.svg\">
+                        <img data-key=\"".$subService['serviceUrl']."\" class=\"trash-btn\" src=\"".$SERVER . "images/trash_icon.svg\">
+                      </div>
+                      <div class=\"sub-services\">
+                      <!-- CONTAINS SERVICES SUCH AS THIS -->";
+                        
+                      if (isset($subService['subServices'])) {
+                        foreach ($subService['subServices'] as $_subService) {
+                          
+                          // SubServices
+                          echo 
+                          "
+                          <!-- SERVICE -->
+                          <div class=\"service-wrapper\" id=\"".$_subService['serviceUrl']."\">
+                            <div class=\"service\">
+                              <p><span class=\"name\">".$_subService['serviceName']."</span> - ".$_subService['serviceUrl']."</p>
+                              <img data-key=\"".$_subService['serviceUrl']."\" style=\"margin-left: auto;\" class=\"edit-btn\" src=\"".$SERVER . "images/edit_icon.svg\">
+                              <img data-key=\"".$_subService['serviceUrl']."\" class=\"trash-btn\" src=\"".$SERVER . "images/trash_icon.svg\">
+                            </div>
+                          </div>
+                          ";
+                          
+                        }
+                      }
 
-            <!-- SERVICE -->
-            <div class="service-wrapper">
-              <div class="service">
-                <p><span class="name">Lawn Installation</span> - https://mexlandscaping.com/lawn-installation/</p>
-                <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-                <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-                <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
+                    echo
+                    "
+                      </div>
+                    </div>
+                    ";
+                    
+                  }
+                }
+
+              echo
+              "
+                </div>
               </div>
-              <div class="sub-services">
-                <!-- CONTAINS SERVICES SUCH AS THIS -->
-              </div>
-            </div>
-
-            <!-- SERVICE -->
-            <div class="service-wrapper">
-              <div class="service">
-                <p><span class="name">Landscape Lighting</span> - https://mexlandscaping.com/landscape-lighting/</p>
-                <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-                <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-                <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-              </div>
-              <div class="sub-services">
-                <!-- CONTAINS SERVICES SUCH AS THIS -->
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- SERVICE -->
-        <div class="service-wrapper">
-          <div class="service">
-            <p><span class="name">Hardscape Services</span> - https://mexlandscaping.com/hardscaping/</p>
-            <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-            <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-            <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-          </div>
-          <div class="sub-services">
-            <!-- CONTAINS SERVICES SUCH AS THIS -->
-
-            <div class="service-wrapper">
-              <div class="service">
-                <p><span class="name">Drainage & Grading</span> - https://mexlandscaping.com/drainage-grading/</p>
-                <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-                <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-                <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-              </div>
-              <div class="sub-services">
-                <!-- CONTAINS SERVICES SUCH AS THIS -->
-
-              </div>
-            </div>
-
-          </div>
-        </div>
+              ";
+            }
+          }
+        ?>
 
       </div>
 
@@ -1073,17 +1114,36 @@
     document.querySelector('.add-service-overlay').style.display = "none"
   })
 
+  // Open add sub service form
+  document.querySelectorAll('.form-container form .services-container .service-wrapper .service img.add-btn').forEach(element => {
+    element.addEventListener('click', (e) => {
+      document.querySelector('.sub-service-overlay').style.display = "flex";
+      document.querySelector('.sub-service-overlay form .key').value = e.target.dataset.key
+    })
+  })
+
+  // add sub service form cancel button
+  document.querySelector('.sub-service-overlay form .cancel-sub-service-btn').addEventListener('click', () => {
+    document.querySelector('.sub-service-overlay form').reset()
+    document.querySelector('.sub-service-overlay').style.display = 'none'
+  })
 </script>
 
 <?php
   // If config.json available, proceed to main form
   if ($CONFIG_AVAILABLE) {
-    
+    // Proceed to main form
+    echo "
+      <script type=\"text/javascript\">
+      document.querySelector('.get-started-container').style.display = 'none';
+      document.querySelector('.form-container').style.display = 'grid';
+      </script>
+    ";
   }
 
   // Get Started Button
   if(isset($_POST['get-started-btn'])){
-
+    // Create config.json file
     $skeletonData = array (
       'schemaType' => '',
       'businessName' => '',
@@ -1107,14 +1167,161 @@
       'services' => array (),
       'keywords' => array (),
       'areasServed' => array (),
-      'backlinks' => array ()
+      'backlinks' => array (),
+      'applied' => false
     );
 
+    file_put_contents( WP_PLUGIN_DIR . "/rank-schema/config.json", json_encode($skeletonData));
+
+    // Proceed to main form
     echo "
       <script type=\"text/javascript\">
       document.querySelector('.get-started-container').style.display = 'none';
       document.querySelector('.form-container').style.display = 'grid';
       </script>
     ";
+  }
+
+  // Add new service submit
+  if (isset($_POST['add-service-btn'])) {
+    //modify data $CONFIG
+    array_push(
+      $CONFIG['services'],
+      array($_POST['serviceUrl'] => array(
+        'serviceName' => $_POST['serviceName'],
+        'serviceUrl' => $_POST['serviceUrl'],
+        'serviceDescription' => $_POST['serviceDescription']
+      ))
+    );
+
+    // rewrite to config.json file
+    if (file_put_contents( WP_PLUGIN_DIR . "/rank-schema/config.json", json_encode($CONFIG))) {
+      // Update Ui
+      echo 
+      "
+      <script>
+        let container = document.querySelector(`.form-container form .services-container`)
+
+        let serviceWrapper = document.createElement(`div`)
+        serviceWrapper.className = `service-wrapper`
+        serviceWrapper.id = `".$_POST['serviceUrl']."`
+
+        let service = document.createElement(`div`)
+        service.className = `service`
+        serviceWrapper.appendChild(service)
+
+        let text = document.createElement(`p`)
+        text.innerHTML = `<span class=\"name\">".$_POST['serviceName']."</span> - ".$_POST['serviceUrl']."`
+        service.appendChild(text)
+
+        let addBtn = document.createElement(`img`)
+        addBtn.className = `add-btn`
+        addBtn.dataset.key = `".$_POST['serviceUrl']."`
+        addBtn.src = `".$SERVER."images/add_icon_small.svg`
+        service.appendChild(addBtn)
+
+        let editBtn = document.createElement(`img`)
+        editBtn.className = `edit-btn`
+        editBtn.dataset.key = `".$_POST['serviceUrl']."`
+        editBtn.src = `".$SERVER."images/edit_icon.svg`
+        service.appendChild(editBtn)
+
+        let trashBtn = document.createElement(`img`)
+        trashBtn.className = `trash-btn`
+        trashBtn.dataset.key = `".$_POST['serviceUrl']."`
+        trashBtn.src = `".$SERVER."images/trash_icon.svg`
+        service.appendChild(trashBtn)
+
+        let subServices = document.createElement(`div`)
+        subServices.className = `sub-services`
+        serviceWrapper.appendChild(subServices)
+
+        container.appendChild(serviceWrapper)
+      </script>
+      ";
+    } else {
+      // Failed to update config.json file
+    }
+  }
+
+  // Add sub service button
+  if (isset($_POST['add-sub-service-btn'])) {
+    // modify $CONFIG
+    foreach ($CONFIG['services'] as $service) {
+      // check if $_POST['key'] is equal to the service URL
+      if ($service['serviceUrl'] == $_POST['key']) {
+        echo 'lvl 1 if ['.$service['serviceUrl'].'|'.$_POST['key'].']';
+        
+        // Add tp sub service
+        if (isset($service['subServices'])) {
+          echo ' > lvl 2 if ['.$service['serviceUrl'].'|'.$_POST['key'].']';
+          array_push(
+            $service['subServices'],
+            array(
+              'serviceName' => $_POST['serviceName'],
+              'serviceUrl' => $_POST['serviceUrl'],
+              'serviceDescription' => $_POST['serviceDescription']
+            )
+          );
+        } else {
+          echo ' > lvl 2 else ['.$service['serviceUrl'].'|'.$_POST['key'].']';
+          $service['subServices'] = array();
+          array_push($service['subServices'], array(
+            'serviceName' => $_POST['serviceName'],
+            'serviceUrl' => $_POST['serviceUrl'],
+            'serviceDescription' => $_POST['serviceDescription']
+          ));
+        }
+
+        break;
+
+      } else {
+        echo 'lvl 1 else ['.$service['serviceUrl'].'|'.$_POST['key'].']';
+
+        if (isset($service['subServices'])) {
+          echo ' > lvl 2 if ['.$service['serviceUrl'].'|'.$_POST['key'].']';
+
+          foreach ($service['subServices'] as $subService) {
+
+            if ($subService['serviceUrl'] == $_POST['key']) {
+              echo ' > lvl 3 if ['.$subService['serviceUrl'].'|'.$_POST['key'].']';
+              // Add to sub service
+              if (isset($subService['subServices'])) {
+                echo ' > lvl 4 if ['.$subService['serviceUrl'].'|'.$_POST['key'].']';
+                array_push(
+                  $subService['subServices'],
+                  array(
+                    'serviceName' => $_POST['serviceName'],
+                    'serviceUrl' => $_POST['serviceUrl'],
+                    'serviceDescription' => $_POST['serviceDescription']
+                  )
+                );
+              } else {
+                echo ' > lvl 4 else HERE';
+                $subService['subServices'] = array();
+                echo '<pre>'.json_encode($CONFIG).'</pre>';
+                // array_push($subService['subServices'], array(
+                //   'serviceName' => $_POST['serviceName'],
+                //   'serviceUrl' => $_POST['serviceUrl'],
+                //   'serviceDescription' => $_POST['serviceDescription']
+                // ));
+              }
+              
+              break;
+            } else { echo ' > lvl 3 else ['.$service['serviceUrl'].'|'.$_POST['key'].']'; }
+          }
+
+        } else { echo ' > lvl 2 else ['.$service['serviceUrl'].'|'.$_POST['key'].']'; }
+      }
+    }
+
+    // rewrite config.js
+    if (file_put_contents( WP_PLUGIN_DIR . "/rank-schema/config.json", json_encode($CONFIG))) {
+      // update ui
+      echo 'file updated';
+    } else {
+      //  failed to rewrite config.json
+      echo 'failed to update file';
+    }
   }
 ?>
