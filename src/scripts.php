@@ -1,9 +1,23 @@
 <!-- MAIN SCRIPTS -->
 <script>
 
+    let CONFIG
+    const MAIN_FORM = document.querySelector('.form-container form')
+    const SITE_URL = '<?php echo get_site_url(); ?>'
+
     if('<?php echo isset($CONFIG); ?>'.length) {
+        // Proceed to Main Form
         document.querySelector('.get-started-container').style.display = 'none'
         document.querySelector('.form-container').style.display = 'grid'
+
+        // Load existing config data to Form
+        CONFIG = <?php echo json_encode($CONFIG); ?>;
+
+        // MAIN_FORM.schemaType.value = configData.schemaType
+        // MAIN_FORM.businessName.value = configData.businessName
+        // MAIN_FORM.slogan.value = configData.slogan
+        // MAIN_FORM.ownersName.value = configData.ownersName
+
     }
 
     // Get Starated button
@@ -201,10 +215,10 @@
     // Add Service Area form Submit Btn
     document.querySelector('.add-service-area-overlay form').addEventListener('submit', (e) => {
         e.preventDefault()
-        let form = e.target
-        let container = document.querySelector('.form-container .service-areas-container')
+        const form = e.target
+        const container = document.querySelector('.form-container .service-areas-container')
 
-        let areaWrapper = document.createElement('div')
+        const areaWrapper = document.createElement('div')
         areaWrapper.className = 'service-area-wrapper'
 
         areaWrapper.dataset.country = form.country.value
@@ -213,21 +227,21 @@
         areaWrapper.dataset.url = form.url.value
         areaWrapper.dataset.zipCodes = form.zipCodes.value
 
-        let area = document.createElement('div')
+        const area = document.createElement('div')
         area.className = 'service-area'
         areaWrapper.appendChild(area)
 
-        let text = document.createElement('p')
+        const text = document.createElement('p')
         text.innerHTML = `<p><span class="name">${form.country.value}</span> - ${form.state.value}</p>`
         area.appendChild(text)
 
-        let editBtn = document.createElement('img')
+        const editBtn = document.createElement('img')
         editBtn.className = 'edit-btn'
         editBtn.style.marginLeft = 'auto'
         editBtn.src = '<?php echo $SERVER; ?>images/edit_icon.svg'
         area.appendChild(editBtn)
 
-        let trashBtn = document.createElement('img')
+        const trashBtn = document.createElement('img')
         trashBtn.className = 'trash-btn'
         trashBtn.src = '<?php echo $SERVER; ?>images/trash_icon.svg'
         area.appendChild(trashBtn)
@@ -238,53 +252,99 @@
         document.querySelector('.add-service-area-overlay').style.display = "none";
     })
 
+    document.querySelector('.form-container form').addEventListener('submit', (e) => {
+        e.preventDefault()
+    })
+
+    document.getElementById('saveSchemaBtn').addEventListener('click', () => {
+
+        const configData = {
+            schemaType: MAIN_FORM.schemaType.value,
+            businessName: MAIN_FORM.businessName.value,
+            ownersName: MAIN_FORM.ownersName.value || MAIN_FORM.businessName.value,
+            websiteURL: SITE_URL,
+            imageURL: MAIN_FORM.imageURL.value,
+            description: MAIN_FORM.description.value,
+            disambiguatingDescription: MAIN_FORM.disambiguatingDescription.value,
+            slogan: MAIN_FORM.slogan.value,
+            privacyPolicyURL: MAIN_FORM.privacyPolicyURL.value || SITE_URL,
+            aboutUrl: MAIN_FORM.aboutUrl.value || SITE_URL,
+            contactUrl: MAIN_FORM.contactUrl.value || SITE_URL,
+            email: MAIN_FORM.email.value,
+            phone: MAIN_FORM.phone.value,
+            streetAddress: MAIN_FORM.streetAddress.value,
+            cityTown: MAIN_FORM.cityTown.value,
+            state: MAIN_FORM.state.value,
+            zipCode: MAIN_FORM.zipCode.value,
+            country: MAIN_FORM.country.value,
+            query: MAIN_FORM.query.value,
+            services: [],
+            keywords: [],
+            areasServed: [],
+            backlinks: [],
+            activated: CONFIG.activated
+        }
+
+        collectServicesData(data => console.log(data))
+
+        
+    })
+
+    document.getElementById('test-button').addEventListener('click', () => {
+        collectServicesData((data) => {
+            console.log(data)
+        })
+    })
+
     function collectServicesData(callback) {
         let servicesData = []
 
         /* TOP LEVEL */
         document.querySelectorAll('.form-container form .services-container .top-level').forEach(topLvlService => {
 
-        const topLvlServiceData = {
-            serviceName: topLvlService.dataset.name,
-            serviceUrl: topLvlService.dataset.url,
-            serviceDescription: topLvlService.dataset.description
-        }
-
-        if (topLvlService.childNodes[1].hasChildNodes()) {
-            topLvlServiceData.subServices = []
-
-            /* MID LEVEL */
-            topLvlService.childNodes[1].childNodes.forEach(midLvlService => {
-            
-            const midLvlServiceData = {
-                serviceName: midLvlService.dataset.name,
-                serviceUrl: midLvlService.dataset.url,
-                serviceDescription: midLvlService.dataset.description
+            const topLvlServiceData = {
+                serviceName: topLvlService.dataset.name,
+                serviceUrl: topLvlService.dataset.url,
+                serviceDescription: topLvlService.dataset.description
             }
 
-            if (midLvlService.childNodes[1].hasChildNodes()) {
-                midLvlServiceData.subServices = []
-
-                /* LAST LEVEL */
-                midLvlService.childNodes[1].childNodes.forEach(lastLvlService => {
-
-                const lastLvlServiceData = {
-                    serviceName: lastLvlService.dataset.name,
-                    serviceUrl: lastLvlService.dataset.url,
-                    serviceDescription: lastLvlService.dataset.description
-                }
-
-                midLvlServiceData.subServices.push(lastLvlServiceData)
+            if (topLvlService.childNodes[1].hasChildNodes()) {
                 
+                topLvlServiceData.subServices = []
+
+                /* MID LEVEL */
+                topLvlService.childNodes[1].childNodes.forEach(midLvlService => {
+
+                    const midLvlServiceData = {
+                        serviceName: midLvlService.dataset.name,
+                        serviceUrl: midLvlService.dataset.url,
+                        serviceDescription: midLvlService.dataset.description
+                    }
+
+
+                    if (midLvlService.childNodes[1].hasChildNodes()) {
+                        midLvlServiceData.subServices = []
+
+                        /* LAST LEVEL */
+                        midLvlService.childNodes[1].childNodes.forEach(lastLvlService => {
+
+                            const lastLvlServiceData = {
+                                serviceName: lastLvlService.dataset.name,
+                                serviceUrl: lastLvlService.dataset.url,
+                                serviceDescription: lastLvlService.dataset.description
+                            }
+
+                            midLvlServiceData.subServices.push(lastLvlServiceData)
+                        
+                        })
+
+                    }
+
+                    topLvlServiceData.subServices.push(midLvlServiceData)
                 })
-
             }
-
-            topLvlServiceData.subServices.push(midLvlServiceData)
-            })
-        }
-        
-        servicesData.push(topLvlServiceData)
+            
+            servicesData.push(topLvlServiceData)
 
         })
 

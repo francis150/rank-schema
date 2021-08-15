@@ -24,6 +24,6 @@ $skeletonData = array (
     'keywords' => array (),
     'areasServed' => array (),
     'backlinks' => array (),
-    'applied' => false
+    'activated' => false
 );
 file_put_contents('config.json', json_encode($skeletonData));
