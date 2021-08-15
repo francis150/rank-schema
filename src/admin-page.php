@@ -1102,6 +1102,8 @@
 
       </div>
 
+      <button id="test-button" type="button">TEst!</button>
+
     </div>
 
 
@@ -1110,7 +1112,8 @@
 
       <div class="service-areas-container">
 
-      <!-- SERVICE AREA -->
+        <!-- ADD SERVICE AREA -->
+        <?php include plugin_dir_path( __FILE__ ). 'get-service-areas.php'; ?>
 
       </div>
 

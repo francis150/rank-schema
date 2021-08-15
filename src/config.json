@@ -1,6 +1,6 @@
 {
     "schemaType": "",
-    "businessName": "",
+    "businessName": "Mex Landscaping",
     "ownersName": "",
     "websiteURL": "",
     "imageURL": "",
@@ -457,5 +457,5 @@
         }
     ],
     "backlinks": [],
-    "applied": false
+    "activated": false
 }
