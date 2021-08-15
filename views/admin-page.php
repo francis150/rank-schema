@@ -19,7 +19,7 @@
   }
 </style>
 
-<!-- ADD SERVICE OVERLAY -->
+<!-- ADD SERVICE/SUB-SERVICE OVERLAY -->
 <style>
   .add-service-overlay {
     display: none;
@@ -33,6 +33,11 @@
     width: 100%;
     z-index: 20;
     background: rgba(0,0,0,0.8);
+  }
+
+  .sub-service-overlay {
+    display: none;
+    /* display: flex; */
   }
 
   .add-service-overlay form {
@@ -69,7 +74,8 @@
     transition: .3s all ease-in-out;
   }
 
-  .add-service-overlay form input[name=add-service-btn] {
+  .add-service-overlay form input[name=add-service-btn],
+  .add-service-overlay form input[name=add-sub-service-btn] {
     border-radius: 5px;
     color: #fff;
     background: #B50000;
@@ -78,13 +84,15 @@
     margin-left: auto;
   }
 
-  .add-service-overlay form input[name=add-service-btn]:hover {
+  .add-service-overlay form input[name=add-service-btn]:hover,
+  .add-service-overlay form input[name=add-sub-service-btn]:hover {
     opacity: 0.9; 
     color: #fff;
     transform: scale(1.05);
   }
 
-  .add-service-overlay form input[name=cancel-service-btn] {
+  .add-service-overlay form input[name=cancel-service-btn],
+  .add-service-overlay form input[name=cancel-sub-service-btn] {
     margin-left: 10px;
     color: #363636;
     height: 40px;
@@ -94,7 +102,8 @@
     transition: .3s all ease-in-out;
   }
 
-  .add-service-overlay form input[name=cancel-service-btn]:hover {
+  .add-service-overlay form input[name=cancel-service-btn]:hover, 
+  .add-service-overlay form input[name=cancel-sub-service-btn]:hover {
     background: #E2E2E2;
     transform: scale(1.05);
   }
@@ -458,6 +467,33 @@
   </form>
 </div>
 
+<div class="sub-service-overlay add-service-overlay">
+  <form method="POST">
+    <h2>Add a Sub Service</h2>
+    <input type="hidden" name="key" value="">
+    <div class="form-control">
+      <label>Service Name <span>*</span></label>
+      <input name="serviceName" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>Service Page URL <span>*</span></label>
+      <input name="serviceUrl" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>Description <span>*</span></label>
+      <textarea name="serviceDescription" cols="15" rows="10" required></textarea>
+    </div>
+
+    <div class="call-to-actions">
+      <input name="add-sub-service-btn" type="submit" value="Add Service">
+      <input name="cancel-sub-service-btn" class="cancel-sub-service-btn" type="button" value="Cancel ">
+    </div>
+
+  </form>
+</div>
+
 
 <div class="get-started-container">
   <div class="logo-container">
@@ -474,7 +510,7 @@
   </div>
   <div class="button-container">
     <form method="POST">
-      <input class="get-started-btn" type="submit" name="get-started-btn" value="Get Started!" onclick="return true;" />
+      <input class="get-started-btn" type="submit" value="Get Started!" onclick="return true;" />
     </form>
   </div>
   <img id="landing-img" src="<?php echo $SERVER . "images/landing_illustration.svg" ?>">
@@ -958,74 +994,12 @@
 
       <div class="services-container">
         
-        <!-- SERVICE -->
-        <div class="service-wrapper">
-          <div class="service">
-            <p><span class="name">Landscape Design</span> - https://mexlandscaping.com/landscaping/</p>
-            <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-            <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-            <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-          </div>
-          <div class="sub-services">
-            <!-- CONTAINS SERVICES SUCH AS THIS -->
+        <!-- SERVICES HERE -->
+        
+        
+      <div class="service-wrapper top-level" data-name="Service Name 1" data-url="Service URL 1" data-description="asdfadf"><div class="service"><p><span class="name">Service Name 1</span> - Service URL 1</p><img class="add-btn" src="***REMOVED***images/add_icon_small.svg"><img class="edit-btn" src="***REMOVED***images/edit_icon.svg"><img class="trash-btn" src="***REMOVED***images/trash_icon.svg"></div><div class="sub-services" data-key="Service URL 1"></div></div><div class="service-wrapper top-level" data-name="Service Name 2" data-url="Service URL 2" data-description="asdfasdf"><div class="service"><p><span class="name">Service Name 2</span> - Service URL 2</p><img class="add-btn" src="***REMOVED***images/add_icon_small.svg"><img class="edit-btn" src="***REMOVED***images/edit_icon.svg"><img class="trash-btn" src="***REMOVED***images/trash_icon.svg"></div><div class="sub-services" data-key="Service URL 2"><div class="service-wrapper" data-name="Service 2 Sub-service 1 Name" data-url="Service 2 Sub-service 1 Url" data-description="asdfasdf"><div class="service"><p><span class="name">Service 2 Sub-service 1 Name</span> - Service 2 Sub-service 1 Url</p><img class="add-btn" src="***REMOVED***images/add_icon_small.svg"><img class="edit-btn" src="***REMOVED***images/edit_icon.svg" style="margin-left: 5px;"><img class="trash-btn" src="***REMOVED***images/trash_icon.svg"></div><div class="sub-services" data-key="Service 2 Sub-service 1 Url" data-is-sub-service="true"></div></div><div class="service-wrapper" data-name="Service 2 Sub-service 2 Name" data-url="Service 2 Sub-service 2 Url" data-description="asdfasdf"><div class="service"><p><span class="name">Service 2 Sub-service 2 Name</span> - Service 2 Sub-service 2 Url</p><img class="add-btn" src="***REMOVED***images/add_icon_small.svg"><img class="edit-btn" src="***REMOVED***images/edit_icon.svg" style="margin-left: 5px;"><img class="trash-btn" src="***REMOVED***images/trash_icon.svg"></div><div class="sub-services" data-key="Service 2 Sub-service 2 Url" data-is-sub-service="true"><div class="service-wrapper" data-name="Service 2 Sub-service 2 Sub-service 2 Name" data-url="Service 2 Sub-service 2 Sub-service 2 Url" data-description="asdfasdf"><div class="service"><p><span class="name">Service 2 Sub-service 2 Sub-service 2 Name</span> - Service 2 Sub-service 2 Sub-service 2 Url</p><img class="edit-btn" src="***REMOVED***images/edit_icon.svg" style="margin-left: auto;"><img class="trash-btn" src="***REMOVED***images/trash_icon.svg"></div></div></div></div></div></div><div class="service-wrapper top-level" data-name="Service Name 3" data-url="Service URL 3" data-description="asdf"><div class="service"><p><span class="name">Service Name 3</span> - Service URL 3</p><img class="add-btn" src="***REMOVED***images/add_icon_small.svg"><img class="edit-btn" src="***REMOVED***images/edit_icon.svg"><img class="trash-btn" src="***REMOVED***images/trash_icon.svg"></div><div class="sub-services" data-key="Service URL 3"></div></div></div>
 
-            <!-- SERVICE -->
-            <div class="service-wrapper">
-              <div class="service">
-                <p><span class="name">Lawn Installation</span> - https://mexlandscaping.com/lawn-installation/</p>
-                <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-                <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-                <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-              </div>
-              <div class="sub-services">
-                <!-- CONTAINS SERVICES SUCH AS THIS -->
-              </div>
-            </div>
-
-            <!-- SERVICE -->
-            <div class="service-wrapper">
-              <div class="service">
-                <p><span class="name">Landscape Lighting</span> - https://mexlandscaping.com/landscape-lighting/</p>
-                <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-                <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-                <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-              </div>
-              <div class="sub-services">
-                <!-- CONTAINS SERVICES SUCH AS THIS -->
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- SERVICE -->
-        <div class="service-wrapper">
-          <div class="service">
-            <p><span class="name">Hardscape Services</span> - https://mexlandscaping.com/hardscaping/</p>
-            <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-            <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-            <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-          </div>
-          <div class="sub-services">
-            <!-- CONTAINS SERVICES SUCH AS THIS -->
-
-            <div class="service-wrapper">
-              <div class="service">
-                <p><span class="name">Drainage & Grading</span> - https://mexlandscaping.com/drainage-grading/</p>
-                <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-                <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-                <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-              </div>
-              <div class="sub-services">
-                <!-- CONTAINS SERVICES SUCH AS THIS -->
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
+      <button id="test-submit" type="button">Test Submit</button>
 
     </div>
 
@@ -1062,6 +1036,25 @@
 
 <!-- MAIN SCRIPTS -->
 <script>
+  // Get Starated button
+  document.querySelector('.get-started-container form').addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    // Build formData object.
+    let formData = new FormData();
+    formData.append('data-test', 'John')
+
+    fetch('<?php echo str_replace("\\", "/", WP_PLUGIN_DIR . "/rank-schema/views/admin-page.php") ?>',
+    {
+      body: formData,
+      method: "POST"
+    })
+    .catch(err => console.log(err.message))
+
+    // console.log('send')
+
+  })
+
   // Open add service form
   document.querySelector('.form-container form .open-add-service-form').addEventListener('click', () => {
     document.querySelector('.add-service-overlay').style.display = "flex";
@@ -1073,48 +1066,226 @@
     document.querySelector('.add-service-overlay').style.display = "none"
   })
 
+  // Add service form submit
+  document.querySelector('.add-service-overlay form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const form = e.target
+    const serviceData = {
+      name: form.serviceName.value,
+      url: form.serviceUrl.value,
+      description: form.serviceDescription.value
+    }
+
+    const serviceWrapper = document.createElement('div')
+    serviceWrapper.className = 'service-wrapper top-level'
+
+    serviceWrapper.dataset.name = serviceData.name
+    serviceWrapper.dataset.url = serviceData.url
+    serviceWrapper.dataset.description = serviceData.description
+
+    const service = document.createElement('div')
+    service.className = 'service'
+    serviceWrapper.appendChild(service)
+
+    const text = document.createElement('p')
+    text.innerHTML = `<span class="name">${serviceData.name}</span> - ${serviceData.url}`
+    service.appendChild(text)
+
+    const addBtn = document.createElement('img')
+    addBtn.className = 'add-btn'
+    addBtn.src = '<?php echo $SERVER . 'images/add_icon_small.svg'; ?>'
+    addBtn.addEventListener('click', () => {
+      // Open SubService Form
+      document.querySelector('.sub-service-overlay').style.display = 'flex'
+      // Set sub-service form hidden input value
+      document.querySelector('.sub-service-overlay form').key.value = serviceData.url
+    })
+    service.appendChild(addBtn)
+
+    const editBtn = document.createElement('img')
+    editBtn.className = 'edit-btn'
+    editBtn.src = '<?php echo $SERVER . 'images/edit_icon.svg'; ?>'
+    editBtn.addEventListener('click', () => {
+      // TODO Open Edit form
+    })
+    service.appendChild(editBtn)
+
+    const trashBtn = document.createElement('img')
+    trashBtn.className = 'trash-btn'
+    trashBtn.src = '<?php echo $SERVER . 'images/trash_icon.svg'; ?>'
+    trashBtn.addEventListener('click', () => {
+      // TODO Open Confirm Dialog to trash
+    })
+    service.appendChild(trashBtn)
+
+    const subServicesContainer = document.createElement('div')
+    subServicesContainer.className = 'sub-services'
+    subServicesContainer.dataset.key = serviceData.url
+    serviceWrapper.appendChild(subServicesContainer)
+
+    document.querySelector('.form-container form .services-container').appendChild(serviceWrapper)
+
+    // Reset and Hide Form
+    form.reset()
+    document.querySelector('.add-service-overlay').style.display = "none";
+  })
+
+  // Add Sub-service form submit btn
+  document.querySelector('.sub-service-overlay form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    let form = e.target
+
+    document.querySelectorAll('.form-container form .services-container .service-wrapper .sub-services').forEach(subServicesCont => {
+      if (subServicesCont.dataset.key === form.key.value) {
+        
+        const serviceData = {
+          name: form.serviceName.value,
+          url: form.serviceUrl.value,
+          description: form.serviceDescription.value
+        }
+
+        const serviceWrapper = document.createElement('div')
+        serviceWrapper.className = 'service-wrapper'
+
+        serviceWrapper.dataset.name = serviceData.name
+        serviceWrapper.dataset.url = serviceData.url
+        serviceWrapper.dataset.description = serviceData.description
+
+        const service = document.createElement('div')
+        service.className = 'service'
+        serviceWrapper.appendChild(service)
+
+        const text = document.createElement('p')
+        text.innerHTML = `<span class="name">${serviceData.name}</span> - ${serviceData.url}`
+        service.appendChild(text)
+
+        // If parent is not alreaedy a subservice show add btn
+        if (!subServicesCont.dataset.isSubService) {
+
+          const addBtn = document.createElement('img')
+          addBtn.className = 'add-btn'
+          addBtn.src = '<?php echo $SERVER . 'images/add_icon_small.svg'; ?>'
+          addBtn.addEventListener('click', () => {
+
+            // Open SubService Form
+            document.querySelector('.sub-service-overlay').style.display = 'flex'
+            // Set sub-service form hidden input value
+            document.querySelector('.sub-service-overlay form').key.value = serviceData.url
+
+          })
+          service.appendChild(addBtn)
+
+        }
+
+        const editBtn = document.createElement('img')
+        editBtn.className = 'edit-btn'
+        editBtn.style.marginLeft = subServicesCont.dataset.isSubService ? 'auto' : '5px'
+        editBtn.src = '<?php echo $SERVER . 'images/edit_icon.svg'; ?>'
+        editBtn.addEventListener('click', () => {
+          // TODO Open Edit form
+        })
+        service.appendChild(editBtn)
+
+        const trashBtn = document.createElement('img')
+        trashBtn.className = 'trash-btn'
+        trashBtn.src = '<?php echo $SERVER . 'images/trash_icon.svg'; ?>'
+        trashBtn.addEventListener('click', () => {
+          // TODO Open Confirm Dialog to trash
+        })
+        service.appendChild(trashBtn)
+
+        if (!subServicesCont.dataset.isSubService) {
+          const subServicesContainer = document.createElement('div')
+          subServicesContainer.className = 'sub-services'
+          subServicesContainer.dataset.key = serviceData.url
+          subServicesContainer.dataset.isSubService = true
+          serviceWrapper.appendChild(subServicesContainer)
+        }
+
+        subServicesCont.appendChild(serviceWrapper)
+
+        // Reset and Hide Form
+        form.reset()
+        document.querySelector('.sub-service-overlay').style.display = "none";
+
+        return
+      }
+    })
+  })
+
+  // Add Sub-service form cancel btn
+  document.querySelector('.sub-service-overlay form .cancel-sub-service-btn').addEventListener('click', () => {
+    document.querySelector('.sub-service-overlay form').reset()
+    document.querySelector('.sub-service-overlay').style.display = 'none'
+  })
+
+  function collectServicesData(callback) {
+    let servicesData = []
+
+    /* TOP LEVEL */
+    document.querySelectorAll('.form-container form .services-container .top-level').forEach(topLvlService => {
+
+      const topLvlServiceData = {
+        serviceName: topLvlService.dataset.name,
+        serviceUrl: topLvlService.dataset.url,
+        serviceDescription: topLvlService.dataset.description
+      }
+
+      if (topLvlService.childNodes[1].hasChildNodes()) {
+        topLvlServiceData.subServices = []
+
+        /* MID LEVEL */
+        topLvlService.childNodes[1].childNodes.forEach(midLvlService => {
+          
+          const midLvlServiceData = {
+            serviceName: midLvlService.dataset.name,
+            serviceUrl: midLvlService.dataset.url,
+            serviceDescription: midLvlService.dataset.description
+          }
+
+          if (midLvlService.childNodes[1].hasChildNodes()) {
+            midLvlServiceData.subServices = []
+
+            /* LAST LEVEL */
+            midLvlService.childNodes[1].childNodes.forEach(lastLvlService => {
+
+              const lastLvlServiceData = {
+                serviceName: lastLvlService.dataset.name,
+                serviceUrl: lastLvlService.dataset.url,
+                serviceDescription: lastLvlService.dataset.description
+              }
+
+              midLvlServiceData.subServices.push(lastLvlServiceData)
+              
+            })
+
+          }
+
+          topLvlServiceData.subServices.push(midLvlServiceData)
+        })
+      }
+      
+      servicesData.push(topLvlServiceData)
+
+    })
+
+    callback(servicesData)
+  }
 </script>
 
 <?php
   // If config.json available, proceed to main form
   if ($CONFIG_AVAILABLE) {
-    
-  }
-
-  // Get Started Button
-  if(isset($_POST['get-started-btn'])){
-
-    $skeletonData = array (
-      'schemaType' => '',
-      'businessName' => '',
-      'ownersName' => '',
-      'websiteURL' => '',
-      'imageURL' => '',
-      'description' => '',
-      'disambiguatingDescription' => '',
-      'slogan' => '',
-      'privacyPolicyURL' => '',
-      'aboutUrl' => '',
-      'contactUrl' => '',
-      'email' => '',
-      'phone' => '',
-      'streetAddress' => '',
-      'cityTown' => '',
-      'state' => '',
-      'zipCode' => '',
-      'country' => '',
-      'query' => '',
-      'services' => array (),
-      'keywords' => array (),
-      'areasServed' => array (),
-      'backlinks' => array ()
-    );
-
     echo "
       <script type=\"text/javascript\">
       document.querySelector('.get-started-container').style.display = 'none';
       document.querySelector('.form-container').style.display = 'grid';
       </script>
     ";
+  }
+
+  // Get Started Button
+  if (isset($_POST['data-test'])) {
+    echo 'It works!';
   }
 ?>
