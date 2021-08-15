@@ -615,7 +615,7 @@
     </p>
   </div>
   <div class="button-container">
-    <button class="get-started-btn">Get Started!z</button>
+    <button class="get-started-btn">Get Started!</button>
   </div>
   <img id="landing-img" src="<?php echo $SERVER . "images/landing_illustration.svg" ?>">
 </div>
