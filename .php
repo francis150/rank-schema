@@ -64,3 +64,40 @@
 
           </div>
         </div>
+
+
+
+<?php 
+// $skeletonData = array (
+    //   'schemaType' => '',
+    //   'businessName' => '',
+    //   'ownersName' => '',
+    //   'websiteURL' => '',
+    //   'imageURL' => '',
+    //   'description' => '',
+    //   'disambiguatingDescription' => '',
+    //   'slogan' => '',
+    //   'privacyPolicyURL' => '',
+    //   'aboutUrl' => '',
+    //   'contactUrl' => '',
+    //   'email' => '',
+    //   'phone' => '',
+    //   'streetAddress' => '',
+    //   'cityTown' => '',
+    //   'state' => '',
+    //   'zipCode' => '',
+    //   'country' => '',
+    //   'query' => '',
+    //   'services' => array (),
+    //   'keywords' => array (),
+    //   'areasServed' => array (),
+    //   'backlinks' => array ()
+    // );
+
+    // echo "
+    //   <script type=\"text/javascript\">
+    //   document.querySelector('.get-started-container').style.display = 'none';
+    //   document.querySelector('.form-container').style.display = 'grid';
+    //   </script>
+    // ";
+     ?>
