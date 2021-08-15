@@ -510,7 +510,7 @@
   </div>
   <div class="button-container">
     <form method="POST">
-      <input class="get-started-btn" type="submit" value="Get Started!" onclick="return true;" />
+      <input class="get-started-btn" type="submit" value="Get Started!"/>
     </form>
   </div>
   <img id="landing-img" src="<?php echo $SERVER . "images/landing_illustration.svg" ?>">
@@ -1040,16 +1040,25 @@
   document.querySelector('.get-started-container form').addEventListener('submit', (e) => {
     e.preventDefault()
 
-    // Build formData object.
-    let formData = new FormData();
-    formData.append('data-test', 'John')
+    const sampleData = {
+      submit: 'submit',
+      fname: 'Francis',
+      lname: 'Dela Victoria'
+    }
 
-    fetch('<?php echo str_replace("\\", "/", WP_PLUGIN_DIR . "/rank-schema/views/admin-page.php") ?>',
-    {
-      body: formData,
-      method: "POST"
-    })
-    .catch(err => console.log(err.message))
+    // Build formData object.
+    const jax = new XMLHttpRequest();
+    jax.open('POST', '<?php echo esc_url( plugins_url( 'process.php', __FILE__ ) ) ?>', false)
+
+    jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+    jax.onload = function() {
+      if (this.status == 200) {
+        console.log(this.responseText)
+      }
+    }
+
+    jax.send(JSON.stringify(sampleData))
 
     // console.log('send')
 
