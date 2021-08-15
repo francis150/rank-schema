@@ -72,7 +72,7 @@ class RankSchemaGenerator
 
     public function admin_index()
     {
-        require_once plugin_dir_path(__FILE__) . 'views/admin-page.php';
+        require_once plugin_dir_path(__FILE__) . 'src/admin-page.php';
     }
 }
 
