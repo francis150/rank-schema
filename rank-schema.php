@@ -1,4 +1,4 @@
-<?php
+script<?php
 /**
  * Plugin Name: Rank Schema Generator
  * Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ratione animi quasi ea odit deleniti nihil aut nam omnis alias dicta debitis, officiis ullam odio.
@@ -22,47 +22,66 @@ class RankSchemaGenerator
 
     public function apply_schema_markups()
     {
-        if ( file_exists( WP_PLUGIN_DIR . "//rank-schema//markups.json" ) )
-        {
-            $markupsFile = WP_PLUGIN_DIR . "//rank-schema//markups.json";
 
-            $markups = file_get_contents($markupsFile);
-            $res_array = json_decode($markups, true);
+        if ( file_exists(plugin_dir_path( __FILE__ ). 'src/config.json') && file_exists(plugin_dir_path( __FILE__ ). 'src/markups.json') ){
 
-            if ( is_front_page() || is_home() ) {
-                
-                foreach ( $res_array['results'][0]['schemaMarkups'] as $markup ) {
-                    
-                    echo '
-                    <!-- Schema Markup by Rank Tools Generator-->
-                    <script type="application/ld+json">
-                    '.str_replace("\/","/",json_encode($markup, JSON_PRETTY_PRINT)).'
-                    </script>
-                    
-                    ';
+            $config = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'src/config.json'), true);
 
-                }
+            $markupsFile = file_get_contents(plugin_dir_path( __FILE__ ). 'src/markups.json');
+            $resArray = json_decode($markupsFile, true);
 
-            } else {
-
-                foreach ( $res_array['results'] as $entity ) {
-                    if ( $entity['url'] == get_page_link() ) {
-                        
-                        foreach ($entity['schemaMarkups'] as $markup) {
-                            
-                            echo '
-                            <!-- Schema Markup for '.$entity['url'].' by Rank Tools Generator-->
-                            <script type="application/ld+json">
-                            '.str_replace("\/","/",json_encode($markup, JSON_PRETTY_PRINT)).'
-                            </script>
-                            
-                            ';
-
-                        }
-                    }
-                }
+            if ($config['activated']) {
+                echo '<script type="application/ld+json>
+                '.str_replace("\/","/",json_encode($resArray['results'][0]['schemaMarkups'][0], JSON_PRETTY_PRINT)).'
+                </script>';
             }
+
+            // $resArray['results'][0]['schemaMarkups'][0]
+
         }
+
+        
+        // if ( file_exists( WP_PLUGIN_DIR . "//rank-schema//markups.json" ) )
+        // {
+        //     $markupsFile = WP_PLUGIN_DIR . "//rank-schema//markups.json";
+
+        //     $markups = file_get_contents($markupsFile);
+        //     $res_array = json_decode($markups, true);
+
+        //     if ( is_front_page() || is_home() ) {
+                
+        //         foreach ( $res_array['results'][0]['schemaMarkups'] as $markup ) {
+                    
+        //             echo '
+        //             <!-- Schema Markup by Rank Tools Generator-->
+        //             <script type="application/ld+json">
+        //             '.str_replace("\/","/",json_encode($markup, JSON_PRETTY_PRINT)).'
+        //             </script>
+                    
+        //             ';
+
+        //         }
+
+        //     } else {
+
+        //         foreach ( $res_array['results'] as $entity ) {
+        //             if ( $entity['url'] == get_page_link() ) {
+                        
+        //                 foreach ($entity['schemaMarkups'] as $markup) {
+                            
+        //                     echo '
+        //                     <!-- Schema Markup for '.$entity['url'].' by Rank Tools Generator-->
+        //                     <script type="application/ld+json">
+        //                     '.str_replace("\/","/",json_encode($markup, JSON_PRETTY_PRINT)).'
+        //                     </script>
+                            
+        //                     ';
+
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     public function add_admin_pages()
