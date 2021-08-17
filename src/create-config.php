@@ -26,4 +26,4 @@ $skeletonData = array (
     'backlinks' => array (),
     'activated' => false
 );
-file_put_contents('config.json', json_encode($skeletonData));
+file_put_contents('config.json', json_encode($skeletonData, JSON_PRETTY_PRINT));

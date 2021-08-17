@@ -29,7 +29,7 @@
     height: 100vh;
     width: 100%;
     z-index: 20;
-    background: rgba(0,0,0,0.8);
+    background: rgba(255,255,255,0.85);
   }
 
   .sub-service-overlay {
@@ -44,6 +44,8 @@
     background: white;
     padding: 40px;
     border-radius: 5px;
+    box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.25);
+    border: 1px solid #DBDBDB;
   }
 
   .add-service-overlay form h2 {
@@ -118,7 +120,7 @@
     height: 100vh;
     width: 100%;
     z-index: 20;
-    background: rgba(0,0,0,0.8);
+    background: rgba(255,255,255,0.85);
   }
 
   .add-service-area-overlay form {
@@ -128,6 +130,8 @@
     background: white;
     padding: 40px;
     border-radius: 5px;
+    box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.25);
+    border: 1px solid #DBDBDB;
   }
 
   .add-service-area-overlay form .call-to-actions {
@@ -467,7 +471,8 @@
     margin-top: 40px;
   }
 
-  .submit-group-container input[type="submit"] {
+  .submit-group-container input[type="submit"],
+  .submit-group-container input[type="button"] {
     cursor: pointer;
     margin-right: 10px;
     transition: all 
@@ -507,6 +512,10 @@
     transform: scale(1.05);
   }
 </style>
+
+<div class="notice-container">
+
+</div>
 
 <div class="add-service-overlay">
   <form method="POST">
@@ -1067,9 +1076,9 @@
 
       <div class="form-group">
         <div class="form-control">
-          <label>Primary Keyword <span>*</span></label>
-          <input name="primaryKeyword" type="text" required>
-
+          <label>Keywords <span>*</span></label>
+          <input name="keywords" type="text" required>
+          <p style="font-size:10px">Separate each keyword with a comma (,)</p>
         </div>
         <div class="form-control">
           <label>Niche <span>*</span></label>
@@ -1078,11 +1087,6 @@
       </div>
 
       <div>
-        <div class="form-control" style="width:97%;">
-          <label>Keywords <span>*</span></label>
-          <input name="keywords" type="text" style="width:100%;" required>
-          <p style="font-size:10px">Separate each keyword with a comma (,)</p>
-        </div>
         <div class="form-control" style="width:97%;">
           <label>Backlinks/Citations</label>
           <textarea name="backlinks" style="width:100%;"></textarea>
@@ -1102,8 +1106,6 @@
 
       </div>
 
-      <button id="test-button" type="button">TEst!</button>
-
     </div>
 
 
@@ -1122,7 +1124,7 @@
 
     <div class="form-group-control submit-group-container">
       <input type="submit" id="buildSchemaBtn" value="Build Your Schema Markup!">
-      <input type="submit" id="saveSchemaBtn" value="Save as Draft!">
+      <input type="button" id="saveSchemaBtn" value="Save as Draft!">
     </div>
 
   </form>

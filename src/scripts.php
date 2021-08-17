@@ -1,23 +1,15 @@
 <!-- MAIN SCRIPTS -->
 <script>
 
-    let CONFIG
+    let CONFIG  <?php if(isset($CONFIG)) { echo '='.json_encode($CONFIG); } ?>;
     const MAIN_FORM = document.querySelector('.form-container form')
     const SITE_URL = '<?php echo get_site_url(); ?>'
 
-    if('<?php echo isset($CONFIG); ?>'.length) {
+    if(CONFIG) {
         // Proceed to Main Form
         document.querySelector('.get-started-container').style.display = 'none'
         document.querySelector('.form-container').style.display = 'grid'
-
-        // Load existing config data to Form
-        CONFIG = <?php echo json_encode($CONFIG); ?>;
-
-        // MAIN_FORM.schemaType.value = configData.schemaType
-        // MAIN_FORM.businessName.value = configData.businessName
-        // MAIN_FORM.slogan.value = configData.slogan
-        // MAIN_FORM.ownersName.value = configData.ownersName
-
+        loadFormData();
     }
 
     // Get Starated button
@@ -28,10 +20,12 @@
         jax.open('POST', '<?php echo esc_url( plugins_url( 'create-config.php', __FILE__ ) ) ?>', false)
 
         jax.onload = function() {
-        if (this.status == 200) {
-            document.querySelector('.get-started-container').style.display = 'none';
-            document.querySelector('.form-container').style.display = 'grid';
-        }
+            if (this.status == 200) {
+                document.querySelector('.get-started-container').style.display = 'none';
+                document.querySelector('.form-container').style.display = 'grid';
+
+                CONFIG = { activated: false }
+            }
         }
 
         jax.send()
@@ -77,10 +71,10 @@
         addBtn.className = 'add-btn'
         addBtn.src = '<?php echo $SERVER . 'images/add_icon_small.svg'; ?>'
         addBtn.addEventListener('click', () => {
-        // Open SubService Form
-        document.querySelector('.sub-service-overlay').style.display = 'flex'
-        // Set sub-service form hidden input value
-        document.querySelector('.sub-service-overlay form').key.value = serviceData.url
+            // Open SubService Form
+            document.querySelector('.sub-service-overlay').style.display = 'flex'
+            // Set sub-service form hidden input value
+            document.querySelector('.sub-service-overlay form').key.value = serviceData.url
         })
         service.appendChild(addBtn)
 
@@ -232,7 +226,7 @@
         areaWrapper.appendChild(area)
 
         const text = document.createElement('p')
-        text.innerHTML = `<p><span class="name">${form.country.value}</span> - ${form.state.value}</p>`
+        text.innerHTML = `<p><span class="name">${form.cityTown.value}</span> - ${form.state.value}</p>`
         area.appendChild(text)
 
         const editBtn = document.createElement('img')
@@ -256,6 +250,7 @@
         e.preventDefault()
     })
 
+    // Save as Draft
     document.getElementById('saveSchemaBtn').addEventListener('click', () => {
 
         const configData = {
@@ -278,34 +273,121 @@
             zipCode: MAIN_FORM.zipCode.value,
             country: MAIN_FORM.country.value,
             query: MAIN_FORM.query.value,
-            services: [],
-            keywords: [],
-            areasServed: [],
-            backlinks: [],
+            services: collectServicesData() || [],
+            keywords: extractByComma(MAIN_FORM.keywords.value) || [],
+            areasServed: collectServiceAreaData(),
+            backlinks: extractByLine(MAIN_FORM.backlinks.value),
             activated: CONFIG.activated
         }
 
-        collectServicesData(data => console.log(data))
+        // Build formData object.
+        const jax = new XMLHttpRequest();
+        jax.open('POST', '<?php echo esc_url( plugins_url( 'save-config.php', __FILE__ ) ) ?>', false)
 
-        
+        jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        jax.onload = function() {
+            if (this.status == 200) {
+                displayNotice('Successfully Updated Configuration!', 'notice-success')
+                window.scrollTo(0,0)
+            } else {
+                displayNotice('Something went wrong wile updating configuration. Try again.', 'notice-success')
+                window.scrollTo(0,0)
+            }
+        }
+
+        jax.send(JSON.stringify(configData))
     })
 
-    document.getElementById('test-button').addEventListener('click', () => {
-        collectServicesData((data) => {
-            console.log(data)
+    document.querySelectorAll('.form-container form .services-container .service .add-btn').forEach(addBtn => {
+        addBtn.addEventListener('click', () => {
+            // Open SubService Form
+            document.querySelector('.sub-service-overlay').style.display = 'flex'
+            // Set sub-service form hidden input value
+            document.querySelector('.sub-service-overlay form').key.value = addBtn.parentNode.parentNode.dataset.url
         })
     })
 
-    function collectServicesData(callback) {
+    // Build Schema Button
+    document.getElementById('buildSchemaBtn').addEventListener('click', () => {
+        const configData = {
+            schemaType: MAIN_FORM.schemaType.value,
+            businessName: MAIN_FORM.businessName.value,
+            ownersName: MAIN_FORM.ownersName.value || MAIN_FORM.businessName.value,
+            websiteURL: SITE_URL,
+            imageURL: MAIN_FORM.imageURL.value,
+            description: MAIN_FORM.description.value,
+            disambiguatingDescription: MAIN_FORM.disambiguatingDescription.value,
+            slogan: MAIN_FORM.slogan.value,
+            privacyPolicyURL: MAIN_FORM.privacyPolicyURL.value || SITE_URL,
+            aboutUrl: MAIN_FORM.aboutUrl.value || SITE_URL,
+            contactUrl: MAIN_FORM.contactUrl.value || SITE_URL,
+            email: MAIN_FORM.email.value,
+            phone: MAIN_FORM.phone.value,
+            streetAddress: MAIN_FORM.streetAddress.value,
+            cityTown: MAIN_FORM.cityTown.value,
+            state: MAIN_FORM.state.value,
+            zipCode: MAIN_FORM.zipCode.value,
+            country: MAIN_FORM.country.value,
+            query: MAIN_FORM.query.value,
+            services: collectServicesData() || [],
+            keywords: extractByComma(MAIN_FORM.keywords.value) || [],
+            areasServed: collectServiceAreaData(),
+            backlinks: extractByLine(MAIN_FORM.backlinks.value),
+            activated: CONFIG.activated
+        }
+        
+        // Build formData object.
+        const jax = new XMLHttpRequest();
+        jax.open('POST', '<?php echo esc_url( plugins_url( 'fetch-api.php', __FILE__ ) ) ?>', false)
+
+        jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        jax.onload = function() {
+            if (this.status == 200) {
+                console.log(this.response)
+            } else {
+                console.log(`Failed ${this.response}`)
+            }
+        }
+
+        jax.send(JSON.stringify(configData))
+    })
+
+    function loadFormData() {
+        // LOAD THE EXISTING DATA TO FORM
+        MAIN_FORM.schemaType.value = CONFIG.schemaType
+        MAIN_FORM.businessName.value = CONFIG.businessName
+        MAIN_FORM.slogan.value = CONFIG.slogan
+        MAIN_FORM.ownersName.value = CONFIG.ownersName
+        MAIN_FORM.description.value = CONFIG.description
+        MAIN_FORM.disambiguatingDescription.value = CONFIG.disambiguatingDescription
+        MAIN_FORM.email.value = CONFIG.email
+        MAIN_FORM.phone.value = CONFIG.phone
+        MAIN_FORM.streetAddress.value = CONFIG.streetAddress
+        MAIN_FORM.cityTown.value = CONFIG.cityTown
+        MAIN_FORM.state.value = CONFIG.state
+        MAIN_FORM.zipCode.value = CONFIG.zipCode
+        MAIN_FORM.country.value = CONFIG.country
+        MAIN_FORM.imageURL.value = CONFIG.imageURL
+        MAIN_FORM.privacyPolicyURL.value = CONFIG.privacyPolicyURL
+        MAIN_FORM.aboutUrl.value = CONFIG.aboutUrl
+        MAIN_FORM.contactUrl.value = CONFIG.contactUrl
+        MAIN_FORM.query.value = CONFIG.query
+        MAIN_FORM.keywords.value = CONFIG.keywords.join(', ')
+        MAIN_FORM.backlinks.value = CONFIG.backlinks.join("\r\n")
+    }
+
+    function collectServicesData() {
         let servicesData = []
 
         /* TOP LEVEL */
         document.querySelectorAll('.form-container form .services-container .top-level').forEach(topLvlService => {
 
             const topLvlServiceData = {
-                serviceName: topLvlService.dataset.name,
-                serviceUrl: topLvlService.dataset.url,
-                serviceDescription: topLvlService.dataset.description
+                name: topLvlService.dataset.name,
+                url: topLvlService.dataset.url,
+                description: topLvlService.dataset.description
             }
 
             if (topLvlService.childNodes[1].hasChildNodes()) {
@@ -316,9 +398,9 @@
                 topLvlService.childNodes[1].childNodes.forEach(midLvlService => {
 
                     const midLvlServiceData = {
-                        serviceName: midLvlService.dataset.name,
-                        serviceUrl: midLvlService.dataset.url,
-                        serviceDescription: midLvlService.dataset.description
+                        name: midLvlService.dataset.name,
+                        url: midLvlService.dataset.url,
+                        description: midLvlService.dataset.description
                     }
 
 
@@ -329,9 +411,9 @@
                         midLvlService.childNodes[1].childNodes.forEach(lastLvlService => {
 
                             const lastLvlServiceData = {
-                                serviceName: lastLvlService.dataset.name,
-                                serviceUrl: lastLvlService.dataset.url,
-                                serviceDescription: lastLvlService.dataset.description
+                                name: lastLvlService.dataset.name,
+                                url: lastLvlService.dataset.url,
+                                description: lastLvlService.dataset.description
                             }
 
                             midLvlServiceData.subServices.push(lastLvlServiceData)
@@ -348,6 +430,42 @@
 
         })
 
-        callback(servicesData)
+        return servicesData
+    }
+
+    function collectServiceAreaData() {
+        let serviceAreas = []
+
+        if (document.querySelector('.form-container form .service-areas-container').hasChildNodes()) {
+            document.querySelectorAll('.form-container form .service-areas-container .service-area-wrapper').forEach(serviceArea => {
+                
+                serviceAreaData = {
+                    country: serviceArea.dataset.country,
+                    state: serviceArea.dataset.state,
+                    cityTown: serviceArea.dataset.cityTown,
+                    url: serviceArea.dataset.url,
+                    zipCodes: extractByComma(serviceArea.dataset.zipCodes)
+                }
+                
+                serviceAreas.push(serviceAreaData)
+
+            })
+        }
+
+        return serviceAreas
+    }
+
+    function extractByComma(input) {
+        return input.split(",").map((item)=>item.trim())
+    }
+
+    function extractByLine(input) {
+        return input.split(/\n/).map((item)=>item.trim())
+    }
+    
+    function displayNotice(message, type) {
+        document.querySelector('.notice-container').innerHTML = `<div class="notice ${type} is-dismissible">
+             <p>${message}</p>
+         </div>`
     }
 </script>
