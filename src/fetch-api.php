@@ -3,7 +3,7 @@
 $payload = file_get_contents('php://input');
 
 // API URL
-$url = 'http://localhost:5000/schema-generator/build';
+$url = 'https://rank-schema-plugin-server.herokuapp.com/schema-generator/build';
 
 // Create a new cURL resource
 $ch = curl_init($url);
