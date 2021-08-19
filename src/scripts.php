@@ -250,54 +250,54 @@
         e.preventDefault()
     })
 
-    // Save as Draft
-    document.getElementById('saveSchemaBtn').addEventListener('click', () => {
+    // // Save as Draft
+    // document.getElementById('saveSchemaBtn').addEventListener('click', () => {
 
-        const configData = {
-            schemaType: MAIN_FORM.schemaType.value,
-            businessName: MAIN_FORM.businessName.value,
-            ownersName: MAIN_FORM.ownersName.value || MAIN_FORM.businessName.value,
-            websiteURL: SITE_URL,
-            imageURL: MAIN_FORM.imageURL.value,
-            description: MAIN_FORM.description.value,
-            disambiguatingDescription: MAIN_FORM.disambiguatingDescription.value,
-            slogan: MAIN_FORM.slogan.value,
-            privacyPolicyURL: MAIN_FORM.privacyPolicyURL.value || SITE_URL,
-            aboutUrl: MAIN_FORM.aboutUrl.value || SITE_URL,
-            contactUrl: MAIN_FORM.contactUrl.value || SITE_URL,
-            email: MAIN_FORM.email.value,
-            phone: MAIN_FORM.phone.value,
-            streetAddress: MAIN_FORM.streetAddress.value,
-            cityTown: MAIN_FORM.cityTown.value,
-            state: MAIN_FORM.state.value,
-            zipCode: MAIN_FORM.zipCode.value,
-            country: MAIN_FORM.country.value,
-            query: MAIN_FORM.query.value,
-            services: collectServicesData() || [],
-            keywords: extractByComma(MAIN_FORM.keywords.value) || [],
-            areasServed: collectServiceAreaData(),
-            backlinks: extractByLine(MAIN_FORM.backlinks.value),
-            activated: CONFIG.activated
-        }
+    //     const configData = {
+    //         schemaType: MAIN_FORM.schemaType.value,
+    //         businessName: MAIN_FORM.businessName.value,
+    //         ownersName: MAIN_FORM.ownersName.value || MAIN_FORM.businessName.value,
+    //         websiteURL: SITE_URL,
+    //         imageURL: MAIN_FORM.imageURL.value,
+    //         description: MAIN_FORM.description.value,
+    //         disambiguatingDescription: MAIN_FORM.disambiguatingDescription.value,
+    //         slogan: MAIN_FORM.slogan.value,
+    //         privacyPolicyURL: MAIN_FORM.privacyPolicyURL.value || SITE_URL,
+    //         aboutUrl: MAIN_FORM.aboutUrl.value || SITE_URL,
+    //         contactUrl: MAIN_FORM.contactUrl.value || SITE_URL,
+    //         email: MAIN_FORM.email.value,
+    //         phone: MAIN_FORM.phone.value,
+    //         streetAddress: MAIN_FORM.streetAddress.value,
+    //         cityTown: MAIN_FORM.cityTown.value,
+    //         state: MAIN_FORM.state.value,
+    //         zipCode: MAIN_FORM.zipCode.value,
+    //         country: MAIN_FORM.country.value,
+    //         query: MAIN_FORM.query.value,
+    //         services: collectServicesData() || [],
+    //         keywords: extractByComma(MAIN_FORM.keywords.value) || [],
+    //         areasServed: collectServiceAreaData(),
+    //         backlinks: extractByLine(MAIN_FORM.backlinks.value),
+    //         activated: CONFIG.activated
+    //     }
 
-        // Build formData object.
-        const jax = new XMLHttpRequest();
-        jax.open('POST', '<?php echo esc_url( plugins_url( 'save-config.php', __FILE__ ) ) ?>', false)
+    //     // Build formData object.
+    //     const jax = new XMLHttpRequest();
+    //     jax.open('POST', '<?php # echo esc_url( plugins_url( 'save-config.php', __FILE__ ) ) ?>', false)
 
-        jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    //     jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-        jax.onload = function() {
-            if (this.status == 200) {
-                displayNotice('Successfully Updated Configuration!', 'notice-success')
-                window.scrollTo(0,0)
-            } else {
-                displayNotice('Something went wrong wile updating configuration. Try again.', 'notice-success')
-                window.scrollTo(0,0)
-            }
-        }
+    //     jax.onload = function() {
+    //         if (this.status == 200) {
+    //             displayNotice('Successfully Updated Configuration!', 'notice-success')
+    //             window.scrollTo(0,0)
+    //         } else {
+    //             displayNotice('Something went wrong wile updating configuration. Try again.', 'notice-success')
+    //             window.scrollTo(0,0)
+    //         }
+    //     }
 
-        jax.send(JSON.stringify(configData))
-    })
+    //     jax.send(JSON.stringify(configData))
+    // })
 
     document.querySelectorAll('.form-container form .services-container .service .add-btn').forEach(addBtn => {
         addBtn.addEventListener('click', () => {
@@ -309,7 +309,8 @@
     })
 
     // Build Schema Button
-    document.getElementById('buildSchemaBtn').addEventListener('click', () => {
+    document.querySelector('.form-container form').addEventListener('submit', (e) => {
+        
         const configData = {
             schemaType: MAIN_FORM.schemaType.value,
             businessName: MAIN_FORM.businessName.value,
@@ -339,19 +340,31 @@
         
         // Build formData object.
         const jax = new XMLHttpRequest();
-        jax.open('POST', '<?php echo esc_url( plugins_url( 'fetch-api.php', __FILE__ ) ) ?>', false)
+        jax.open('POST', '<?php echo esc_url( plugins_url( 'build-markup-code.php', __FILE__ ) ) ?>', false)
 
-        jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
 
         jax.onload = function() {
+            console.log('end')
             if (this.status == 200) {
-                console.log(this.response)
+                document.querySelector('.form-container').style.display = 'grid'
+                document.querySelector('.building-load').style.display = 'none'
+                displayNotice('Fetch Success!', 'notice-success')
             } else {
-                console.log(`Failed ${this.response}`)
+                document.querySelector('.form-container').style.display = 'grid'
+                document.querySelector('.building-load').style.display = 'none'
+                displayNotice('Fetch Failed!', 'notice-error')
             }
         }
 
-        jax.send(JSON.stringify(configData))
+
+        document.querySelector('.form-container').style.display = 'none'
+        document.querySelector('.building-load').style.display = 'flex'
+        window.scrollTo(0, 0)
+
+        setTimeout(() => {
+            jax.send(JSON.stringify(configData))
+        }, 100);
     })
 
     function loadFormData() {
