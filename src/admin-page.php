@@ -1,6 +1,7 @@
 <?php 
   $SERVER = "https://rank-schema-plugin-server.herokuapp.com/";
 
+<<<<<<< HEAD:views/admin-page.php
   $CONFIG_AVAILABLE = file_exists(WP_PLUGIN_DIR . "/rank-schema/config.json");
 
   // If config.json is available, go to main form
@@ -384,63 +385,18 @@
   .form-control textarea:focus {
     border: 1px solid #363636;
     outline: none;
+=======
+  if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
+    $CONFIG = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'config.json'), true);
+>>>>>>> Js-Approach:src/admin-page.php
   }
+  if (file_exists(plugin_dir_path( __FILE__ ). 'markups.json')) { $MARKUPS_AVAILABLE = true; }
 
-  .form-control label {
-    cursor: default;
-  }
+  include plugin_dir_path( __FILE__ ). 'styles.php';
+?>
 
-  .form-control label span {
-    color: #c43333;
-  }
-</style>
-
-<!-- Submit Group Styles -->
-<style>
-  .submit-group-container {
-    margin-top: 40px;
-  }
-
-  .submit-group-container input[type="submit"] {
-    cursor: pointer;
-    margin-right: 10px;
-    transition: all 
-    transition: 0.5 all ease-in-out;
-    font-size: 16px;
-    font-weight: 600;
-  }
-
-  #buildSchemaBtn {
-    height: 40px;
-    width: 301px;
-    border-radius: 5px;
-    color: #fff;
-    background: #B50000;
-    border: none;
-    outline: none;
-  }
-
-  #buildSchemaBtn:hover {
-    opacity: 0.9; 
-    color: #fff;
-    animation: loading .3s ease infinite alternate;
-  }
-
-  #saveSchemaBtn {
-    color: #363636;
-    height: 40px;
-    width: 179px;
-    border: 1px solid #E2E2E2;
-    border-radius: 5px;
-    background: #F7F8FA;
-    transition: .3s all ease-in-out;
-  }
-
-  #saveSchemaBtn:hover {
-    background: #E2E2E2;
-    transform: scale(1.05);
-  }
-</style>
+<div class="notice-container">
+</div>
 
 <div class="add-service-overlay">
   <form method="POST">
@@ -472,6 +428,34 @@
 <div class="sub-service-overlay add-service-overlay">
   <form method="POST">
     <h2>Add a Sub Service</h2>
+    <input type="hidden" name="key" value="">
+    <div class="form-control">
+      <label>Service Name <span>*</span></label>
+      <input name="serviceName" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>Service Page URL <span>*</span></label>
+      <input name="serviceUrl" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>Description <span>*</span></label>
+      <textarea name="serviceDescription" cols="15" rows="10" required></textarea>
+    </div>
+
+    <div class="call-to-actions">
+      <input name="add-sub-service-btn" type="submit" value="Add Service">
+      <input name="cancel-sub-service-btn" class="cancel-sub-service-btn" type="button" value="Cancel ">
+    </div>
+
+  </form>
+</div>
+
+<<<<<<< HEAD:views/admin-page.php
+<div class="sub-service-overlay add-service-overlay">
+  <form method="POST">
+    <h2>Add a Sub Service</h2>
     <input type="hidden" class="key" name="key" value="">
     <div class="form-control">
       <label>Service Name <span>*</span></label>
@@ -491,33 +475,68 @@
     <div class="call-to-actions">
       <input name="add-sub-service-btn" type="submit" value="Add Service">
       <input class="cancel-sub-service-btn" type="button" value="Cancel ">
+=======
+<div class="add-service-area-overlay">
+  <form method="POST">
+    <h2>Add a Service Area</h2>
+
+    <div class="form-control">
+      <label>Country <span>*</span></label>
+      <input name="country" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>State <span>*</span></label>
+      <input name="state" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>City/Town <span>*</span></label>
+      <input name="cityTown" type="text" required>
+    </div>
+
+    <div class="form-control">
+      <label>Page URL</label>
+      <input name="url" type="text">
+    </div>
+
+    <div class="form-control">
+      <label>ZipCodes <span>*</span></label>
+      <input name="zipCodes" type="text">
+      <p style="font-size:10px">Separate each zip code by comma(,)</p>
+    </div>
+
+    <div class="call-to-actions">
+      <input name="add-service-area-btn" type="submit" value="Add Service">
+      <input name="cancel-service-area-btn" type="button" value="Cancel ">
+>>>>>>> Js-Approach:src/admin-page.php
     </div>
 
   </form>
 </div>
+<<<<<<< HEAD:views/admin-page.php
 
+=======
+>>>>>>> Js-Approach:src/admin-page.php
 
 <div class="get-started-container">
-  <div class="logo-container">
-    <img id="rt-logo" src="<?php echo $SERVER . "images/logo.png" ?>">
-    <p>Schema Markup</p>
-  </div>
-  <div class="content-container">
-    <h1>Hassle-free</h1>
-    <h2><span>Schema Markup</span> Plugin!</h2>
-    <p>
-      Creates <span>Advance Schema Markup</span> code for you and embeds them to your pages. <span>No coding
-        required!</span>
-    </p>
-  </div>
-  <div class="button-container">
-    <form method="POST">
-      <input class="get-started-btn" type="submit" name="get-started-btn" value="Get Started!" onclick="return true;" />
-    </form>
+  <div class="left">
+    <div class="logo-container">
+      <img id="rt-logo" src="<?php echo $SERVER . "images/logo.png" ?>">
+      <p>Schema Markup</p>
+    </div>
+    <div class="content-container">
+      <h1>Hassle-free</h1>
+      <h2><span>Schema Markup</span> Plugin!</h2>
+      <p>
+        Creates <span>Advance Schema Markup</span> code for you and embeds them to your pages. <span>No coding
+          required!</span>
+      </p>
+    </div>
+    <button class="get-started-btn">Get Started!</button>
   </div>
   <img id="landing-img" src="<?php echo $SERVER . "images/landing_illustration.svg" ?>">
 </div>
-
 
 <div class="form-container">
 
@@ -965,9 +984,9 @@
 
       <div class="form-group">
         <div class="form-control">
-          <label>Primary Keyword <span>*</span></label>
-          <input name="primaryKeyword" type="text" required>
-
+          <label>Keywords <span>*</span></label>
+          <input name="keywords" type="text" required>
+          <p style="font-size:10px">Separate each keyword with a comma (,)</p>
         </div>
         <div class="form-control">
           <label>Niche <span>*</span></label>
@@ -976,11 +995,6 @@
       </div>
 
       <div>
-        <div class="form-control" style="width:97%;">
-          <label>Keywords <span>*</span></label>
-          <input name="keywords" type="text" style="width:100%;" required>
-          <p style="font-size:10px">Separate each keyword with a comma (,)</p>
-        </div>
         <div class="form-control" style="width:97%;">
           <label>Backlinks/Citations</label>
           <textarea name="backlinks" style="width:100%;"></textarea>
@@ -995,6 +1009,7 @@
       <h2>Services <img class="open-add-service-form" src="<?php echo $SERVER . "images/add_icon.svg" ?>"></h2>
 
       <div class="services-container">
+<<<<<<< HEAD:views/admin-page.php
         
         <?php
           if (isset($CONFIG)) {
@@ -1065,6 +1080,10 @@
             }
           }
         ?>
+=======
+        <!-- GET SERVICES... -->
+        <?php include plugin_dir_path( __FILE__ ). 'get-services.php'; ?>
+>>>>>>> Js-Approach:src/admin-page.php
 
       </div>
 
@@ -1072,19 +1091,12 @@
 
 
     <div class="form-group-control">
-      <h2>Areas Served <img src="<?php echo $SERVER . "images/add_icon.svg" ?>"></h2>
+      <h2>Areas Served <img class="open-add-service-area-form" src="<?php echo $SERVER . "images/add_icon.svg" ?>"></h2>
 
       <div class="service-areas-container">
 
-      <!-- SERVICE AREA -->
-        <div class="service-area-wrapper">
-          <div class="service-area">
-            <p><span class="name">Drainage & Grading</span> - https://mexlandscaping.com/drainage-grading/</p>
-            <img class="add-btn" src="<?php echo $SERVER . "images/add_icon_small.svg" ?>">
-            <img src="<?php echo $SERVER . "images/edit_icon.svg" ?>">
-            <img src="<?php echo $SERVER . "images/trash_icon.svg" ?>">
-          </div>
-        </div>
+        <!-- ADD SERVICE AREA -->
+        <?php include plugin_dir_path( __FILE__ ). 'get-service-areas.php'; ?>
 
       </div>
 
@@ -1093,7 +1105,6 @@
 
     <div class="form-group-control submit-group-container">
       <input type="submit" id="buildSchemaBtn" value="Build Your Schema Markup!">
-      <input type="submit" id="saveSchemaBtn" value="Save as Draft!">
     </div>
 
   </form>
@@ -1101,6 +1112,7 @@
 
 </div>
 
+<<<<<<< HEAD:views/admin-page.php
 <!-- MAIN SCRIPTS -->
 <script>
   // Open add service form
@@ -1325,3 +1337,35 @@
     }
   }
 ?>
+=======
+<div class="building-load">
+  <div class="brand">
+    <img src="<?php echo $SERVER . "images/logo.png" ?>">
+    <p>Schema Markup</p>
+  </div>
+
+  <div class="content">
+    <div class="loader">
+      <div class="indicator"></div>
+      <div class="indicator middle"></div>
+      <div class="indicator last"></div>
+    </div>
+    <h2>Please wait while we build your<br><b>Advanced Schema Markup Code</b>!</h2>
+  </div>
+</div>
+
+<div class="dashboard">
+  <div class="brand">
+    <img src="<?php echo $SERVER . "images/logo.png" ?>">
+    <p>Schema Markup</p>
+  </div>
+  <div class="text">
+    <h2 class="title">Advanced Schema Markup Code</h2>
+    <p>is currently</p>
+  </div>
+  <h2 class="status">ACTIVE! 👍</h2>
+  <button>Edit Schema Data</button>
+</div>
+
+<?php include plugin_dir_path( __FILE__ ). 'scripts.php'; ?>
+>>>>>>> Js-Approach:src/admin-page.php

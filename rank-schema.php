@@ -22,42 +22,40 @@ class RankSchemaGenerator
 
     public function apply_schema_markups()
     {
-        if ( file_exists( WP_PLUGIN_DIR . "//rank-schema//markups.json" ) )
-        {
-            $markupsFile = WP_PLUGIN_DIR . "//rank-schema//markups.json";
+        if (file_exists(plugin_dir_path( __FILE__ ). 'src/config.json') && file_exists(plugin_dir_path( __FILE__ ). 'src/markups.json')) {
+            
+            $config = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'src/config.json'), true);
+            $markupFile = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'src/markups.json'), true);
 
-            $markups = file_get_contents($markupsFile);
-            $res_array = json_decode($markups, true);
+            if ($config['activated']) {
+                if ( is_front_page() || is_home() ) {
 
-            if ( is_front_page() || is_home() ) {
-                
-                foreach ( $res_array['results'][0]['schemaMarkups'] as $markup ) {
-                    
-                    echo '
-                    <!-- Schema Markup by Rank Tools Generator-->
-                    <script type="application/ld+json">
-                    '.str_replace("\/","/",json_encode($markup, JSON_PRETTY_PRINT)).'
-                    </script>
-                    
-                    ';
-
-                }
-
-            } else {
-
-                foreach ( $res_array['results'] as $entity ) {
-                    if ( $entity['url'] == get_page_link() ) {
+                    foreach ($markupFile['results'][0]['schemaMarkups'] as $markup) {
                         
-                        foreach ($entity['schemaMarkups'] as $markup) {
-                            
-                            echo '
-                            <!-- Schema Markup for '.$entity['url'].' by Rank Tools Generator-->
-                            <script type="application/ld+json">
-                            '.str_replace("\/","/",json_encode($markup, JSON_PRETTY_PRINT)).'
-                            </script>
-                            
-                            ';
+                        echo '
+                        <!-- Schema Markup by Rank Tools Generator-->
+                        <script type="application/ld+json">
+                        '.$markup.'
+                        </script>
+                        ';
+                    }
 
+                } else {
+
+                    foreach ($markupFile['results'] as $entity) {
+                        
+                        if ($entity['url'] == get_page_link()) {
+                            
+                            foreach ($entity['schemaMarkups'] as $markup) {
+                                
+                                echo '
+                                <!-- Schema Markup by Rank Tools Generator for '.$entity['url'].'-->
+                                <script type="application/ld+json">
+                                '.$markup.'
+                                </script>
+                                ';
+                                
+                            }
                         }
                     }
                 }
@@ -72,7 +70,7 @@ class RankSchemaGenerator
 
     public function admin_index()
     {
-        require_once plugin_dir_path(__FILE__) . 'views/admin-page.php';
+        require_once plugin_dir_path(__FILE__) . 'src/admin-page.php';
     }
 }
 
