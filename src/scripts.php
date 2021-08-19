@@ -85,14 +85,6 @@
         })
         service.appendChild(addBtn)
 
-        const editBtn = document.createElement('img')
-        editBtn.className = 'edit-btn'
-        editBtn.src = '<?php echo $SERVER . 'images/edit_icon.svg'; ?>'
-        editBtn.addEventListener('click', () => {
-        // TODO Open Edit form
-        })
-        service.appendChild(editBtn)
-
         const trashBtn = document.createElement('img')
         trashBtn.className = 'trash-btn'
         trashBtn.src = '<?php echo $SERVER . 'images/trash_icon.svg'; ?>'
@@ -149,32 +141,24 @@
             // If parent is not alreaedy a subservice show add btn
             if (!subServicesCont.dataset.isSubService) {
 
-            const addBtn = document.createElement('img')
-            addBtn.className = 'add-btn'
-            addBtn.src = '<?php echo $SERVER . 'images/add_icon_small.svg'; ?>'
-            addBtn.addEventListener('click', () => {
+                const addBtn = document.createElement('img')
+                addBtn.className = 'add-btn'
+                addBtn.src = '<?php echo $SERVER . 'images/add_icon_small.svg'; ?>'
+                addBtn.addEventListener('click', () => {
 
-                // Open SubService Form
-                document.querySelector('.sub-service-overlay').style.display = 'flex'
-                // Set sub-service form hidden input value
-                document.querySelector('.sub-service-overlay form').key.value = serviceData.url
+                    // Open SubService Form
+                    document.querySelector('.sub-service-overlay').style.display = 'flex'
+                    // Set sub-service form hidden input value
+                    document.querySelector('.sub-service-overlay form').key.value = serviceData.url
 
-            })
-            service.appendChild(addBtn)
+                })
+                service.appendChild(addBtn)
 
             }
 
-            const editBtn = document.createElement('img')
-            editBtn.className = 'edit-btn'
-            editBtn.style.marginLeft = subServicesCont.dataset.isSubService ? 'auto' : '5px'
-            editBtn.src = '<?php echo $SERVER . 'images/edit_icon.svg'; ?>'
-            editBtn.addEventListener('click', () => {
-            // TODO Open Edit form
-            })
-            service.appendChild(editBtn)
-
             const trashBtn = document.createElement('img')
             trashBtn.className = 'trash-btn'
+            trashBtn.style.marginLeft = subServicesCont.dataset.isSubService ? 'auto' : '5px'
             trashBtn.src = '<?php echo $SERVER . 'images/trash_icon.svg'; ?>'
             trashBtn.addEventListener('click', () => {
                 
@@ -244,14 +228,9 @@
         text.innerHTML = `<p><span class="name">${form.cityTown.value}</span> - ${form.state.value}</p>`
         area.appendChild(text)
 
-        const editBtn = document.createElement('img')
-        editBtn.className = 'edit-btn'
-        editBtn.style.marginLeft = 'auto'
-        editBtn.src = '<?php echo $SERVER; ?>images/edit_icon.svg'
-        area.appendChild(editBtn)
-
         const trashBtn = document.createElement('img')
         trashBtn.className = 'trash-btn'
+        trashBtn.style.marginLeft = 'auto'
         trashBtn.src = '<?php echo $SERVER; ?>images/trash_icon.svg'
         trashBtn.addEventListener('click', () => {
             if (confirm(`Are you sure you want to remove ${areaWrapper.dataset.cityTown}, ${areaWrapper.dataset.state} as a service area?`)) {
