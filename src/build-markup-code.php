@@ -1,6 +1,7 @@
 <?php
 
 $payload = file_get_contents('php://input');
+file_put_contents('config.json', $payload);
 
 // API URL
 $url = 'https://rank-schema-plugin-server.herokuapp.com/schema-generator/build';
