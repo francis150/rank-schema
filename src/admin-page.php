@@ -4,6 +4,7 @@
   if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
     $CONFIG = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'config.json'), true);
   }
+  if (file_exists(plugin_dir_path( __FILE__ ). 'markups.json')) { $MARKUPS_AVAILABLE = true; }
 
   include plugin_dir_path( __FILE__ ). 'styles.php';
 ?>
@@ -103,21 +104,20 @@
   </form>
 </div>
 
-
 <div class="get-started-container">
-  <div class="logo-container">
-    <img id="rt-logo" src="<?php echo $SERVER . "images/logo.png" ?>">
-    <p>Schema Markup</p>
-  </div>
-  <div class="content-container">
-    <h1>Hassle-free</h1>
-    <h2><span>Schema Markup</span> Plugin!</h2>
-    <p>
-      Creates <span>Advance Schema Markup</span> code for you and embeds them to your pages. <span>No coding
-        required!</span>
-    </p>
-  </div>
-  <div class="button-container">
+  <div class="left">
+    <div class="logo-container">
+      <img id="rt-logo" src="<?php echo $SERVER . "images/logo.png" ?>">
+      <p>Schema Markup</p>
+    </div>
+    <div class="content-container">
+      <h1>Hassle-free</h1>
+      <h2><span>Schema Markup</span> Plugin!</h2>
+      <p>
+        Creates <span>Advance Schema Markup</span> code for you and embeds them to your pages. <span>No coding
+          required!</span>
+      </p>
+    </div>
     <button class="get-started-btn">Get Started!</button>
   </div>
   <img id="landing-img" src="<?php echo $SERVER . "images/landing_illustration.svg" ?>">
@@ -638,6 +638,19 @@
     </div>
     <h2>Please wait while we build your<br><b>Advanced Schema Markup Code</b>!</h2>
   </div>
+</div>
+
+<div class="dashboard">
+  <div class="brand">
+    <img src="<?php echo $SERVER . "images/logo.png" ?>">
+    <p>Schema Markup</p>
+  </div>
+  <div class="text">
+    <h2 class="title">Advanced Schema Markup Code</h2>
+    <p>is currently</p>
+  </div>
+  <h2 class="status">ACTIVE! 👍</h2>
+  <button>Edit Schema Data</button>
 </div>
 
 <?php include plugin_dir_path( __FILE__ ). 'scripts.php'; ?>

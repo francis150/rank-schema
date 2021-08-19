@@ -1,15 +1,21 @@
-<!-- MAIN SCRIPTS -->
+ <!-- MAIN SCRIPTS -->
 <script>
 
     let CONFIG  <?php if(isset($CONFIG)) { echo '='.json_encode($CONFIG); } ?>;
+    let MARKUP_AVAILABLE  <?php if(isset($MARKUPS_AVAILABLE)) { echo '='.$MARKUPS_AVAILABLE; } ?>;
     const MAIN_FORM = document.querySelector('.form-container form')
     const SITE_URL = '<?php echo get_site_url(); ?>'
 
     if(CONFIG) {
-        // Proceed to Main Form
-        document.querySelector('.get-started-container').style.display = 'none'
-        document.querySelector('.form-container').style.display = 'grid'
-        loadFormData();
+
+        if (CONFIG.activated && MARKUP_AVAILABLE) {
+            document.querySelector('.dashboard').style.display = 'flex'
+        } else {
+            loadFormData();
+            document.querySelector('.form-container').style.display = 'grid'
+        }
+    } else {
+        document.querySelector('.get-started-container').style.display = 'flex'
     }
 
     // Get Starated button
@@ -246,59 +252,6 @@
         document.querySelector('.add-service-area-overlay').style.display = "none";
     })
 
-    document.querySelector('.form-container form').addEventListener('submit', (e) => {
-        e.preventDefault()
-    })
-
-    // // Save as Draft
-    // document.getElementById('saveSchemaBtn').addEventListener('click', () => {
-
-    //     const configData = {
-    //         schemaType: MAIN_FORM.schemaType.value,
-    //         businessName: MAIN_FORM.businessName.value,
-    //         ownersName: MAIN_FORM.ownersName.value || MAIN_FORM.businessName.value,
-    //         websiteURL: SITE_URL,
-    //         imageURL: MAIN_FORM.imageURL.value,
-    //         description: MAIN_FORM.description.value,
-    //         disambiguatingDescription: MAIN_FORM.disambiguatingDescription.value,
-    //         slogan: MAIN_FORM.slogan.value,
-    //         privacyPolicyURL: MAIN_FORM.privacyPolicyURL.value || SITE_URL,
-    //         aboutUrl: MAIN_FORM.aboutUrl.value || SITE_URL,
-    //         contactUrl: MAIN_FORM.contactUrl.value || SITE_URL,
-    //         email: MAIN_FORM.email.value,
-    //         phone: MAIN_FORM.phone.value,
-    //         streetAddress: MAIN_FORM.streetAddress.value,
-    //         cityTown: MAIN_FORM.cityTown.value,
-    //         state: MAIN_FORM.state.value,
-    //         zipCode: MAIN_FORM.zipCode.value,
-    //         country: MAIN_FORM.country.value,
-    //         query: MAIN_FORM.query.value,
-    //         services: collectServicesData() || [],
-    //         keywords: extractByComma(MAIN_FORM.keywords.value) || [],
-    //         areasServed: collectServiceAreaData(),
-    //         backlinks: extractByLine(MAIN_FORM.backlinks.value),
-    //         activated: CONFIG.activated
-    //     }
-
-    //     // Build formData object.
-    //     const jax = new XMLHttpRequest();
-    //     jax.open('POST', '<?php # echo esc_url( plugins_url( 'save-config.php', __FILE__ ) ) ?>', false)
-
-    //     jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-    //     jax.onload = function() {
-    //         if (this.status == 200) {
-    //             displayNotice('Successfully Updated Configuration!', 'notice-success')
-    //             window.scrollTo(0,0)
-    //         } else {
-    //             displayNotice('Something went wrong wile updating configuration. Try again.', 'notice-success')
-    //             window.scrollTo(0,0)
-    //         }
-    //     }
-
-    //     jax.send(JSON.stringify(configData))
-    // })
-
     document.querySelectorAll('.form-container form .services-container .service .add-btn').forEach(addBtn => {
         addBtn.addEventListener('click', () => {
             // Open SubService Form
@@ -310,7 +263,8 @@
 
     // Build Schema Button
     document.querySelector('.form-container form').addEventListener('submit', (e) => {
-        
+        e.preventDefault()
+
         const configData = {
             schemaType: MAIN_FORM.schemaType.value,
             businessName: MAIN_FORM.businessName.value,
@@ -335,7 +289,7 @@
             keywords: extractByComma(MAIN_FORM.keywords.value) || [],
             areasServed: collectServiceAreaData(),
             backlinks: extractByLine(MAIN_FORM.backlinks.value),
-            activated: CONFIG.activated
+            activated: true
         }
         
         // Build formData object.
@@ -345,15 +299,14 @@
         jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
 
         jax.onload = function() {
-            console.log('end')
             if (this.status == 200) {
-                document.querySelector('.form-container').style.display = 'grid'
                 document.querySelector('.building-load').style.display = 'none'
-                displayNotice('Fetch Success!', 'notice-success')
+                document.querySelector('.dashboard').style.display = 'flex'
+                displayNotice('Successfully built and applied your Schema Markup Code!', 'notice-success')
             } else {
+                document.querySelector('.building-loading').style.display = 'none'
                 document.querySelector('.form-container').style.display = 'grid'
-                document.querySelector('.building-load').style.display = 'none'
-                displayNotice('Fetch Failed!', 'notice-error')
+                displayNotice('Failed to Build your Schema Markup Code!', 'notice-error')
             }
         }
 
@@ -365,6 +318,38 @@
         setTimeout(() => {
             jax.send(JSON.stringify(configData))
         }, 100);
+    })
+
+    // Edit config button
+    document.querySelector('.dashboard button').addEventListener('click', () => {
+        if (confirm("By doing this, your schema markup code will be deactivated until you re-setup your config.")) {
+            
+            if (!CONFIG) return
+
+            
+
+            const jax = new XMLHttpRequest();
+            jax.open('POST', '<?php echo esc_url( plugins_url( 'build-markup-code.php', __FILE__ ) ) ?>', false)
+
+            jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+
+            jax.onload = function() {
+                if (this.status == 200) {
+                    displayNotice('Deactivated your Schema Markup Code.', 'notice-warning')
+                    window.scrollTo(0, 0)
+                }
+            }
+
+            CONFIG.activated = false
+            document.querySelector('.dashboard').style.display = 'none'
+            document.querySelector('.form-container').style.display = 'grid'
+            loadFormData()
+
+            setTimeout(() => {
+                jax.send(JSON.stringify(CONFIG))
+            }, 100);
+
+        }
     })
 
     function loadFormData() {
