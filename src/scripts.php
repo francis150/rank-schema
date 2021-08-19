@@ -96,7 +96,11 @@
         trashBtn.className = 'trash-btn'
         trashBtn.src = '<?php echo $SERVER . 'images/trash_icon.svg'; ?>'
         trashBtn.addEventListener('click', () => {
-        // TODO Open Confirm Dialog to trash
+            
+            if (confirm(`Are you sure you want to remove ${serviceData.name} as a service?`)) {
+                document.querySelector('.form-container form .services-container').removeChild(serviceWrapper)
+            }
+
         })
         service.appendChild(trashBtn)
 
@@ -172,7 +176,11 @@
             trashBtn.className = 'trash-btn'
             trashBtn.src = '<?php echo $SERVER . 'images/trash_icon.svg'; ?>'
             trashBtn.addEventListener('click', () => {
-            // TODO Open Confirm Dialog to trash
+                
+                if (confirm(`Are you sure you want to remove ${serviceData.name} as a service?`)) {
+                    subServicesCont.removeChild(serviceWrapper)
+                }
+
             })
             service.appendChild(trashBtn)
 
@@ -252,6 +260,7 @@
         document.querySelector('.add-service-area-overlay').style.display = "none";
     })
 
+    // all service add-btn
     document.querySelectorAll('.form-container form .services-container .service .add-btn').forEach(addBtn => {
         addBtn.addEventListener('click', () => {
             // Open SubService Form
@@ -259,6 +268,25 @@
             // Set sub-service form hidden input value
             document.querySelector('.sub-service-overlay form').key.value = addBtn.parentNode.parentNode.dataset.url
         })
+    })
+
+    // all service delete-btn
+    document.querySelectorAll('.form-container form .services-container .trash-btn').forEach(element => {
+        
+        element.addEventListener('click', (e) => {
+            const trashBtn = e.target
+
+            if (confirm(`Are you sure you want to remove ${trashBtn.parentNode.parentNode.dataset.name} as a service?`)) {
+                trashBtn.parentNode.parentNode.parentNode.removeChild(trashBtn.parentNode.parentNode)
+            }
+        })
+
+    })
+
+    // all service area delete-btn
+    document.querySelectorAll('.form-container form .service-areas-container .trash-btn').forEach(element => {
+        // TODO CONTINUE HERE
+        
     })
 
     // Build Schema Button
