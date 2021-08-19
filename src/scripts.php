@@ -14,6 +14,7 @@
             loadFormData();
             document.querySelector('.form-container').style.display = 'grid'
         }
+        
     } else {
         document.querySelector('.get-started-container').style.display = 'flex'
     }
@@ -252,6 +253,11 @@
         const trashBtn = document.createElement('img')
         trashBtn.className = 'trash-btn'
         trashBtn.src = '<?php echo $SERVER; ?>images/trash_icon.svg'
+        trashBtn.addEventListener('click', () => {
+            if (confirm(`Are you sure you want to remove ${areaWrapper.dataset.cityTown}, ${areaWrapper.dataset.state} as a service area?`)) {
+                container.removeChild(areaWrapper)
+            }
+        })
         area.appendChild(trashBtn)
 
         container.appendChild(areaWrapper)
@@ -285,8 +291,15 @@
 
     // all service area delete-btn
     document.querySelectorAll('.form-container form .service-areas-container .trash-btn').forEach(element => {
-        // TODO CONTINUE HERE
-        
+        element.addEventListener('click', (e) => {
+            const trashBtn = e.target
+
+            if (confirm(`Are you sure you want to remove ${trashBtn.parentNode.parentNode.dataset.cityTown}, ${trashBtn.parentNode.parentNode.dataset.state} as a service area?`)) {
+                
+                trashBtn.parentNode.parentNode.parentNode.removeChild(trashBtn.parentNode.parentNode)
+
+            }
+        })
     })
 
     // Build Schema Button
