@@ -1,12 +1,12 @@
 <?php
 /**
  * Plugin Name: Rank Schema Generator
- * Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ratione animi quasi ea odit deleniti nihil aut nam omnis alias dicta debitis, officiis ullam odio.
- * Version: 1.10.3
+ * Description: Are you tired of having to code each page's unique schema code? Give your site the boost it needs by applying Rank Schema Markup today. We've eliminated any technical difficulties for you and worked with top SEO experts to ensure that we're providing a product that will benefit your website.
+ * Version: 0.0.5
  * Requires at least: 5.2
  * Requires PHP: 7.2
- * Author: Francis Dela Victoria
- * Author URI: https://author.example.com/
+ * Author: Rankfortress Digital Agency
+ * Author URI: https://rankfortress.com/
  * Text Domain: rank-schema
  */
 
