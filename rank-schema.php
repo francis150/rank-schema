@@ -75,3 +75,5 @@ class RankSchemaGenerator
 }
 
 if ( class_exists( 'RankSchemaGenerator' ) ) { $rankSchemaGenerator = new RankSchemaGenerator(); }
+
+/* DEVELOPERS: Francis Dela Victoria, Paul Bryan Reyes */

@@ -324,7 +324,7 @@
                 document.querySelector('.dashboard').style.display = 'flex'
                 displayNotice('Successfully built and applied your Schema Markup Code!', 'notice-success')
             } else {
-                document.querySelector('.building-loading').style.display = 'none'
+                document.querySelector('.building-load').style.display = 'none'
                 document.querySelector('.form-container').style.display = 'grid'
                 displayNotice('Failed to Build your Schema Markup Code!', 'notice-error')
             }
