@@ -314,7 +314,7 @@
         
         // Fetch api data
         const fetchSchema = new XMLHttpRequest();
-        fetchSchema.open('POST', 'https://rank-schema-plugin-server.herokuapp.com/schema-generator/build', false)
+        fetchSchema.open('POST', 'https://rank-schema-plugin-server.herokuapp.com/schema-generator/build', true)
 
         fetchSchema.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
         
@@ -326,10 +326,12 @@
                 const saveConfig = new XMLHttpRequest()
                 saveConfig.open('POST', '<?php echo esc_url( plugins_url( 'save-config.php', __FILE__ ) ) ?>', false)
                 saveConfig.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+                
 
                 saveConfig.onload = function () {
 
                     // Save markups data
+                    CONFIG = configData
                     const saveMarkups = new XMLHttpRequest();
                     saveMarkups.open('POST', '<?php echo esc_url( plugins_url( 'save-markups.php', __FILE__ ) ) ?>', false)
                     saveMarkups.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
