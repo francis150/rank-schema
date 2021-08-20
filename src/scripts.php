@@ -314,15 +314,34 @@
         
         // Build formData object.
         const jax = new XMLHttpRequest();
-        jax.open('POST', '<?php echo esc_url( plugins_url( 'build-markup-code.php', __FILE__ ) ) ?>', false)
+        jax.open('POST', 'https://rank-schema-plugin-server.herokuapp.com/schema-generator/build', false)
 
         jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
-
-        jax.onload = function() {
+        
+        jax.onload = function () {
             if (this.status == 200) {
-                document.querySelector('.building-load').style.display = 'none'
-                document.querySelector('.dashboard').style.display = 'flex'
-                displayNotice('Successfully built and applied your Schema Markup Code!', 'notice-success')
+                // serve markups -> go to dashboard -> display notice
+
+                const saveMarkups = new XMLHttpRequest();
+                saveMarkups.open('POST', '<?php echo esc_url( plugins_url( 'create-config.php', __FILE__ ) ) ?>', false)
+                saveMarkups.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+
+                saveMarkups.onload = function () {
+                    if (this.status == 200) {
+
+                        document.querySelector('.building-load').style.display = 'none'
+                        document.querySelector('.dashboard').style.display = 'flex'
+                        displayNotice('Successfully built and applied your Schema Markup Code!', 'notice-success')
+                        
+                    } else {
+                        document.querySelector('.building-load').style.display = 'none'
+                        document.querySelector('.form-container').style.display = 'grid'
+                        displayNotice('Failed to Build your Schema Markup File!', 'notice-error')
+                    }
+                }
+
+                saveMarkups.send(JSON.stringify(configData))
+
             } else {
                 document.querySelector('.building-load').style.display = 'none'
                 document.querySelector('.form-container').style.display = 'grid'
@@ -330,14 +349,13 @@
             }
         }
 
-
         document.querySelector('.form-container').style.display = 'none'
         document.querySelector('.building-load').style.display = 'flex'
         window.scrollTo(0, 0)
 
         setTimeout(() => {
             jax.send(JSON.stringify(configData))
-        }, 100);
+        }, 100)
     })
 
     // Edit config button
