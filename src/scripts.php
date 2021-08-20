@@ -312,35 +312,47 @@
             activated: true
         }
         
-        // Build formData object.
-        const jax = new XMLHttpRequest();
-        jax.open('POST', '***REMOVED***schema-generator/build', false)
+        // Fetch api data
+        const fetchSchema = new XMLHttpRequest();
+        fetchSchema.open('POST', '***REMOVED***schema-generator/build', false)
 
-        jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+        fetchSchema.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
         
-        jax.onload = function () {
+        fetchSchema.onload = function () {
             if (this.status == 200) {
-                // serve markups -> go to dashboard -> display notice
+                const markupsResponse = this.response
+                
+                // Save config data
+                const saveConfig = new XMLHttpRequest()
+                saveConfig.open('POST', '<?php echo esc_url( plugins_url( 'save-config.php', __FILE__ ) ) ?>', false)
+                saveConfig.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
 
-                const saveMarkups = new XMLHttpRequest();
-                saveMarkups.open('POST', '<?php echo esc_url( plugins_url( 'create-config.php', __FILE__ ) ) ?>', false)
-                saveMarkups.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+                saveConfig.onload = function () {
 
-                saveMarkups.onload = function () {
-                    if (this.status == 200) {
+                    // Save markups data
+                    const saveMarkups = new XMLHttpRequest();
+                    saveMarkups.open('POST', '<?php echo esc_url( plugins_url( 'save-markups.php', __FILE__ ) ) ?>', false)
+                    saveMarkups.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
 
-                        document.querySelector('.building-load').style.display = 'none'
-                        document.querySelector('.dashboard').style.display = 'flex'
-                        displayNotice('Successfully built and applied your Schema Markup Code!', 'notice-success')
-                        
-                    } else {
-                        document.querySelector('.building-load').style.display = 'none'
-                        document.querySelector('.form-container').style.display = 'grid'
-                        displayNotice('Failed to Build your Schema Markup File!', 'notice-error')
+                    saveMarkups.onload = function () {
+                        if (this.status == 200) {
+
+                            document.querySelector('.building-load').style.display = 'none'
+                            document.querySelector('.dashboard').style.display = 'flex'
+                            displayNotice('Successfully built and applied your Schema Markup Code!', 'notice-success')
+                            
+                        } else {
+                            document.querySelector('.building-load').style.display = 'none'
+                            document.querySelector('.form-container').style.display = 'grid'
+                            displayNotice('Failed to Build your Schema Markup File!', 'notice-error')
+                        }
                     }
+
+                    saveMarkups.send(markupsResponse)
+
                 }
 
-                saveMarkups.send(JSON.stringify(configData))
+                saveConfig.send(JSON.stringify(configData))
 
             } else {
                 document.querySelector('.building-load').style.display = 'none'
@@ -354,7 +366,7 @@
         window.scrollTo(0, 0)
 
         setTimeout(() => {
-            jax.send(JSON.stringify(configData))
+            fetchSchema.send(JSON.stringify(configData))
         }, 100)
     })
 
