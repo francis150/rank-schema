@@ -381,7 +381,7 @@
             
 
             const jax = new XMLHttpRequest();
-            jax.open('POST', '<?php echo esc_url( plugins_url( 'build-markup-code.php', __FILE__ ) ) ?>', false)
+            jax.open('POST', '<?php echo esc_url( plugins_url( 'save-config.php', __FILE__ ) ) ?>', false)
 
             jax.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
 
