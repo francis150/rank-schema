@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* NOTE VALUES */
+$accentRed: #B50000;
+$primaryGrey: #363636;
+$buttonGradient: linear-gradient(to right, #ed213a, #93291e);
+$backgroundLightGrey: #F7F8FA;
+
+.rank-main-wrapper * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    color: $primaryGrey;
+}
+
+/*NOTE Get Started Styles */
+.get-started-container {
+    display: none;
+    /* display: flex; */
+    width: 1000px;
+    border-radius: 10px;
+    padding: 70px 50px;
+    margin: 10px;
+    background: #fff;
+    box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.25);
+    opacity: 0.9;
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        row-gap: 60px;
+
+        .logo-container {
+            height: 60px;
+            width: 276px;
+
+            img {
+                position: relative;
+                height: 40px;
+                width: 276px;
+            }
+
+            p{
+                position: relative;
+                margin-top: 0px;
+                left: 2px;
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 21px;
+            }
+        }
+
+        .content-container {
+            h1 {
+                font-style: normal;
+                font-weight: bold;
+                font-size: 64px;
+                margin-bottom: 20px;
+            }
+
+            h2 {
+                font-style: normal;
+                font-weight: bold;
+                font-size: 24px;
+                line-height: 36px;
+
+                span {
+                    color: #B50000;
+                }
+            }
+
+            p {
+                height: 63px;
+                width: 303px;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 21px;
+                color: $primaryGrey;
+                
+                span {
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .get-started-btn {
+            background: $buttonGradient;
+            box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+            padding: 8px 40px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            transition: 0.5 all ease-in-out;
+            width: 50%;
+            cursor: pointer;
+            color: white;
+
+            &:hover {
+                animation: loading .3s ease infinite alternate;
+            }
+        }
+    }
+
+    .landing-img {
+        position: absolute;
+        z-index: -50;
+        transform: translateX(300px);
+    }
+}
+
+/* NOTE Form Styles */
+.form-container {
+    display: inherit;
+    /* display: unset; */
+    width: 1000px;
+    border-radius: 10px;
+    padding: 60px 50px;
+    margin: 10px;
+    background: #fff;
+    box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.25);
+
+    .logo-container {
+        margin-bottom: 40px;
+
+        img {
+            height: 40px;
+            width: 276px;
+            transform: translateX(-5px);
+        }
+
+        h2 {
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 19px;
+
+            span {
+                color: #c43333;
+                font-weight: 700;
+            }
+        }
+    }
+
+    form {
+
+        h2 {
+            font-weight: 600;
+            font-size: 24px;
+            color: $primaryGrey;
+            margin: 40px 0 20px 0;
+        }
+
+        .two-col-row {
+            display: flex;
+            column-gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .one-col-row {
+            margin-bottom: 20px;
+
+            .input-wrapper {
+                width: 100%;
+            }
+        }
+
+        .input-wrapper {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+
+            label{
+                margin-bottom: 5px;
+
+                span {
+                    color: $accentRed;
+                }
+            }
+
+            select, input, textarea, button {
+                height: 40px;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                background-color: $backgroundLightGrey;
+                outline: none;
+                padding: 0 10px;
+
+                &:focus {
+                    border: 1px solid #363636;
+                }
+            }
+
+            textarea {
+                height: 200px;
+                padding: 10px;
+            }
+
+            small {
+                margin-top: 2px;
+                opacity: 0.6;
+            }
+
+            &:focus-within {
+                small {
+                    opacity: 1;
+                }
+            }
+        }
+
+        .wiki-entity {
+            div {
+                display: flex;
+
+                input {
+                    width: 80%;
+                    border-radius: 5px 0 0 5px;
+                }
+
+                button {
+                    width: 20%;
+                    border-radius: 0 5px 5px 0;
+                    cursor: pointer;
+                    transition: .2s background ease-in-out;
+
+                    &:hover {
+                        background: #eeeeee;
+                    }
+                }
+            }
+        }
+
+        .faq-url-input {
+            div {
+                display: flex;
+
+                input {
+                    width: 100%;
+                    z-index: 10;
+                }
+
+                button {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    border-radius: 5px;
+                    border: none;
+                    cursor: pointer;
+                    margin-left: 10px;
+                    opacity: .6;
+
+                    transition: .3s all ease-in-out;
+                    transform: translateX(-50px);
+
+                    &:hover {
+                        background: #eeeeee;
+                        opacity: 1;
+                    }
+
+                    &:focus, &:active {
+                        outline: none;
+                        border: none;
+                    }
+                }
+            }
+
+            &:focus-within {
+                button {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+}
+
+
+
+/* NOTE KEYFRAMES */
+@keyframes loading {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.05);
+    }
+}

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Rank Schema Generator
  * Description: Are you tired of having to code each page's unique schema code? Give your site the boost it needs by applying Rank Schema Markup today. We've eliminated any technical difficulties for you and worked with top SEO experts to ensure that we're providing a product that will benefit your website.
- * Version: 0.0.5
+ * Version: 1.0.2
  * Requires at least: 5.2
  * Requires PHP: 7.2
  * Author: Rankfortress Digital Agency
@@ -18,6 +18,12 @@ class RankSchemaGenerator
     {
         add_action( 'admin_menu', array( $this, 'add_admin_pages' ) );
         add_action( 'wp_head', array( $this, 'apply_schema_markups' ) );
+        add_action('admin_enque_scripts', array($this, 'register_scripts_styles'));
+    }
+
+    public function load_scripts_styles()
+    {
+        add_action('admin_enqueue_scripts', array($this, 'register_scripts_styles'));
     }
 
     public function apply_schema_markups()
@@ -72,8 +78,19 @@ class RankSchemaGenerator
     {
         require_once plugin_dir_path(__FILE__) . 'src/admin-page.php';
     }
+
+    public function register_scripts_styles()
+    {
+        wp_enqueue_style('main_styles', plugins_url( '/assets/styles.css', __FILE__ ));
+    }
+
+    
 }
 
-if ( class_exists( 'RankSchemaGenerator' ) ) { $rankSchemaGenerator = new RankSchemaGenerator(); }
+if ( class_exists( 'RankSchemaGenerator' ) ) 
+{
+    $rankSchemaGenerator = new RankSchemaGenerator(); 
+    $rankSchemaGenerator->load_scripts_styles();
+}
 
 /* DEVELOPERS: Francis Dela Victoria, Paul Bryan Reyes */
