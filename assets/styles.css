@@ -1,0 +1,322 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* NOTE VALUES */
+.rank-main-wrapper * {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+  color: #363636;
+}
+
+/*NOTE Get Started Styles */
+.get-started-container {
+  display: none;
+  /* display: flex; */
+  width: 1000px;
+  border-radius: 10px;
+  padding: 70px 50px;
+  margin: 10px;
+  background: #fff;
+  -webkit-box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.25);
+          box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.25);
+  opacity: 0.9;
+}
+
+.get-started-container .left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  row-gap: 60px;
+}
+
+.get-started-container .left .logo-container {
+  height: 60px;
+  width: 276px;
+}
+
+.get-started-container .left .logo-container img {
+  position: relative;
+  height: 40px;
+  width: 276px;
+}
+
+.get-started-container .left .logo-container p {
+  position: relative;
+  margin-top: 0px;
+  left: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+}
+
+.get-started-container .left .content-container h1 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 64px;
+  margin-bottom: 20px;
+}
+
+.get-started-container .left .content-container h2 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.get-started-container .left .content-container h2 span {
+  color: #B50000;
+}
+
+.get-started-container .left .content-container p {
+  height: 63px;
+  width: 303px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #363636;
+}
+
+.get-started-container .left .content-container p span {
+  font-weight: 700;
+}
+
+.get-started-container .left .get-started-btn {
+  background: -webkit-gradient(linear, left top, right top, from(#ed213a), to(#93291e));
+  background: linear-gradient(to right, #ed213a, #93291e);
+  -webkit-box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+  padding: 8px 40px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  -webkit-transition: 0.5 all ease-in-out;
+  transition: 0.5 all ease-in-out;
+  width: 50%;
+  cursor: pointer;
+  color: white;
+}
+
+.get-started-container .left .get-started-btn:hover {
+  -webkit-animation: loading .3s ease infinite alternate;
+          animation: loading .3s ease infinite alternate;
+}
+
+.get-started-container .landing-img {
+  position: absolute;
+  z-index: -50;
+  -webkit-transform: translateX(300px);
+          transform: translateX(300px);
+}
+
+/* NOTE Form Styles */
+.form-container {
+  display: inherit;
+  /* display: unset; */
+  width: 1000px;
+  border-radius: 10px;
+  padding: 60px 50px;
+  margin: 10px;
+  background: #fff;
+  -webkit-box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.25);
+          box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.25);
+}
+
+.form-container .logo-container {
+  margin-bottom: 40px;
+}
+
+.form-container .logo-container img {
+  height: 40px;
+  width: 276px;
+  -webkit-transform: translateX(-5px);
+          transform: translateX(-5px);
+}
+
+.form-container .logo-container h2 {
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.form-container .logo-container p {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 19px;
+}
+
+.form-container .logo-container p span {
+  color: #c43333;
+  font-weight: 700;
+}
+
+.form-container form h2 {
+  font-weight: 600;
+  font-size: 24px;
+  color: #363636;
+  margin: 40px 0 20px 0;
+}
+
+.form-container form .two-col-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-container form .one-col-row {
+  margin-bottom: 20px;
+}
+
+.form-container form .one-col-row .input-wrapper {
+  width: 100%;
+}
+
+.form-container form .input-wrapper {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form-container form .input-wrapper label {
+  margin-bottom: 5px;
+}
+
+.form-container form .input-wrapper label span {
+  color: #B50000;
+}
+
+.form-container form .input-wrapper select, .form-container form .input-wrapper input, .form-container form .input-wrapper textarea, .form-container form .input-wrapper button {
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #F7F8FA;
+  outline: none;
+  padding: 0 10px;
+}
+
+.form-container form .input-wrapper select:focus, .form-container form .input-wrapper input:focus, .form-container form .input-wrapper textarea:focus, .form-container form .input-wrapper button:focus {
+  border: 1px solid #363636;
+}
+
+.form-container form .input-wrapper textarea {
+  height: 200px;
+  padding: 10px;
+}
+
+.form-container form .input-wrapper small {
+  margin-top: 2px;
+  opacity: 0.6;
+}
+
+.form-container form .input-wrapper:focus-within small {
+  opacity: 1;
+}
+
+.form-container form .wiki-entity div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.form-container form .wiki-entity div input {
+  width: 80%;
+  border-radius: 5px 0 0 5px;
+}
+
+.form-container form .wiki-entity div button {
+  width: 20%;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  -webkit-transition: .2s background ease-in-out;
+  transition: .2s background ease-in-out;
+}
+
+.form-container form .wiki-entity div button:hover {
+  background: #eeeeee;
+}
+
+.form-container form .faq-url-input div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.form-container form .faq-url-input div input {
+  width: 100%;
+  z-index: 10;
+}
+
+.form-container form .faq-url-input div button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-left: 10px;
+  opacity: .6;
+  -webkit-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+  -webkit-transform: translateX(-50px);
+          transform: translateX(-50px);
+}
+
+.form-container form .faq-url-input div button:hover {
+  background: #eeeeee;
+  opacity: 1;
+}
+
+.form-container form .faq-url-input div button:focus, .form-container form .faq-url-input div button:active {
+  outline: none;
+  border: none;
+}
+
+.form-container form .faq-url-input:focus-within button {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+/* NOTE KEYFRAMES */
+@-webkit-keyframes loading {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+}
+@keyframes loading {
+  from {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  to {
+    -webkit-transform: scale(1.05);
+            transform: scale(1.05);
+  }
+}
+/*# sourceMappingURL=styles.css.map */
