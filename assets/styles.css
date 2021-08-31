@@ -118,7 +118,7 @@
 /* NOTE Form Styles */
 .form-container {
   display: inherit;
-  /* display: unset; */
+  /* display: inherit; */
   width: 1000px;
   border-radius: 10px;
   padding: 60px 50px;
@@ -158,10 +158,34 @@
 }
 
 .form-container form h2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-weight: 600;
   font-size: 24px;
   color: #363636;
   margin: 40px 0 20px 0;
+}
+
+.form-container form h2 img {
+  margin-left: 10px;
+  background: #F7F8FA;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  -webkit-transition: .2s background ease-in-out;
+  transition: .2s background ease-in-out;
+}
+
+.form-container form h2 img:hover {
+  background: #eeeeee;
 }
 
 .form-container form .two-col-row {
@@ -298,6 +322,279 @@
           transform: translateX(0);
 }
 
+.form-container form .action-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2px;
+  margin-left: 10px;
+  border: none;
+  opacity: .6;
+  -webkit-transition: .3s all ease-in-out;
+  transition: .3s all ease-in-out;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.form-container form .action-button:hover {
+  background: #eeeeee;
+  opacity: 1;
+}
+
+.form-container form .action-button img {
+  width: 18px;
+  height: 18px;
+}
+
+.form-container form .faqs-container .faq {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #F7F8FA;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.form-container form .faqs-container .faq .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.form-container form .faqs-container .faq .head h3 {
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-container form .faqs-container .faq p {
+  font-size: 14px;
+  text-align: justify;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.form-container form .about-pages-container .about-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #F7F8FA;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.form-container form .about-pages-container .about-page p {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.form-container form .contact-pages-container .contact-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #F7F8FA;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.form-container form .contact-pages-container .contact-page p {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.form-container form .service-pages-container .service-page {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #F7F8FA;
+  border-radius: 5px;
+  padding: 10px 10px 0 10px;
+  margin-bottom: 10px;
+}
+
+.form-container form .service-pages-container .service-page .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px;
+}
+
+.form-container form .service-pages-container .service-page .head p {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.form-container form .service-pages-container .service-page .head p span {
+  font-weight: 600;
+}
+
+.form-container form .service-area-pages-container .service-area-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #F7F8FA;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.form-container form .service-area-pages-container .service-area-page p {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.form-container form .service-area-pages-container .service-area-page p span {
+  font-weight: 600;
+}
+
+.form-container form .blog-post-pages-container .blog-post-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #F7F8FA;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.form-container form .blog-post-pages-container .blog-post-page .image-wrapper {
+  width: 85px;
+  height: 85px;
+  background: #eeeeee;
+  margin-right: 10px;
+}
+
+.form-container form .blog-post-pages-container .blog-post-page .image-wrapper img {
+  width: 85px;
+  height: 85px;
+}
+
+.form-container form .blog-post-pages-container .blog-post-page .content-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 89%;
+}
+
+.form-container form .blog-post-pages-container .blog-post-page .content-wrapper .head {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.form-container form .blog-post-pages-container .blog-post-page .content-wrapper .head h3 {
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-container form .blog-post-pages-container .blog-post-page .content-wrapper p {
+  font-size: 14px;
+  text-align: justify;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.form-container form .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+  margin-top: 60px;
+}
+
+.form-container form .buttons button {
+  cursor: pointer;
+  -webkit-transition: 0.3s all ease-in-out;
+  transition: 0.3s all ease-in-out;
+  font-size: 16px;
+  font-weight: 600;
+  height: 40px;
+  padding: 0 20px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+
+.form-container form .buttons .submit {
+  color: #fff;
+  background: -webkit-gradient(linear, left top, right top, from(#ed213a), to(#93291e));
+  background: linear-gradient(to right, #ed213a, #93291e);
+  margin-left: auto;
+  -webkit-box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.form-container form .buttons .submit:hover {
+  -webkit-animation: loading .5s ease infinite alternate;
+          animation: loading .5s ease infinite alternate;
+}
+
+.form-container form .buttons .draft:hover {
+  background: #e0e0e0;
+}
+
 /* NOTE KEYFRAMES */
 @-webkit-keyframes loading {
   from {
@@ -305,8 +602,8 @@
             transform: scale(1);
   }
   to {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
   }
 }
 @keyframes loading {
@@ -315,8 +612,8 @@
             transform: scale(1);
   }
   to {
-    -webkit-transform: scale(1.05);
-            transform: scale(1.05);
+    -webkit-transform: scale(1.03);
+            transform: scale(1.03);
   }
 }
 /*# sourceMappingURL=styles.css.map */
