@@ -1,12 +1,3 @@
-<?php 
-  $SERVER = "https://rank-schema-plugin-server.herokuapp.com/";
-
-  if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
-    $CONFIG = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'config.json'), true);
-  }
-  if (file_exists(plugin_dir_path( __FILE__ ). 'markups.json')) { $MARKUPS_AVAILABLE = true; }
-?>
-
 
 <section class="rank-main-wrapper">
     <div class="notice-container"></div>
@@ -352,8 +343,8 @@
                 </div>
 
                 <div class="input-wrapper">
-                    <label>Owners Name <span>*</span></label>
-                    <input type="text" name="ownersName" required>
+                    <label>Owners Name</label>
+                    <input type="text" name="ownersName">
                 </div>
             </div>
 
@@ -475,6 +466,154 @@
                 </div>
 
                 <div class="input-wrapper"></div>
+            </div>
+
+            <div class="faqs-container">
+
+                <div class="faq">
+                    <div class="head">
+                        <h3 class="question">Is Sod Better Than Seeding?</h3>
+                        <button type="button" class="faq-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                        <button type="button" class="faq-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                    </div>
+                    <p>Most people presume that new lawn installation and sodding go hand-in-hand. However, there are other ways to install a new lawn as well, such as seeding, hydroseeding, and artificial grass turf landscaping. Yet again, sodding is more popular than other methods because it gives an instant lawn to meet your specific needs. Moreover, sod can be used in many different kinds of areas in the lawn as well, such as slopes and compact regions. It is also a low-maintenance alternative to seeding.</p>
+                </div>
+
+                <div class="faq">
+                    <div class="head">
+                        <h3 class="question">Should I Hire a Landscape Designer?</h3>
+                        <button type="button" class="faq-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                        <button type="button" class="faq-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                    </div>
+                    <p>While taking on the landscaping project on your own may seem like a cost-effective choice, it can end up being a hefty job and may not produce the intended results. Hiring a landscape designer allows you to benefit from their expertise and add more value to your property by ensuring stunning results. Besides, they can also help you to choose the right plants and foliage, planting and transplanting methods, and eco-friendly solutions to maintain a healthy and long-lasting lawn. Experienced landscape designers can also help you with irrigation systems, excavation and grading, drainage, etc.</p>
+                </div>
+
+            </div>
+
+            <h2>About Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+
+            <div class="about-pages-container">
+                <div class="about-page">
+                    <p>https://mexlandscaping.com/about/</p>
+                    <button type="button" class="about-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                    <button type="button" class="about-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                </div>
+
+                <div class="about-page">
+                    <p>https://mexlandscaping.com/our-work/</p>
+                    <button type="button" class="about-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                    <button type="button" class="about-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                </div>
+            </div>
+
+            <h2>Contact Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+
+            <div class="contact-pages-container">
+                <div class="contact-page">
+                    <p>https://mexlandscaping.com/contact/</p>
+                    <button type="button" class="contact-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                    <button type="button" class="contact-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                </div>
+            </div>
+
+            <h2>Service Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+
+            <div class="service-pages-container">
+
+                <div class="service-page">
+                    <div class="head">
+                        <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
+                        <button type="button" class="service-add-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
+                        <button type="button" class="service-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                        <button type="button" class="service-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                    </div>
+                    <div class="sub-services">
+                    
+                        <div class="service-page">
+                            <div class="head">
+                                <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
+                                <button type="button" class="service-add-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
+                                <button type="button" class="service-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                                <button type="button" class="service-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                            </div>
+                            <div class="sub-services">
+
+                                <div class="service-page">
+                                    <div class="head">
+                                        <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
+                                        <button type="button" class="service-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                                        <button type="button" class="service-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                                    </div>
+                                    <div class="sub-services"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="service-page">
+                    <div class="head">
+                        <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
+                        <button type="button" class="service-add-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
+                        <button type="button" class="service-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                        <button type="button" class="service-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                    </div>
+                    <div class="sub-services"></div>
+                </div>
+
+            </div>
+
+            <h2>Service Area Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+
+            <div class="service-area-pages-container">
+
+                <div class="service-area-page">
+                    <p><span>Norristown, PA</span> - https://mexlandscaping.com/landscaping-services-in-norristown/</p>
+                    <button type="button" class="service-area-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                    <button type="button" class="service-area-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                </div>
+
+            </div>
+
+            <h2>Blog Post Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+
+            <div class="blog-post-pages-container">
+
+                <div class="blog-post-page">
+                    <div class="image-wrapper">
+                        <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/image_placeholder.svg'; ?>">
+                    </div>
+                    <div class="content-wrapper">
+                        <div class="head">
+                            <h3>Things a homeowner should know before getting a professional landscaping service</h3>
+                            <button type="button" class="blog-post-page-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                            <button type="button" class="blog-post-page-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus explicabo excepturi dolores maxime beatae magni velit atque officia maiores. Voluptate, amet ducimus! Ut culpa ab error fugit beatae dolorum praesentium cupiditate rem, delectus vero ipsa quidem voluptate! Illum facilis et itaque beatae saepe non dolor aliquam perspiciatis ex consequuntur!</p>
+                    </div>
+                </div>
+
+                <div class="blog-post-page">
+                    <div class="image-wrapper">
+                        <img src="https://www.yavapailandscaping.com/wp-content/uploads/2021/08/Top-Rated-Landscaping-Company-Get-Quality-Work-at-an-Affordable-Cost.jpg">
+                    </div>
+                    <div class="content-wrapper">
+                        <div class="head">
+                            <h3>Things a homeowner should know before getting a professional landscaping service</h3>
+                            <button type="button" class="blog-post-page-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                            <button type="button" class="blog-post-page-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus explicabo excepturi dolores maxime beatae magni velit atque officia maiores. Voluptate, amet ducimus! Ut culpa ab error fugit beatae dolorum praesentium cupiditate rem, delectus vero ipsa quidem voluptate! Illum facilis et itaque beatae saepe non dolor aliquam perspiciatis ex consequuntur!</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="buttons">
+                <button class="submit" type="submit">Build Your Schema Code!</button>
+                <button class="draft" type="button">Save as Draft</button>
             </div>
         </form>
     </section>
