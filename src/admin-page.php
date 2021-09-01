@@ -1,4 +1,3 @@
-
 <section class="rank-main-wrapper">
     <div class="notice-container"></div>
 
@@ -12,20 +11,201 @@
                 <h1>Hassle-free</h1>
                 <h2><span>Schema Markup</span> Plugin!</h2>
                 <p>
-                    Creates <span>Advance Schema Markup</span> code for you and embeds them to your pages. <span>No coding
-                    required!</span>
+                    Creates <span>Advance Schema Markup</span> code for you and embeds them to your pages. <span>No
+                        coding
+                        required!</span>
                 </p>
             </div>
             <button class="get-started-btn">Get Started!</button>
         </div>
-        <img class="landing-img" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/landing_illustration.svg'; ?>">
+        <img class="landing-img"
+            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/landing_illustration.svg'; ?>">
     </section>
 
     <section class="form-container">
+
+        <div class="faq-overlay overlay-wrapper">
+            <form method="POST">
+                <h2>Frequently Asked Question</h2>
+
+                <!-- Hidden feilds -->
+                <input type="hidden" name="edit-key" value="">
+
+                <div class="one-col-row">
+                    <div class="input-wrapper">
+                        <label>Question <span>*</span></label>
+                        <input name="question" type="text" required>
+                    </div>
+                </div>
+
+                <div class="one-col-row">
+                    <div class="input-wrapper">
+                        <label>Answer <span>*</span></label>
+                        <textarea name="answer" rows="10" required></textarea>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="faq-submit-btn">Add</button>
+                    <button type="button" class="faq-cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="about-page-overlay overlay-wrapper">
+            <form action="#">
+                <h2>About Pages</h2>
+
+                <!-- Hidden feilds -->
+                <input type="hidden" name="edit-key" value="">
+
+                <div class="one-col-row">
+                    <div class="input-wrapper">
+                        <label>About Page URL <span>*</span></label>
+                        <input name="url" type="text" required>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="about-pages-submit-btn">Add</button>
+                    <button type="button" class="about-pages-cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="contact-page-overlay overlay-wrapper">
+            <form action="#">
+                <h2>Contact Pages</h2>
+
+                <!-- Hidden feilds -->
+                <input type="hidden" name="edit-key" value="">
+
+                <div class="one-col-row">
+                    <div class="input-wrapper">
+                        <label>Contact Page URL <span>*</span></label>
+                        <input name="url" type="text" required>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="contact-page-submit-btn">Add</button>
+                    <button type="button" class="contact-page-cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="services-overlay overlay-wrapper">
+            <form action="#">
+                <h2>Service</h2>
+                
+                <!-- Hidden feilds -->
+                <input type="hidden" name="edit-key" value="">
+                <input type="hidden" name="parent-key" value="">
+
+                <div class="one-col-row">
+                    <div class="input-wrapper">
+                        <label>Service Page URL <span>*</span></label>
+                        <input name="url" type="text" required>
+                    </div>
+                </div>
+
+                <div class="one-col-row">
+                    <div class="input-wrapper">
+                        <label>Service Name <span>*</span></label>
+                        <input name="name" type="text" required>
+                    </div>
+                </div>
+
+                <div class="one-col-row">
+                    <div class="input-wrapper">
+                        <label>Description <span>*</span></label>
+                        <textarea name="description" rows="10" required></textarea>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="services-submit-btn">Add</button>
+                    <button type="button" class="services-cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="service-areas-overlay overlay-wrapper">
+            <form action="#">
+                <h2>Service Area Page</h2>
+
+                <!-- Hidden feilds -->
+                <input type="hidden" name="edit-key" value="">
+
+                <div class="one-col-row">
+                    <div class="input-wrapper">
+                        <label>Service Area Page URL <span>*</span></label>
+                        <input name="url" type="text" required>
+                    </div>
+                </div>
+
+                <div class="two-col-row">
+                    <div class="input-wrapper">
+                        <label>Street Address</label>
+                        <input name="streetAddress" type="text">
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label>City/Town <span>*</span></label>
+                        <input name="streetAddress" type="text" required>
+                    </div>
+                </div>
+
+                <div class="two-col-row">
+                    <div class="input-wrapper">
+                        <label>State <span>*</span></label>
+                        <input name="state" type="text" required>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label>Country <span>*</span></label>
+                        <input name="country" type="text" required>
+                    </div>
+                </div>
+
+                <div class="two-col-row">
+                    <div class="input-wrapper">
+                        <label>Business Number for this Location</label>
+                        <input name="phone" type="text">
+                    </div>
+
+                    <div class="input-wrapper">
+                        <label>Business Email for this Location</label>
+                        <input name="email" type="text">
+                    </div>
+                </div>
+
+                <div class="one-col-row">
+                    <div class="input-wrapper">
+                        <label>Zip Codes <span>*</span></label>
+                        <input name="zipCodes" type="text" required>
+                        <small>Separate each zip code with a comma(,). At-least one(1) zip code is required</small>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button type="submit" class="service-areas-submit-btn">Add</button>
+                    <button type="button" class="service-areas-cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="blog-posts-overlay overlay-wrapper">
+            <form action="#">
+
+            </form>
+        </div>
+
         <div class="logo-container">
             <img id="rt-logo" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/logo.svg'; ?>">
             <h2>Schema Markup</h2>
-            <p>Fill out this form as much as possible so we can start building your <span>Advance Schema Code!</span></p>
+            <p>Fill out this form as much as possible so we can start building your <span>Advance Schema Code!</span>
+            </p>
         </div>
 
         <form>
@@ -368,7 +548,7 @@
 
                 <div class="input-wrapper">
                     <label>Disambiguating Description <span>*</span></label>
-                    <textarea name="disambiguatingDescription"  rows="10" required></textarea>
+                    <textarea name="disambiguatingDescription" rows="10" required></textarea>
                 </div>
             </div>
 
@@ -461,7 +641,8 @@
                     <label>FAQ Page URL</label>
                     <div>
                         <input name="faqURL" type="text">
-                        <button type="button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></button>
+                        <button type="button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></button>
                     </div>
                 </div>
 
@@ -473,19 +654,34 @@
                 <div class="faq">
                     <div class="head">
                         <h3 class="question">Is Sod Better Than Seeding?</h3>
-                        <button type="button" class="faq-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                        <button type="button" class="faq-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                        <button type="button" class="faq-edit-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                        <button type="button" class="faq-remove-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                     </div>
-                    <p>Most people presume that new lawn installation and sodding go hand-in-hand. However, there are other ways to install a new lawn as well, such as seeding, hydroseeding, and artificial grass turf landscaping. Yet again, sodding is more popular than other methods because it gives an instant lawn to meet your specific needs. Moreover, sod can be used in many different kinds of areas in the lawn as well, such as slopes and compact regions. It is also a low-maintenance alternative to seeding.</p>
+                    <p>Most people presume that new lawn installation and sodding go hand-in-hand. However, there are
+                        other ways to install a new lawn as well, such as seeding, hydroseeding, and artificial grass
+                        turf landscaping. Yet again, sodding is more popular than other methods because it gives an
+                        instant lawn to meet your specific needs. Moreover, sod can be used in many different kinds of
+                        areas in the lawn as well, such as slopes and compact regions. It is also a low-maintenance
+                        alternative to seeding.</p>
                 </div>
 
                 <div class="faq">
                     <div class="head">
                         <h3 class="question">Should I Hire a Landscape Designer?</h3>
-                        <button type="button" class="faq-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                        <button type="button" class="faq-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                        <button type="button" class="faq-edit-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                        <button type="button" class="faq-remove-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                     </div>
-                    <p>While taking on the landscaping project on your own may seem like a cost-effective choice, it can end up being a hefty job and may not produce the intended results. Hiring a landscape designer allows you to benefit from their expertise and add more value to your property by ensuring stunning results. Besides, they can also help you to choose the right plants and foliage, planting and transplanting methods, and eco-friendly solutions to maintain a healthy and long-lasting lawn. Experienced landscape designers can also help you with irrigation systems, excavation and grading, drainage, etc.</p>
+                    <p>While taking on the landscaping project on your own may seem like a cost-effective choice, it can
+                        end up being a hefty job and may not produce the intended results. Hiring a landscape designer
+                        allows you to benefit from their expertise and add more value to your property by ensuring
+                        stunning results. Besides, they can also help you to choose the right plants and foliage,
+                        planting and transplanting methods, and eco-friendly solutions to maintain a healthy and
+                        long-lasting lawn. Experienced landscape designers can also help you with irrigation systems,
+                        excavation and grading, drainage, etc.</p>
                 </div>
 
             </div>
@@ -495,14 +691,18 @@
             <div class="about-pages-container">
                 <div class="about-page">
                     <p>https://mexlandscaping.com/about/</p>
-                    <button type="button" class="about-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                    <button type="button" class="about-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                    <button type="button" class="about-edit-btn action-button"><img
+                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                    <button type="button" class="about-remove-btn action-button"><img
+                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                 </div>
 
                 <div class="about-page">
                     <p>https://mexlandscaping.com/our-work/</p>
-                    <button type="button" class="about-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                    <button type="button" class="about-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                    <button type="button" class="about-edit-btn action-button"><img
+                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                    <button type="button" class="about-remove-btn action-button"><img
+                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                 </div>
             </div>
 
@@ -511,8 +711,10 @@
             <div class="contact-pages-container">
                 <div class="contact-page">
                     <p>https://mexlandscaping.com/contact/</p>
-                    <button type="button" class="contact-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                    <button type="button" class="contact-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                    <button type="button" class="contact-edit-btn action-button"><img
+                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                    <button type="button" class="contact-remove-btn action-button"><img
+                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                 </div>
             </div>
 
@@ -523,26 +725,35 @@
                 <div class="service-page">
                     <div class="head">
                         <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
-                        <button type="button" class="service-add-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
-                        <button type="button" class="service-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                        <button type="button" class="service-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                        <button type="button" class="service-add-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
+                        <button type="button" class="service-edit-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                        <button type="button" class="service-remove-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                     </div>
                     <div class="sub-services">
-                    
+
                         <div class="service-page">
                             <div class="head">
                                 <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
-                                <button type="button" class="service-add-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
-                                <button type="button" class="service-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                                <button type="button" class="service-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                                <button type="button" class="service-add-btn action-button"><img
+                                        src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
+                                <button type="button" class="service-edit-btn action-button"><img
+                                        src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                                <button type="button" class="service-remove-btn action-button"><img
+                                        src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                             </div>
                             <div class="sub-services">
 
                                 <div class="service-page">
                                     <div class="head">
-                                        <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
-                                        <button type="button" class="service-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                                        <button type="button" class="service-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                                        <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/
+                                        </p>
+                                        <button type="button" class="service-edit-btn action-button"><img
+                                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                                        <button type="button" class="service-remove-btn action-button"><img
+                                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                                     </div>
                                     <div class="sub-services"></div>
                                 </div>
@@ -556,28 +767,35 @@
                 <div class="service-page">
                     <div class="head">
                         <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
-                        <button type="button" class="service-add-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
-                        <button type="button" class="service-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                        <button type="button" class="service-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                        <button type="button" class="service-add-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
+                        <button type="button" class="service-edit-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                        <button type="button" class="service-remove-btn action-button"><img
+                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                     </div>
                     <div class="sub-services"></div>
                 </div>
 
             </div>
 
-            <h2>Service Area Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+            <h2>Service Area Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>">
+            </h2>
 
             <div class="service-area-pages-container">
 
                 <div class="service-area-page">
                     <p><span>Norristown, PA</span> - https://mexlandscaping.com/landscaping-services-in-norristown/</p>
-                    <button type="button" class="service-area-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                    <button type="button" class="service-area-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                    <button type="button" class="service-area-edit-btn action-button"><img
+                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                    <button type="button" class="service-area-remove-btn action-button"><img
+                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                 </div>
 
             </div>
 
-            <h2>Blog Post Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+            <h2>Blog Post Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>">
+            </h2>
 
             <div class="blog-post-pages-container">
 
@@ -588,24 +806,37 @@
                     <div class="content-wrapper">
                         <div class="head">
                             <h3>Things a homeowner should know before getting a professional landscaping service</h3>
-                            <button type="button" class="blog-post-page-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                            <button type="button" class="blog-post-page-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                            <button type="button" class="blog-post-page-edit-btn action-button"><img
+                                    src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                            <button type="button" class="blog-post-page-remove-btn action-button"><img
+                                    src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus explicabo excepturi dolores maxime beatae magni velit atque officia maiores. Voluptate, amet ducimus! Ut culpa ab error fugit beatae dolorum praesentium cupiditate rem, delectus vero ipsa quidem voluptate! Illum facilis et itaque beatae saepe non dolor aliquam perspiciatis ex consequuntur!</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus explicabo
+                            excepturi dolores maxime beatae magni velit atque officia maiores. Voluptate, amet ducimus!
+                            Ut culpa ab error fugit beatae dolorum praesentium cupiditate rem, delectus vero ipsa quidem
+                            voluptate! Illum facilis et itaque beatae saepe non dolor aliquam perspiciatis ex
+                            consequuntur!</p>
                     </div>
                 </div>
 
                 <div class="blog-post-page">
                     <div class="image-wrapper">
-                        <img src="https://www.yavapailandscaping.com/wp-content/uploads/2021/08/Top-Rated-Landscaping-Company-Get-Quality-Work-at-an-Affordable-Cost.jpg">
+                        <img
+                            src="https://www.yavapailandscaping.com/wp-content/uploads/2021/08/Top-Rated-Landscaping-Company-Get-Quality-Work-at-an-Affordable-Cost.jpg">
                     </div>
                     <div class="content-wrapper">
                         <div class="head">
                             <h3>Things a homeowner should know before getting a professional landscaping service</h3>
-                            <button type="button" class="blog-post-page-edit-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                            <button type="button" class="blog-post-page-remove-btn action-button"><img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
+                            <button type="button" class="blog-post-page-edit-btn action-button"><img
+                                    src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
+                            <button type="button" class="blog-post-page-remove-btn action-button"><img
+                                    src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
                         </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus explicabo excepturi dolores maxime beatae magni velit atque officia maiores. Voluptate, amet ducimus! Ut culpa ab error fugit beatae dolorum praesentium cupiditate rem, delectus vero ipsa quidem voluptate! Illum facilis et itaque beatae saepe non dolor aliquam perspiciatis ex consequuntur!</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus explicabo
+                            excepturi dolores maxime beatae magni velit atque officia maiores. Voluptate, amet ducimus!
+                            Ut culpa ab error fugit beatae dolorum praesentium cupiditate rem, delectus vero ipsa quidem
+                            voluptate! Illum facilis et itaque beatae saepe non dolor aliquam perspiciatis ex
+                            consequuntur!</p>
                     </div>
                 </div>
 
@@ -617,5 +848,33 @@
             </div>
         </form>
     </section>
-</section>
 
+    <section class="building-load">
+        <div class="brand">
+            <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/logo.svg'; ?>">
+            <p>Schema Markup</p>
+        </div>
+
+        <div class="content">
+            <div class="loader">
+                <div class="indicator"></div>
+                <div class="indicator middle"></div>
+                <div class="indicator last"></div>
+            </div>
+            <h2>Please wait while we build your<br><b>Advanced Schema Markup Code</b>!</h2>
+        </div>
+    </section>
+
+    <section class="active-screen">
+        <div class="brand">
+            <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/logo.svg'; ?>">
+            <p>Schema Markup</p>
+        </div>
+        <div class="text">
+            <h2 class="title">Advanced Schema Markup Code</h2>
+            <p>is currently</p>
+        </div>
+        <h2 class="status">ACTIVE! 👍</h2>
+        <button>Edit Schema Data</button>
+    </section>
+</section>
