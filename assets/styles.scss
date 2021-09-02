@@ -31,7 +31,7 @@ $activeGreen: #389D48;
 
 /*NOTE Get Started Styles */
 .get-started-container {
-    display: none;
+    display: flex;
     /* display: flex; */
     width: 1000px;
     border-radius: 10px;
@@ -127,7 +127,7 @@ $activeGreen: #389D48;
 
 /* NOTE Form Styles */
 .form-container {
-    display: inherit;
+    display: none;
     /* display: inherit; */
     width: 1000px;
     border-radius: 10px;
@@ -697,6 +697,7 @@ $activeGreen: #389D48;
     }
 }
 
+/* NOTE Active Scree Styles */
 .active-screen {
     display: none;
     /* display: flex; */

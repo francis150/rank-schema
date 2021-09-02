@@ -1,3 +1,14 @@
+/* NOTE Pre-load configs */
+const MAIN_FORM = document.querySelector('.rank-main-wrapper .form-container .main-form')
+
+if (CONFIG) {
+    // NOTE SHOW Main Form
+    document.querySelector('.rank-main-wrapper .get-started-container').style.display = 'none';
+    document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';
+
+    // NOTE Load form data
+    loadMainFormData()
+}
 
 /* NOTE  Validate Wiki Entity */
 document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-entity button').addEventListener('click', () => {
@@ -145,4 +156,31 @@ function showBlogPostPageSubform(data) {
     }
 
     document.querySelector('.rank-main-wrapper .form-container .blog-posts-overlay').style.display = 'flex'
+}
+
+/* NOTE Load Main Form Data */
+function loadMainFormData() {
+    if (!CONFIG) return
+
+    MAIN_FORM.schemaType.value = CONFIG.schemaType
+    MAIN_FORM.businessName.value = CONFIG.businessName
+    MAIN_FORM.ownersName.value = CONFIG.ownersName
+    MAIN_FORM.imageURL.value = CONFIG.imageURL
+    MAIN_FORM.slogan.value = CONFIG.slogan
+    MAIN_FORM.description.innerHTML = CONFIG.description
+    MAIN_FORM.disambiguatingDescription.value = CONFIG.disambiguatingDescription
+    MAIN_FORM.streetAddress.value = CONFIG.streetAddress
+    MAIN_FORM.cityTown.value = CONFIG.cityTown
+    MAIN_FORM.state.value = CONFIG.state
+    MAIN_FORM.zipCode.value = CONFIG.zipCode
+    MAIN_FORM.country.value = CONFIG.country
+    MAIN_FORM.phone.value = CONFIG.phone
+    MAIN_FORM.email.value = CONFIG.email
+    MAIN_FORM.query.value = CONFIG.query
+    MAIN_FORM.privacyPolicyURL.value = CONFIG.privacyPolicyURL
+    MAIN_FORM.keywords.value = CONFIG.keywords.join(', ')
+    MAIN_FORM.backlinks.value = CONFIG.backlinks.join("\r\n")
+    MAIN_FORM.faqURL.value = CONFIG.faqPage.url ?? ''
+
+    // TODO Popup Add FAQ Button if CONFIG.faqPage is not defined
 }

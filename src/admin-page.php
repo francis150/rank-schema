@@ -1,3 +1,22 @@
+
+<!-- NOTE Pre-load Configs -->
+<?php 
+    // NOTE define js config variables
+    echo '<script>let CONFIG; let MARKUPS_AVAILABLE</script>';
+
+    // NOTE if config.json file exists, set config variable for php and js
+    if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
+        $CONFIG = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'config.json'), true);
+        echo '<script>CONFIG = '.json_encode($CONFIG).'</script>';
+    }
+
+    if (file_exists(plugin_dir_path( __FILE__ ). 'markups.json')) {
+        $MARKUPS_AVAILABLE = true;
+        echo '<script>MARKUPS_AVAILABLE = true</script>';
+    }
+?>
+
+<!-- NOTE Admin Page UI -->
 <section class="rank-main-wrapper">
     <!-- NOTE Notice container -->
     <div class="notice-container"></div>
@@ -18,7 +37,9 @@
                         required!</span>
                 </p>
             </div>
-            <button class="get-started-btn">Get Started!</button>
+            <form action="#" method="POST">
+                <input name="get-started" type="submit" class="get-started-btn" value="Get Started!">
+            </form>
         </div>
         <img class="landing-img"
             src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/landing_illustration.svg'; ?>">
@@ -836,7 +857,7 @@
             <div class="one-col-row">
                 <div class="input-wrapper">
                     <label>Backlinks/Citations</label>
-                    <textarea name="description" rows="10"></textarea>
+                    <textarea name="backlinks" rows="10"></textarea>
                 </div>
             </div>
 
@@ -1086,3 +1107,6 @@
         <button>Edit Schema Data</button>
     </section>
 </section>
+
+<!-- NOTE This file stores all major php functions -->
+<?php include plugin_dir_path( __FILE__ ). 'functions.php'; ?>
