@@ -1,6 +1,8 @@
 <section class="rank-main-wrapper">
+    <!-- NOTE Notice container -->
     <div class="notice-container"></div>
 
+    <!-- NOTE Get started view -->
     <section class="get-started-container">
         <div class="left">
             <div class="logo-container">
@@ -22,6 +24,7 @@
             src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/landing_illustration.svg'; ?>">
     </section>
 
+    <!-- NOTE Main Form and Sub forms View -->
     <section class="form-container">
 
         <div class="faq-overlay overlay-wrapper">
@@ -411,7 +414,7 @@
             </p>
         </div>
 
-        <form>
+        <form class="main-form" action="#">
             <div class="two-col-row">
                 <div class="input-wrapper">
                     <label>Main Category <span>*</span></label>
@@ -1052,6 +1055,7 @@
         </form>
     </section>
 
+    <!-- NOTE Main form build loading screen -->
     <section class="building-load">
         <div class="brand">
             <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/logo.svg'; ?>">
@@ -1068,6 +1072,7 @@
         </div>
     </section>
 
+    <!-- NOTE Active Screen View -->
     <section class="active-screen">
         <div class="brand">
             <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/logo.svg'; ?>">
