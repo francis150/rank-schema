@@ -407,7 +407,6 @@
   border: none;
   cursor: pointer;
   margin-left: 10px;
-  opacity: .6;
   -webkit-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
   -webkit-transform: translateX(-50px);
@@ -422,12 +421,6 @@
 .form-container form .faq-url-input div button:focus, .form-container form .faq-url-input div button:active {
   outline: none;
   border: none;
-}
-
-.form-container form .faq-url-input:focus-within button {
-  opacity: 1;
-  -webkit-transform: translateX(0);
-          transform: translateX(0);
 }
 
 .form-container form .action-button {
