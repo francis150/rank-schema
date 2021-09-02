@@ -18,12 +18,8 @@ class RankSchemaGenerator
     {
         add_action( 'admin_menu', array( $this, 'add_admin_pages' ) );
         add_action( 'wp_head', array( $this, 'apply_schema_markups' ) );
-        add_action('admin_enque_scripts', array($this, 'register_scripts_styles'));
-    }
-
-    public function load_scripts_styles()
-    {
-        add_action('admin_enqueue_scripts', array($this, 'register_scripts_styles'));
+        add_action('admin_enqueue_scripts', array($this, 'register_styles'));
+        add_action('admin_footer', array($this, 'register_scripts'));
     }
 
     public function apply_schema_markups()
@@ -79,9 +75,14 @@ class RankSchemaGenerator
         require_once plugin_dir_path(__FILE__) . 'src/admin-page.php';
     }
 
-    public function register_scripts_styles()
+    public function register_styles()
     {
-        wp_enqueue_style('main_styles', plugins_url( '/assets/styles.css', __FILE__ ));
+        wp_enqueue_style('main_style', plugins_url( '/assets/styles.css', __FILE__ ));
+    }
+
+    public function register_scripts()
+    {
+        wp_enqueue_script('main_script', plugins_url( '/assets/scripts.js', __FILE__ ));
     }
 
     
@@ -89,8 +90,7 @@ class RankSchemaGenerator
 
 if ( class_exists( 'RankSchemaGenerator' ) ) 
 {
-    $rankSchemaGenerator = new RankSchemaGenerator(); 
-    $rankSchemaGenerator->load_scripts_styles();
+    $rankSchemaGenerator = new RankSchemaGenerator();
 }
 
 /* DEVELOPERS: Francis Dela Victoria, Paul Bryan Reyes */
