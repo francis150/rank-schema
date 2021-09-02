@@ -14,11 +14,24 @@ $activeGreen: #389D48;
     font-family: 'Poppins', sans-serif;
     font-style: normal;
     color: $primaryGrey;
+
+    &::-webkit-scrollbar-track {
+        background-color: $backgroundLightGrey;
+    }
+
+    &::-webkit-scrollbar {
+        width: 5px;
+        background-color: $backgroundLightGrey;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $primaryGrey;
+    }
 }
 
 /*NOTE Get Started Styles */
 .get-started-container {
-    display: none;
+    display: flex;
     /* display: flex; */
     width: 1000px;
     border-radius: 10px;
@@ -114,7 +127,7 @@ $activeGreen: #389D48;
 
 /* NOTE Form Styles */
 .form-container {
-    display: inherit;
+    display: none;
     /* display: inherit; */
     width: 1000px;
     border-radius: 10px;
@@ -147,6 +160,9 @@ $activeGreen: #389D48;
             box-shadow: 8px 8px 20px 1px rgba(0, 0, 0, 0.25);
             border: 1px solid #DBDBDB;
 
+            max-height: 85vh;
+            overflow-y: auto;
+
             h2 {
                 margin: 0;
                 margin-bottom: 20px;
@@ -171,7 +187,7 @@ $activeGreen: #389D48;
                     }
                 }
 
-                .faq-cancel-btn[type=button]:hover {
+                .cancel-btn[type=button]:hover {
                     background: #e0e0e0;
                 }
             }
@@ -183,10 +199,6 @@ $activeGreen: #389D48;
         form {
             width: 800px;
         }
-    }
-
-    .blog-posts-overlay {
-        display: flex;
     }
 
     .logo-container {
@@ -243,10 +255,25 @@ $activeGreen: #389D48;
             }
         }
 
+
+        .three-col-row {
+            display: flex;
+            column-gap: 20px;
+            margin-bottom: 20px;
+
+            .input-wrapper {
+                width: 33.3%;
+            }
+        }
+
         .two-col-row {
             display: flex;
             column-gap: 20px;
             margin-bottom: 20px;
+
+            .input-wrapper {
+                width: 50%;
+            }
         }
 
         .one-col-row {
@@ -258,7 +285,6 @@ $activeGreen: #389D48;
         }
 
         .input-wrapper {
-            width: 50%;
             display: flex;
             flex-direction: column;
 
@@ -572,6 +598,7 @@ $activeGreen: #389D48;
 
         .buttons {
             display: flex;
+            align-items: center;
             column-gap: 20px;
             margin-top: 60px;
 
