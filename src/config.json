@@ -1,0 +1,59 @@
+{
+    "schemaType": "HomeAndConstructionBusiness",
+    "businessName": "MEX Landscaping Inc",
+    "ownersName": "MEX Landscaping Inc",
+    "websiteURL": "http://localhost/test-wp-site",
+    "imageURL": "http://localhost/test-wp-site/wp-content/uploads/elementor/thumbs/cropped-PNG-p5ef80wth9j7jofrgp6j5jk1e32xdwd6p1hiwue9d4.png",
+    "description": "Mex Landscaping is a team of experienced landscapers, builders, and arborists. We work with your ideas to bring your vision to reality and boost the curb appeal and value of your property.",
+    "disambiguatingDescription": "We serve residential and commercial properties across Pennsylvania, offering award-winning landscape design and installation, excavation and grading drainage, sodding, core aeration and overseeding, shrub hedge trimming and removal, seeding, planting and transplanting, mulching, weeding, and other services.",
+    "slogan": "Expert Landscape Services at Your Disposal",
+    "privacyPolicyURL": "http://localhost/test-wp-site/",
+    "aboutUrl": "http://localhost/test-wp-site/about/",
+    "contactUrl": "http://localhost/contact/",
+    "email": "mexlandscapinginc@gmail.com",
+    "phone": "+1 484 620 9791",
+    "streetAddress": "1217 Linwood Ave",
+    "cityTown": "Norristown",
+    "state": "Pennsylvania",
+    "zipCode": "19404",
+    "country": "United States",
+    "query": "Landscaping",
+    "services": [{
+        "name": "Landscape Design",
+        "url": "https://dev50.rankfortress.ai/landscaping/",
+        "description": "Mex Landscaping has been providing top-notch landscape design and installation services to residents and commercial property owners in and around Pennsylvania for several years.",
+        "subServices": [{
+            "name": "Landscape Design",
+            "url": "https://dev50.rankfortress.ai/landscape-design/",
+            "description": "Mex Landscaping has been providing top-notch landscape design and installation services to residents and commercial property owners in and around Pennsylvania for several years."
+        }, {
+            "name": "Lawn Installation",
+            "url": "https://dev50.rankfortress.ai/lawn-installation/",
+            "description": "It is often believed that a great lawn can be very difficult to achieve when you take in its appeal and functionality together."
+        }]
+    }, {
+        "name": "Hardscape Services",
+        "url": "https://dev50.rankfortress.ai/hardscaping/",
+        "description": "Quality hardscape can magnificently beautify your property and make it look and feel regal.",
+        "subServices": [{
+            "name": "Hardscape Services",
+            "url": "https://dev50.rankfortress.ai/hardscape-services/",
+            "description": "Quality hardscape can magnificently beautify your property and make it look and feel regal.",
+            "subServices": [{
+                "name": "Drainage & Grading",
+                "url": "https://dev50.rankfortress.ai/drainage-grading/",
+                "description": "Landscape drainage and grading is a key element of ensuring that your yard remains beautiful and functional throughout the year."
+            }]
+        }]
+    }],
+    "keywords": ["landscaping", "garden edging", "landscaper", "hardscape", "snow removal", "landscaping services", "garden landscaping", "mowing", "backyard design", "landscaping services", "retaining wall bricks", "bush trimming"],
+    "areasServed": [{
+        "country": "United States",
+        "state": "Norristown",
+        "cityTown": "Pennsylvania",
+        "url": "https://dev50.rankfortress.ai/landscaping-services-in-norristown/",
+        "zipCodes": ["19401", "19404", "19409", "19415"]
+    }],
+    "backlinks": ["https://maps.google.com/?cid=13001152092897114343", "https://maps.google.com/?cid=7110438027167395025", "https://www.woodlandswellness.com/in-the-news/#media-room-index", "https://en.gravatar.com/sdavis12a", "https://about.me/woodlandswellness", "https://yegfitness.ca/liposuction-woodlands-tx-how-it-works/", "https://yegfitness.ca/what-is-coolsculpting-woodlands/", "https://yegfitness.ca/double-chin-removal-woodlands/", "http://www.healthcareandmedicine.com/diseases/what-are-the-benefits-of-liposuction.html", "http://www.healthrecoverysupport.com/fitness/all-you-need-to-know-about-the-liposuction.html", "http://www.ideasabouthealthcare.com/diseases/what-is-cool-sculpting-and-how-it-works.html", "https://iamdoctor.us/how-does-the-process-of-cool-sculpting-work/", "http://www.realtimehealthylife.com/diseases/what-do-you-know-about-mini-liposuction.html", "http://www.healthdiscoveryplan.com/fitness/what-are-the-benefits-of-double-chin-removal-treatment.html", "https://62hk.net/what-are-the-key-benefits-of-getting-body-contouring/", "https://www.healthimprovements.org/diseases/how-to-prepare-for-your-liposuction-surgery.html", "http://www.eathealthiestfoods.com/medical-services/what-are-the-5-things-to-do-before-going-for-your-cool-sculpting-treatment.html", "http://www.healthylivingadvice.us/health-and-fitness/hormone-pellets-therapy-benefits.html", "http://www.sciencesforhealth.com/diseases/hormone-replacement-therapy-benefits-may-include-symptom-relief.html", "http://www.fairhealthfitness.com/fitness/hormone-treatment-menopause-therapy-for-women.html", "http://healthcareimprovements.com/health-and-fitness/andropause-treatment-for-men-how-to-treat-andropause-symptoms.html", "http://thehealthprotections.com/health-and-fitness/finding-the-best-andropause-treatment.html", "http://healthpromotingrole.com/fitness-equipment/bio-identical-hormones-replacement-therapy.html", "http://healthcaresector.net/physical-therapy/hormones-and-bio-identical-hormone-therapy.html", "http://healthmedicines.net/physical-therapy/hormone-therapy-for-men-treating-low-testosterone.html", "http://healthydietplan.net/health-and-fitness/hormone-therapy-for-men-know-about-your-options.html", "http://healthyskindiet.net/health-and-fitness/hormone-replacement-therapy-for-men.html", "http://healthysystem.net/health-and-fitness/importance-of-testosterone-replacement-therapy.html", "http://healthcareimprovements.com/health-and-fitness/hormone-therapy-for-men-who-want-to-manage-and-control-their-health.html", "http://www.abouthealthcaresystem.com/health/testosterone-therapy-benefits-what-are-some-of-them.html", "https://www.wdfxfox34.com/story/44028077/top-7-ways-to-reduce-the-appearance-of-aging-skin", "https://www.snntv.com/story/44028077/top-7-ways-to-reduce-the-appearance-of-aging-skin", "https://www.ktvn.com/story/44028077/top-7-ways-to-reduce-the-appearance-of-aging-skin", "https://www.wboc.com/story/44028077/top-7-ways-to-reduce-the-appearance-of-aging-skin"],
+    "activated": false
+}

@@ -1,0 +1,143 @@
+{
+    "schemaType": "HomeAndConstructionBusiness",
+    "businessName": "MEX Landscaping Inc",
+    "ownersName": "MEX Landscaping Inc",
+    "websiteURL": "http://localhost/test-wp-site",
+    "imageURL": "http://localhost/test-wp-site/wp-content/uploads/elementor/thumbs/cropped-PNG-p5ef80wth9j7jofrgp6j5jk1e32xdwd6p1hiwue9d4.png",
+    "description": "Mex Landscaping is a team of experienced landscapers, builders, and arborists. We work with your ideas to bring your vision to reality and boost the curb appeal and value of your property.",
+    "disambiguatingDescription": "We serve residential and commercial properties across Pennsylvania, offering award-winning landscape design and installation, excavation and grading drainage, sodding, core aeration and overseeding, shrub hedge trimming and removal, seeding, planting and transplanting, mulching, weeding, and other services.",
+    "slogan": "Expert Landscape Services at Your Disposal",
+    "privacyPolicyURL": "http://localhost/test-wp-site/",
+    "email": "mexlandscapinginc@gmail.com",
+    "phone": "+1 484 620 9791",
+    "streetAddress": "1217 Linwood Ave",
+    "cityTown": "Norristown",
+    "state": "Pennsylvania",
+    "zipCode": "19404",
+    "country": "United States",
+    "query": "Landscaping",
+    "backlinks": [
+        "https://maps.google.com/?cid=13001152092897114343", 
+        "https://maps.google.com/?cid=7110438027167395025", 
+        "https://www.woodlandswellness.com/in-the-news/#media-room-index", 
+        "https://en.gravatar.com/sdavis12a", 
+        "https://about.me/woodlandswellness", 
+        "https://yegfitness.ca/liposuction-woodlands-tx-how-it-works/", 
+        "https://yegfitness.ca/what-is-coolsculpting-woodlands/", 
+        "https://yegfitness.ca/double-chin-removal-woodlands/", 
+        "http://www.healthcareandmedicine.com/diseases/what-are-the-benefits-of-liposuction.html", 
+        "http://www.healthrecoverysupport.com/fitness/all-you-need-to-know-about-the-liposuction.html", 
+        "http://www.ideasabouthealthcare.com/diseases/what-is-cool-sculpting-and-how-it-works.html"
+    ],
+    "keywords": ["landscaping", "garden edging", "landscaper", "hardscape", "snow removal", "landscaping services", "garden landscaping", "mowing", "backyard design", "landscaping services", "retaining wall bricks", "bush trimming"],
+    "faqPage": {
+        "url": "http://localhost/test-wp-site/faq/",
+        "faqs": [
+            {
+                "question": "Is Sod Better Than Seeding?",
+                "answer": "Most people presume that new lawn installation and sodding go hand-in-hand. However, there are other ways to install a new lawn as well, such as seeding, hydroseeding, and artificial grass turf landscaping. Yet again, sodding is more popular than other methods because it gives an instant lawn to meet your specific needs. Moreover, sod can be used in many different kinds of areas in the lawn as well, such as slopes and compact regions. It is also a low-maintenance alternative to seeding."
+            },
+            {
+                "question": "Should I Hire a Landscape Designer?",
+                "answer": "While taking on the landscaping project on your own may seem like a cost-effective choice, it can end up being a hefty job and may not produce the intended results. Hiring a landscape designer allows you to benefit from their expertise and add more value to your property by ensuring stunning results. Besides, they can also help you to choose the right plants and foliage, planting and transplanting methods, and eco-friendly solutions to maintain a healthy and long-lasting lawn. Experienced landscape designers can also help you with irrigation systems, excavation and grading, drainage, etc."
+            },
+            {
+                "question": "How Much Does It Cost to Have a New Lawn Installed?",
+                "answer": "The costs of new lawn installation will depend upon the method you have chosen. If you go with sodding, it can cost near $500 and $900 for a 2000-square-foot lawn. Nonetheless, the final cost will also vary based on the type of sod and plants you choose for the landscaping as well as the expenses for grading and tilling before placing sod. Note that, sometimes, rain, temperature, and other potential problems like the inability to tarp over the dirt, can also add to the final costs of new lawn installation."
+            },
+            {
+                "question": "What Color of Mulch is Best?",
+                "answer": "The common colors for mulch are black, brown, natural, and red. Yet as mulching makes a huge difference in maintaining your garden, you need to choose the right color of mulch to make the most of it. In general, it is recommended to go with a mulch color that goes well with the color of your blooms. For instance, you can choose red mulch if you are planting white flowers. On the other hand, you can use any mulch if you plant dark foliage or dark green flowering plants in your outdoor space."
+            }
+        ]
+    },
+    "aboutPages": [
+        "http://localhost/test-wp-site/about/",
+        "http://localhost/test-wp-site/our-team/",
+        "http://localhost/test-wp-site/our-process/"
+    ],
+    "contactPages": [
+        "http://localhost/contact/",
+        "http://localhost/free-quote/",
+        "http://localhost/free-consultation/"
+    ],
+    "services": [
+        {
+            "name": "Landscape Design",
+            "url": "https://dev50.rankfortress.ai/landscaping/",
+            "description": "Mex Landscaping has been providing top-notch landscape design and installation services to residents and commercial property owners in and around Pennsylvania for several years.",
+            "subServices": [{
+                "name": "Landscape Design",
+                "url": "https://dev50.rankfortress.ai/landscape-design/",
+                "description": "Mex Landscaping has been providing top-notch landscape design and installation services to residents and commercial property owners in and around Pennsylvania for several years."
+            }, {
+                "name": "Lawn Installation",
+                "url": "https://dev50.rankfortress.ai/lawn-installation/",
+                "description": "It is often believed that a great lawn can be very difficult to achieve when you take in its appeal and functionality together."
+            }]
+        }, 
+        {
+            "name": "Hardscape Services",
+            "url": "https://dev50.rankfortress.ai/hardscaping/",
+            "description": "Quality hardscape can magnificently beautify your property and make it look and feel regal.",
+            "subServices": [{
+                "name": "Hardscape Services",
+                "url": "https://dev50.rankfortress.ai/hardscape-services/",
+                "description": "Quality hardscape can magnificently beautify your property and make it look and feel regal.",
+                "subServices": [{
+                    "name": "Drainage & Grading",
+                    "url": "https://dev50.rankfortress.ai/drainage-grading/",
+                    "description": "Landscape drainage and grading is a key element of ensuring that your yard remains beautiful and functional throughout the year."
+                }]
+            }]
+        }
+    ],
+    "areasServed": [
+        {
+            "country": "United States",
+            "state": "Norristown",
+            "cityTown": "Pennsylvania",
+            "url": "https://dev50.rankfortress.ai/landscaping-services-in-norristown/",
+            "zipCodes": ["19401", "19404", "19409", "19415"]
+        },
+        {
+            "country": "United States",
+            "state": "Norristown",
+            "cityTown": "Pennsylvania",
+            "streetAddress": "1217 Linwood Ave",
+            "email": "sample@mail.com",
+            "phone": "+1 484 620 9791",
+            "url": "https://dev50.rankfortress.ai/landscaping-services-in-norristown/",
+            "zipCodes": ["19401", "19404", "19409", "19415"]
+        }
+    ],
+    "blogPosts": [
+        {
+            "headline": "",
+            "datePublished": "",
+            "author": "",
+            "genre": "",
+            "articleBody": "",
+            "backstory": "",
+            "abstract": "",
+            "inLanguage": "",
+            "isFamilyFriendly": "",
+            "thumbnailUrl": "",
+            "blogPostUrl": ""
+        },
+        {
+            "headline": "",
+            "datePublished": "",
+            "author": "",
+            "genre": "",
+            "articleBody": "",
+            "backstory": "",
+            "abstract": "",
+            "inLanguage": "",
+            "isFamilyFriendly": "",
+            "thumbnailUrl": "",
+            "blogPostUrl": ""
+        }
+    ],
+    "activated": false
+}

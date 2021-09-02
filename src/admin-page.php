@@ -892,7 +892,7 @@
 
             </div>
 
-            <h2>About Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+            <h2>About Pages <img class="add-about-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
 
             <div class="about-pages-container">
                 <div class="about-page">
@@ -912,7 +912,7 @@
                 </div>
             </div>
 
-            <h2>Contact Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+            <h2>Contact Pages <img class="add-contact-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
 
             <div class="contact-pages-container">
                 <div class="contact-page">
@@ -924,7 +924,7 @@
                 </div>
             </div>
 
-            <h2>Service Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
+            <h2>Service Pages <img class="add-service-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
 
             <div class="service-pages-container">
 
@@ -985,7 +985,7 @@
 
             </div>
 
-            <h2>Service Area Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>">
+            <h2>Service Area Pages <img class="add-service-area-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>">
             </h2>
 
             <div class="service-area-pages-container">
@@ -1000,7 +1000,7 @@
 
             </div>
 
-            <h2>Blog Post Pages <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>">
+            <h2>Blog Post Pages <img class="add-blog-post-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>">
             </h2>
 
             <div class="blog-post-pages-container">

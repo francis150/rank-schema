@@ -364,7 +364,6 @@ $activeGreen: #389D48;
                     border: none;
                     cursor: pointer;
                     margin-left: 10px;
-                    opacity: .6;
 
                     transition: .3s all ease-in-out;
                     transform: translateX(-50px);
@@ -378,13 +377,6 @@ $activeGreen: #389D48;
                         outline: none;
                         border: none;
                     }
-                }
-            }
-
-            &:focus-within {
-                button {
-                    opacity: 1;
-                    transform: translateX(0);
                 }
             }
         }
