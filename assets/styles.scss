@@ -31,7 +31,7 @@ $activeGreen: #389D48;
 
 /*NOTE Get Started Styles */
 .get-started-container {
-    display: flex;
+    display: none;
     /* display: flex; */
     width: 1000px;
     border-radius: 10px;
@@ -127,7 +127,7 @@ $activeGreen: #389D48;
 
 /* NOTE Form Styles */
 .form-container {
-    display: none;
+    display: inherit;
     /* display: inherit; */
     width: 1000px;
     border-radius: 10px;

@@ -25,9 +25,7 @@
 
 /*NOTE Get Started Styles */
 .get-started-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: none;
   /* display: flex; */
   width: 1000px;
   border-radius: 10px;
@@ -132,7 +130,7 @@
 
 /* NOTE Form Styles */
 .form-container {
-  display: none;
+  display: inherit;
   /* display: inherit; */
   width: 1000px;
   border-radius: 10px;
