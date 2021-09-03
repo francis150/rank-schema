@@ -109,6 +109,11 @@ document.querySelector('.rank-main-wrapper .form-container .faq-overlay form').a
     removeBtn.className = 'faq-remove-btn action-button'
     removeBtn.type = 'button'
     removeBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/trash_icon.svg">`
+    removeBtn.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove ${faqWrapper.dataset.question} as an FAQ?`)) {
+            document.querySelector('.rank-main-wrapper .form-container .main-form .faqs-container').removeChild(faqWrapper)
+        }
+    })
     faqHeadWrapper.appendChild(removeBtn)
 
     const answerText = document.createElement('p')
@@ -151,6 +156,73 @@ document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-c
 /* NOTE Add About Page Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-about-page-btn').addEventListener('click', () => {
     showAboutPageSubform()
+})
+
+/* NOTE About Page Edit Button */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .about-pages-container .about-page .about-edit-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        showAboutPageSubform(button.parentNode.dataset)
+    })
+})
+
+/* NOTE About Page Remove Button */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .about-pages-container .about-page .about-remove-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove ${button.parentNode.dataset.url} as an About Page?`)) {
+            button.parentNode.parentNode.removeChild(button.parentNode)
+        }
+    })
+})
+
+/* NOTE About Page SUBMIT Subform */
+document.querySelector('.rank-main-wrapper .form-container .about-page-overlay form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const form = e.target
+
+    const aboutPageWrapper = document.createElement('div')
+    aboutPageWrapper.className = 'about-page'
+
+    aboutPageWrapper.dataset.key = form.url.value
+    aboutPageWrapper.dataset.url = form.url.value
+
+    const urlText = document.createElement('p')
+    urlText.innerHTML = form.url.value
+    aboutPageWrapper.appendChild(urlText)
+
+    const editBtn = document.createElement('button')
+    editBtn.className = 'about-edit-btn action-button'
+    editBtn.type = 'button'
+    editBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/edit_icon.svg">`
+    editBtn.addEventListener('click', () => {
+        showAboutPageSubform({
+            key: aboutPageWrapper.dataset.url,
+            url: aboutPageWrapper.dataset.url
+        })
+    })
+    aboutPageWrapper.appendChild(editBtn)
+
+    const removeBtn = document.createElement('button')
+    removeBtn.className = 'about-remove-btn action-button'
+    removeBtn.type = 'button'
+    removeBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/trash_icon.svg">`
+    removeBtn.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove ${aboutPageWrapper.dataset.url} as an About Page?`)) {
+            document.querySelector('.rank-main-wrapper .form-container .main-form .about-pages-container').removeChild(aboutPageWrapper)
+        }
+    })
+    aboutPageWrapper.appendChild(removeBtn)
+
+    if (form.edit_key.value) {
+        // NOTE Update About Page Element with key of edit_key.value
+        document.querySelector('.rank-main-wrapper .form-container .main-form .about-pages-container').replaceChild(aboutPageWrapper, document.querySelector(`.rank-main-wrapper .form-container .main-form .about-pages-container .about-page[data-key="${form.edit_key.value}"]`))
+    } else {
+        // NOTE Add as a new About Page Element
+        document.querySelector('.rank-main-wrapper .form-container .main-form .about-pages-container').appendChild(aboutPageWrapper)
+    }
+
+    form.reset()
+    form.parentNode.style.display = 'none'
+
 })
 
 /* NOTE Add Contact Page Button */
@@ -201,8 +273,13 @@ function showFaqSubform(data) {
 
 /* NOTE SHOW About Page Subform */
 function showAboutPageSubform(data) {
+    const form = document.querySelector('.rank-main-wrapper .form-container .about-page-overlay form')
+    form.edit_key.value = ''
+
     if (data) {
-        // TODO LOAD Data
+        // NOTE LOAD Data
+        form.edit_key.value = data.key
+        form.url.value = data.url
     }
 
     document.querySelector('.rank-main-wrapper .form-container .about-page-overlay').style.display = 'flex'
