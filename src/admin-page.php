@@ -85,7 +85,7 @@
                 <h2>About Page</h2>
 
                 <!-- Hidden feilds -->
-                <input type="hidden" name="edit-key" value="">
+                <input type="hidden" name="edit_key" value="">
 
                 <div class="one-col-row">
                     <div class="input-wrapper">
@@ -889,21 +889,9 @@
             <h2>About Pages <img class="add-about-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
 
             <div class="about-pages-container">
-                <div class="about-page">
-                    <p>https://mexlandscaping.com/about/</p>
-                    <button type="button" class="about-edit-btn action-button"><img
-                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                    <button type="button" class="about-remove-btn action-button"><img
-                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                </div>
 
-                <div class="about-page">
-                    <p>https://mexlandscaping.com/our-work/</p>
-                    <button type="button" class="about-edit-btn action-button"><img
-                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                    <button type="button" class="about-remove-btn action-button"><img
-                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                </div>
+                <?php include 'get-aboutpages.php'; ?>
+                
             </div>
 
             <h2>Contact Pages <img class="add-contact-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>

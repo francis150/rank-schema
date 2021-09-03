@@ -1,5 +1,5 @@
 <?php
-if (isset($CONFIG['faqPage']) && isset($CONFIG['faqPage']['faqs'])) {
+if (isset($CONFIG['faqPage']) && !empty($CONFIG['faqPage']['faqs'])) {
     foreach ($CONFIG['faqPage']['faqs'] as $faq) {
         echo '<div data-question="'.$faq['question'].'" data-key="'.$faq['question'].'" data-answer="'.$faq['answer'].'" class="faq"><div class="head">
         <h3 class="question">'.$faq['question'].'</h3>
