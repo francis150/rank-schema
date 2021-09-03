@@ -66,9 +66,86 @@ document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-i
     }
 })
 
-/* NOTE Add FAQ Button */
+/* NOTE ADD FAQ Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-input button').addEventListener('click', () => {
     showFaqSubform()
+})
+
+/* NOTE SUBMIT FAQ Subform */
+document.querySelector('.rank-main-wrapper .form-container .faq-overlay form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const form = e.target
+
+    const faqWrapper = document.createElement('div')
+    faqWrapper.className = 'faq'
+
+    faqWrapper.dataset.question = form.question.value
+    faqWrapper.dataset.answer = form.answer.value
+    faqWrapper.dataset.key = form.question.value
+
+    const faqHeadWrapper = document.createElement('div')
+    faqHeadWrapper.className = 'head'
+    faqWrapper.appendChild(faqHeadWrapper)
+
+    const questionText = document.createElement('h3')
+    questionText.className = 'question'
+    questionText.innerHTML = form.question.value
+    faqHeadWrapper.appendChild(questionText)
+
+    const editBtn = document.createElement('button')
+    editBtn.className = 'faq-edit-btn action-button'
+    editBtn.type = 'button'
+    editBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/edit_icon.svg">`
+    editBtn.addEventListener('click', () => {
+        showFaqSubform({
+            key: faqWrapper.dataset.key,
+            question: faqWrapper.dataset.question,
+            answer: faqWrapper.dataset.answer
+        })
+    })
+    faqHeadWrapper.appendChild(editBtn)
+
+    const removeBtn = document.createElement('button')
+    removeBtn.className = 'faq-remove-btn action-button'
+    removeBtn.type = 'button'
+    removeBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/trash_icon.svg">`
+    faqHeadWrapper.appendChild(removeBtn)
+
+    const answerText = document.createElement('p')
+    answerText.innerHTML = form.answer.value
+    faqWrapper.appendChild(answerText)
+
+    if (form.edit_key.value) {
+
+        // NOTE Update FAQ Element with key of edit_key.value
+        document.querySelector('.rank-main-wrapper .form-container .main-form .faqs-container').replaceChild(faqWrapper, document.querySelector(`.rank-main-wrapper .form-container .main-form .faqs-container .faq[data-key="${form.edit_key.value}"]`))
+        
+    } else {
+        
+        // NOTE Add as a new FAQ Element
+        document.querySelector('.rank-main-wrapper .form-container .main-form .faqs-container').appendChild(faqWrapper)
+
+    }
+
+    form.reset()
+    form.parentNode.style.display = 'none'
+})
+
+/* NOTE FAQ Edit Button */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-container .faq .faq-edit-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        showFaqSubform(button.parentNode.parentNode.dataset)
+    })
+})
+
+/* NOTE FAQ Remove Button */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-container .faq .faq-remove-btn').forEach(button => {
+    button.addEventListener('click', () => {
+
+        if (confirm(`Are you sure you want to remove ${button.parentNode.parentNode.dataset.question} as an FAQ?`)) {
+            button.parentNode.parentNode.parentNode.removeChild(button.parentNode.parentNode)
+        }
+    })
 })
 
 /* NOTE Add About Page Button */
@@ -104,10 +181,19 @@ document.querySelectorAll('.rank-main-wrapper .form-container .overlay-wrapper .
     })
 })
 
+
 /* NOTE SHOW FAQ Subform */
 function showFaqSubform(data) {
+    const form = document.querySelector('.rank-main-wrapper .form-container .faq-overlay form')
+    form.edit_key.value = ''
+
     if (data) {
-        // TODO LOAD Data
+
+        // NOTE LOAD Data
+        form.edit_key.value = data.key
+        form.question.value = data.question
+        form.answer.value = data.answer
+
     }
 
     document.querySelector('.rank-main-wrapper .form-container .faq-overlay').style.display = 'flex'
@@ -182,5 +268,8 @@ function loadMainFormData() {
     MAIN_FORM.backlinks.value = CONFIG.backlinks.join("\r\n")
     MAIN_FORM.faqURL.value = CONFIG.faqPage.url ?? ''
 
-    // TODO Popup Add FAQ Button if CONFIG.faqPage is not defined
+    // NOTE Popup Add FAQ Button if CONFIG.faqPage is not defined
+    if (CONFIG.faqPage) {
+        document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-input button').style.transform = 'translateX(0)'
+    }
 }

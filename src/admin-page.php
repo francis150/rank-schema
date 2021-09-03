@@ -2,7 +2,11 @@
 <!-- NOTE Pre-load Configs -->
 <?php 
     // NOTE define js config variables
-    echo '<script>let CONFIG; let MARKUPS_AVAILABLE</script>';
+    echo '<script>
+    let CONFIG;
+    let MARKUPS_AVAILABLE;
+    const PLUGIN_DIR = "'.plugin_dir_url(dirname(__FILE__)).'"
+    </script>';
 
     // NOTE if config.json file exists, set config variable for php and js
     if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
@@ -49,11 +53,11 @@
     <section class="form-container">
 
         <div class="faq-overlay overlay-wrapper">
-            <form method="POST">
+            <form action="#">
                 <h2>Frequently Asked Question</h2>
 
                 <!-- Hidden feilds -->
-                <input type="hidden" name="edit-key" value="">
+                <input type="hidden" name="edit_key" value="">
 
                 <div class="one-col-row">
                     <div class="input-wrapper">
@@ -70,7 +74,7 @@
                 </div>
 
                 <div class="buttons">
-                    <button type="submit" class="faq-submit-btn">Add</button>
+                    <button type="submit" class="faq-submit-btn">Save</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </form>
@@ -878,38 +882,7 @@
 
             <div class="faqs-container">
 
-                <div class="faq">
-                    <div class="head">
-                        <h3 class="question">Is Sod Better Than Seeding?</h3>
-                        <button type="button" class="faq-edit-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                        <button type="button" class="faq-remove-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                    </div>
-                    <p>Most people presume that new lawn installation and sodding go hand-in-hand. However, there are
-                        other ways to install a new lawn as well, such as seeding, hydroseeding, and artificial grass
-                        turf landscaping. Yet again, sodding is more popular than other methods because it gives an
-                        instant lawn to meet your specific needs. Moreover, sod can be used in many different kinds of
-                        areas in the lawn as well, such as slopes and compact regions. It is also a low-maintenance
-                        alternative to seeding.</p>
-                </div>
-
-                <div class="faq">
-                    <div class="head">
-                        <h3 class="question">Should I Hire a Landscape Designer?</h3>
-                        <button type="button" class="faq-edit-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                        <button type="button" class="faq-remove-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                    </div>
-                    <p>While taking on the landscaping project on your own may seem like a cost-effective choice, it can
-                        end up being a hefty job and may not produce the intended results. Hiring a landscape designer
-                        allows you to benefit from their expertise and add more value to your property by ensuring
-                        stunning results. Besides, they can also help you to choose the right plants and foliage,
-                        planting and transplanting methods, and eco-friendly solutions to maintain a healthy and
-                        long-lasting lawn. Experienced landscape designers can also help you with irrigation systems,
-                        excavation and grading, drainage, etc.</p>
-                </div>
+                <?php include plugin_dir_path( __FILE__ ). 'get-faqs.php'; ?>
 
             </div>
 
