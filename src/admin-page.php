@@ -106,7 +106,7 @@
                 <h2>Contact Page</h2>
 
                 <!-- Hidden feilds -->
-                <input type="hidden" name="edit-key" value="">
+                <input type="hidden" name="edit_key" value="">
 
                 <div class="one-col-row">
                     <div class="input-wrapper">
@@ -897,13 +897,9 @@
             <h2>Contact Pages <img class="add-contact-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
 
             <div class="contact-pages-container">
-                <div class="contact-page">
-                    <p>https://mexlandscaping.com/contact/</p>
-                    <button type="button" class="contact-edit-btn action-button"><img
-                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                    <button type="button" class="contact-remove-btn action-button"><img
-                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                </div>
+
+                <?php include 'get-contactpages.php'; ?>
+                
             </div>
 
             <h2>Service Pages <img class="add-service-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
