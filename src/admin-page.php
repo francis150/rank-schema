@@ -744,7 +744,7 @@
                     </select>
                 </div>
             </div>
-
+    
             <h2>Basic Info</h2>
 
             <div class="two-col-row">

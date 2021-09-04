@@ -643,7 +643,7 @@ function loadMainFormData() {
     MAIN_FORM.faqURL.value = CONFIG.faqPage.url ?? ''
 
     // NOTE Popup Add FAQ Button if CONFIG.faqPage is not defined
-    if (CONFIG.faqPage) {
+    if (CONFIG.faqPage.url) {
         document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-input button').style.transform = 'translateX(0)'
     }
 }

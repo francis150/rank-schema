@@ -265,7 +265,7 @@
   font-weight: 600;
   font-size: 24px;
   color: #363636;
-  margin: 40px 0 20px 0;
+  margin: 60px 0 30px 0;
 }
 
 .form-container form h2 img {
@@ -667,8 +667,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-column-gap: 20px;
-          column-gap: 20px;
+  -webkit-column-gap: 10px;
+          column-gap: 10px;
   margin-top: 60px;
 }
 
