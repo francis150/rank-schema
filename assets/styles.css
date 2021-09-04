@@ -614,6 +614,8 @@
 }
 
 .form-container form .blog-post-pages-container .blog-post-page .image-wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
   width: 85px;
   height: 85px;
 }

@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="buttons">
-                    <button type="submit" class="about-pages-submit-btn">Add</button>
+                    <button type="submit" class="about-pages-submit-btn">Save</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </form>
@@ -116,7 +116,7 @@
                 </div>
 
                 <div class="buttons">
-                    <button type="submit" class="contact-page-submit-btn">Add</button>
+                    <button type="submit" class="contact-page-submit-btn">Save</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </form>
@@ -152,7 +152,7 @@
                 </div>
 
                 <div class="buttons">
-                    <button type="submit" class="services-submit-btn">Add</button>
+                    <button type="submit" class="services-submit-btn">Save</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </form>
@@ -217,7 +217,7 @@
                 </div>
 
                 <div class="buttons">
-                    <button type="submit" class="service-areas-submit-btn">Add</button>
+                    <button type="submit" class="service-areas-submit-btn">Save</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
             </form>
@@ -228,7 +228,7 @@
                 <h2>Blog Post Page</h2>
 
                 <!-- Hidden feilds -->
-                <input type="hidden" name="edit-key" value="">
+                <input type="hidden" name="edit_key" value="">
 
                 <div class="one-col-row">
                     <div class="input-wrapper">
@@ -245,7 +245,7 @@
 
                     <div class="input-wrapper">
                         <label>Genre</label>
-                        <input name="genre" type="text" required>
+                        <input name="genre" type="text">
                     </div>
 
                     <div class="input-wrapper">
@@ -405,7 +405,7 @@
 
                     <div class="input-wrapper">
                         <label>Thumbnail Image URL</label>
-                        <input name="thumbnailUrl" type="text" required>
+                        <input name="thumbnailUrl" type="text">
                     </div>
                 </div>
 
@@ -425,7 +425,7 @@
 
                 <div class="buttons">
                     <input checked type="checkbox" name="isFamilyFriendly"><span>is this Content <b>Family Friendly</b>?</span>
-                    <button type="submit" class="blog-posts-submit-btn">Add</button>
+                    <button type="submit" class="blog-posts-submit-btn">Save</button>
                     <button type="button" class="cancel-btn">Cancel</button>
                 </div>
 
@@ -977,46 +977,7 @@
 
             <div class="blog-post-pages-container">
 
-                <div class="blog-post-page">
-                    <div class="image-wrapper">
-                        <img src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/image_placeholder.svg'; ?>">
-                    </div>
-                    <div class="content-wrapper">
-                        <div class="head">
-                            <h3>Things a homeowner should know before getting a professional landscaping service</h3>
-                            <button type="button" class="blog-post-page-edit-btn action-button"><img
-                                    src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                            <button type="button" class="blog-post-page-remove-btn action-button"><img
-                                    src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus explicabo
-                            excepturi dolores maxime beatae magni velit atque officia maiores. Voluptate, amet ducimus!
-                            Ut culpa ab error fugit beatae dolorum praesentium cupiditate rem, delectus vero ipsa quidem
-                            voluptate! Illum facilis et itaque beatae saepe non dolor aliquam perspiciatis ex
-                            consequuntur!</p>
-                    </div>
-                </div>
-
-                <div class="blog-post-page">
-                    <div class="image-wrapper">
-                        <img
-                            src="https://www.yavapailandscaping.com/wp-content/uploads/2021/08/Top-Rated-Landscaping-Company-Get-Quality-Work-at-an-Affordable-Cost.jpg">
-                    </div>
-                    <div class="content-wrapper">
-                        <div class="head">
-                            <h3>Things a homeowner should know before getting a professional landscaping service</h3>
-                            <button type="button" class="blog-post-page-edit-btn action-button"><img
-                                    src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                            <button type="button" class="blog-post-page-remove-btn action-button"><img
-                                    src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate temporibus explicabo
-                            excepturi dolores maxime beatae magni velit atque officia maiores. Voluptate, amet ducimus!
-                            Ut culpa ab error fugit beatae dolorum praesentium cupiditate rem, delectus vero ipsa quidem
-                            voluptate! Illum facilis et itaque beatae saepe non dolor aliquam perspiciatis ex
-                            consequuntur!</p>
-                    </div>
-                </div>
+                <?php include 'get-blogpostpage.php'; ?>
 
             </div>
 
