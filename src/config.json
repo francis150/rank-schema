@@ -126,77 +126,110 @@
             "state": "Arizona",
             "cityTown": "Avondale",
             "url": "http://localhost/advosy/services/avondale-az/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "Arizona",
             "cityTown": "Chandler",
             "url": "http://localhost/advosy/services/chandler-az/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "Arizona",
             "cityTown": "Gilbert",
             "url": "http://localhost/advosy/services/gilbert/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "Arizona",
             "cityTown": "Glendale",
             "url": "http://localhost/advosy/services/glendale-az/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "Arizona",
             "cityTown": "Goodyear",
             "url": "http://localhost/advosy/services/goodyear-az/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "Arizona",
             "cityTown": "Mesa",
             "url": "http://localhost/advosy/services/mesa-az/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "New Mexico",
             "cityTown": "Albuquerque",
             "url": "http://localhost/advosy/services/albuquerque-nm/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "New Mexico",
             "cityTown": "Las Cruces",
             "url": "http://localhost/advosy/services/las-cruces-nm-2/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "New Mexico",
             "cityTown": "Santa Fe",
             "url": "http://localhost/advosy/services/santa-fe-nm/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "New Mexico",
             "cityTown": "Rio Rancho",
             "url": "http://localhost/advosy/services/rio-rancho-nm/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
             "state": "New Mexico",
             "cityTown": "Roswell",
             "url": "http://localhost/advosy/services/roswell-nm/",
-            "zipCodes": ["19401", "19404", "19409", "19415"]
+            "zipCodes": ["19401", "19404", "19409", "19415"],
+            "streetAddress": "2152 S Vineyard Ste 136",
+            "email": "info@advosy.com",
+            "phone": "+1 888-275-3752"
         },
         {
             "country": "United States",
