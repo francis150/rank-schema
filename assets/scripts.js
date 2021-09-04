@@ -19,17 +19,20 @@ document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-enti
 
         helpTip.innerHTML = 'Validating...'
         helpTip.style.color = '#363636'
+        input.disabled = true
 
         const validateWikiEntity = new XMLHttpRequest()
         validateWikiEntity.open('POST', `https://rank-schema-plugin-server.herokuapp.com/schema-generator/validateQuery?niche=${input.value}`, true)
 
         validateWikiEntity.onload = function () {
+            input.disabled = false
+
             if (this.status == 200) {
                 if (JSON.parse(this.response)) {
-                    helpTip.innerHTML = 'Wikipedia Entity Valid and Available in Wikipedia.'
+                    helpTip.innerHTML = 'Wikipedia Entity Valid and Available.'
                     helpTip.style.color = '#389D48'
                 } else {
-                    helpTip.innerHTML = 'Wikipedia Entity Invalid and Not Available in Wikipedia.'
+                    helpTip.innerHTML = 'Wikipedia Entity Invalid and Not Available.'
                     helpTip.style.color = '#B50000'
                 }
             } else {
@@ -147,7 +150,7 @@ document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-c
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-container .faq .faq-remove-btn').forEach(button => {
     button.addEventListener('click', () => {
 
-        if (confirm(`Are you sure you want to remove ${button.parentNode.parentNode.dataset.question} as an FAQ?`)) {
+        if (confirm(`Are you sure you want to remove "${button.parentNode.parentNode.dataset.question}" as an FAQ?`)) {
             button.parentNode.parentNode.parentNode.removeChild(button.parentNode.parentNode)
         }
     })
@@ -168,7 +171,7 @@ document.querySelectorAll('.rank-main-wrapper .form-container .main-form .about-
 /* NOTE ABOUT PAGE Remove Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .about-pages-container .about-page .about-remove-btn').forEach(button => {
     button.addEventListener('click', () => {
-        if (confirm(`Are you sure you want to remove ${button.parentNode.dataset.url} as an About Page?`)) {
+        if (confirm(`Are you sure you want to remove "${button.parentNode.dataset.url}" as an About Page?`)) {
             button.parentNode.parentNode.removeChild(button.parentNode)
         }
     })
@@ -240,7 +243,7 @@ document.querySelectorAll('.rank-main-wrapper .form-container .main-form .contac
 /* NOTE CONTACT PAGE Remove Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .contact-pages-container .contact-page .contact-remove-btn').forEach(button => {
     button.addEventListener('click', () => {
-        if (confirm(`Are you sure you want to remove ${button.parentNode.dataset.url} as a Contact Page?`)) {
+        if (confirm(`Are you sure you want to remove "${button.parentNode.dataset.url}" as a Contact Page?`)) {
             button.parentNode.parentNode.removeChild(button.parentNode)
         }
     })
@@ -326,7 +329,7 @@ document.querySelectorAll('.rank-main-wrapper .form-container .main-form .servic
 /* NOTE SERVICE AREA PAGE Remove Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-area-page .service-area-remove-btn').forEach(button => {
     button.addEventListener('click', () => {
-        if (confirm(`Are you sure you want to remove ${button.parentNode.dataset.cityTown}, ${button.parentNode.dataset.state} as a Service Area Page?`)) {
+        if (confirm(`Are you sure you want to remove "${button.parentNode.dataset.cityTown}, ${button.parentNode.dataset.state}" as a Service Area Page?`)) {
             button.parentNode.parentNode.removeChild(button.parentNode)
         }
     })
@@ -346,9 +349,9 @@ document.querySelector('.rank-main-wrapper .form-container .service-areas-overla
     serviceAreaPageWrapper.dataset.state = form.state.value
     serviceAreaPageWrapper.dataset.cityTown = form.cityTown.value
     serviceAreaPageWrapper.dataset.zipCodes = form.zipCodes.value
-    serviceAreaPageWrapper.dataset.streetAddress = form.streetAddress.value
-    serviceAreaPageWrapper.dataset.email = form.email.value
-    serviceAreaPageWrapper.dataset.phone = form.phone.value
+    if (form.streetAddress.value) serviceAreaPageWrapper.dataset.streetAddress = form.streetAddress.value
+    if (form.email.value) serviceAreaPageWrapper.dataset.email = form.email.value
+    if (form.phone.value) serviceAreaPageWrapper.dataset.phone = form.phone.value
 
     const areaText = document.createElement('p')
     areaText.innerHTML = `<span>${form.cityTown.value}, ${form.state.value}</span> - ${form.url.value}`
@@ -399,6 +402,114 @@ document.querySelector('.rank-main-wrapper .form-container .service-areas-overla
 /* NOTE BLOG POST PAGE Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-blog-post-page-btn').addEventListener('click', () => {
     showBlogPostPageSubform()
+})
+
+/* NOTE BLOG POST PAGE Edit Buttons */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .blog-post-pages-container .blog-post-page .blog-post-page-edit-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        showBlogPostPageSubform({
+            key: button.parentNode.parentNode.parentNode.dataset.key,
+            headline: button.parentNode.parentNode.parentNode.dataset.headline,
+            datePublished: button.parentNode.parentNode.parentNode.dataset.datePublished,
+            articleBody: button.parentNode.parentNode.parentNode.dataset.articleBody,
+            inLanguage: button.parentNode.parentNode.parentNode.dataset.inLanguage,
+            isFamilyFriendly: button.parentNode.parentNode.parentNode.dataset.isFamilyFriendly,
+            blogPostUrl: button.parentNode.parentNode.parentNode.dataset.blogPostUrl,
+            author: button.parentNode.parentNode.parentNode.dataset.author ?? undefined,
+            genre: button.parentNode.parentNode.parentNode.dataset.genre ?? undefined,
+            thumbnailUrl: button.parentNode.parentNode.parentNode.dataset.thumbnailUrl ?? undefined
+        })
+    })
+})
+
+/* NOTE BLOG POST PAGE Remove Buttons */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .blog-post-pages-container .blog-post-page .blog-post-page-remove-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove "${button.parentNode.parentNode.parentNode.dataset.headline}" as a Blog Post Page?`)) {
+            button.parentNode.parentNode.parentNode.parentNode.removeChild(button.parentNode.parentNode.parentNode)
+        }
+    })
+})
+
+/* NOTE BLOG POST PAGE Submit subform */
+document.querySelector('.rank-main-wrapper .form-container .blog-posts-overlay form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const form = e.target
+
+    const blogPostWrapper = document.createElement('div')
+    blogPostWrapper.className = 'blog-post-page'
+
+    blogPostWrapper.dataset.key = form.url.value
+    blogPostWrapper.dataset.headline = form.headline.value
+    blogPostWrapper.dataset.datePublished = form.datePublished.value
+    blogPostWrapper.dataset.articleBody = form.articleBody.value
+    blogPostWrapper.dataset.inLanguage = form.inLanguage.value
+    blogPostWrapper.dataset.isFamilyFriendly = form.isFamilyFriendly.checked
+    blogPostWrapper.dataset.blogPostUrl = form.url.value
+    if (form.author.value) blogPostWrapper.dataset.author = form.author.value
+    if (form.genre.value) blogPostWrapper.dataset.genre = form.genre.value
+    if (form.thumbnailUrl.value) blogPostWrapper.dataset.thumbnailUrl = form.thumbnailUrl.value
+
+    const imageWrapper = document.createElement('div')
+    imageWrapper.className = 'image-wrapper'
+    imageWrapper.innerHTML = form.thumbnailUrl.value ? `<img src="${form.thumbnailUrl.value}">` : `<img src="${PLUGIN_DIR}assets/image_placeholder.svg">`
+    blogPostWrapper.appendChild(imageWrapper)
+
+    const contentWrapper = document.createElement('div')
+    contentWrapper.className = 'content-wrapper'
+    blogPostWrapper.appendChild(contentWrapper)
+
+    const headWrapper = document.createElement('div')
+    headWrapper.className = 'head'
+    contentWrapper.appendChild(headWrapper)
+
+    const headlineText = document.createElement('h3')
+    headlineText.innerHTML = form.headline.value
+    headWrapper.appendChild(headlineText)
+
+    const editBtn = document.createElement('button')
+    editBtn.className = 'blog-post-page-edit-btn action-button'
+    editBtn.type = 'button'
+    editBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/edit_icon.svg">`
+    editBtn.addEventListener('click', () => {
+        showBlogPostPageSubform({
+            key: blogPostWrapper.dataset.blogPostUrl,
+            headline: blogPostWrapper.dataset.headline,
+            datePublished: blogPostWrapper.dataset.datePublished,
+            articleBody: blogPostWrapper.dataset.articleBody,
+            inLanguage: blogPostWrapper.dataset.inLanguage,
+            isFamilyFriendly: blogPostWrapper.dataset.isFamilyFriendly,
+            blogPostUrl: blogPostWrapper.dataset.blogPostUrl,
+            author: blogPostWrapper.dataset.author ?? undefined,
+            genre: blogPostWrapper.dataset.genre ?? undefined,
+            thumbnailUrl: blogPostWrapper.dataset.thumbnailUrl ?? undefined
+        })
+    })
+    headWrapper.appendChild(editBtn)
+
+    const removeBtn = document.createElement('button')
+    removeBtn.className = 'blog-post-page-remove-btn action-button'
+    removeBtn.type = 'button'
+    removeBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/trash_icon.svg">`
+    removeBtn.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove "${blogPostWrapper.dataset.headline}" as a Blog Post Page?`)) {
+            document.querySelector('.rank-main-wrapper .form-container .main-form .blog-post-pages-container').removeChild(blogPostWrapper)
+        }
+    })
+    headWrapper.appendChild(removeBtn)
+
+    const bodyText = document.createElement('p')
+    bodyText.innerHTML = form.articleBody.value
+    contentWrapper.appendChild(bodyText)
+
+    if (form.edit_key.value) {
+        document.querySelector('.rank-main-wrapper .form-container .main-form .blog-post-pages-container').replaceChild(blogPostWrapper, document.querySelector(`.rank-main-wrapper .form-container .main-form .blog-post-pages-container .blog-post-page[data-key="${form.edit_key.value}"]`))
+    } else {
+        document.querySelector('.rank-main-wrapper .form-container .main-form .blog-post-pages-container').appendChild(blogPostWrapper)
+    }
+
+    form.reset()
+    form.parentNode.style.display = 'none'
 })
 
 /* NOTE CLOSE & RESET Any of the SubForms */
@@ -487,8 +598,21 @@ function showServiceAreaPageSubform(data) {
 
 /* NOTE BLOG POST PAGE Show Subform */
 function showBlogPostPageSubform(data) {
+    const form = document.querySelector('.rank-main-wrapper .form-container .blog-posts-overlay form')
+    form.edit_key.value = ''
+
     if (data) {
-        // TODO Load Data
+        // NOTE Load Data
+        form.edit_key.value = data.key
+        form.url.value = data.blogPostUrl
+        form.datePublished.value = data.datePublished
+        form.inLanguage.value = data.inLanguage
+        form.headline.value = data.headline
+        form.articleBody.value = data.articleBody
+        form.isFamilyFriendly.checked = JSON.parse(data.isFamilyFriendly)
+        form.author.value = data.author ?? ''
+        form.genre.value = data.genre ?? ''
+        form.thumbnailUrl.value = data.thumbnailUrl ?? ''
     }
 
     document.querySelector('.rank-main-wrapper .form-container .blog-posts-overlay').style.display = 'flex'
