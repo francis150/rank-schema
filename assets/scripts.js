@@ -10,7 +10,7 @@ if (CONFIG) {
     loadMainFormData()
 }
 
-/* NOTE  Validate Wiki Entity */
+/* NOTE WIKI ENTITY Validate Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-entity button').addEventListener('click', () => {
     const helpTip = document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-entity small')
     const input = document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-entity input')
@@ -48,14 +48,14 @@ document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-enti
     }
 })
 
-/* NOTE Wiki Entity Input reset hint text on value change */
+/* NOTE WIKI ENTITY Reset Hint text on input change */
 document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-entity input').addEventListener('keyup', () => {
     const helpTip = document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-entity small')
     helpTip.innerHTML = 'Press validate to check if Wiki Entity is available.'
     helpTip.style.color = '#363636'
 })
 
-/* NOTE ADD FAQ Button Popup in input */
+/* NOTE FAQ Popup Add Button input keydown */
 document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-input input').addEventListener('keyup', (e) => {
     const button = document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-input button')
 
@@ -66,12 +66,12 @@ document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-i
     }
 })
 
-/* NOTE ADD FAQ Button */
+/* NOTE FAQ Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-input button').addEventListener('click', () => {
     showFaqSubform()
 })
 
-/* NOTE SUBMIT FAQ Subform */
+/* NOTE FAQ Subform Submit */
 document.querySelector('.rank-main-wrapper .form-container .faq-overlay form').addEventListener('submit', (e) => {
     e.preventDefault()
     const form = e.target
@@ -136,14 +136,14 @@ document.querySelector('.rank-main-wrapper .form-container .faq-overlay form').a
     form.parentNode.style.display = 'none'
 })
 
-/* NOTE FAQ Edit Button */
+/* NOTE FAQ Edit Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-container .faq .faq-edit-btn').forEach(button => {
     button.addEventListener('click', () => {
         showFaqSubform(button.parentNode.parentNode.dataset)
     })
 })
 
-/* NOTE FAQ Remove Button */
+/* NOTE FAQ Remove Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-container .faq .faq-remove-btn').forEach(button => {
     button.addEventListener('click', () => {
 
@@ -153,19 +153,19 @@ document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-c
     })
 })
 
-/* NOTE Add About Page Button */
+/* NOTE ABOUT PAGE Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-about-page-btn').addEventListener('click', () => {
     showAboutPageSubform()
 })
 
-/* NOTE About Page Edit Button */
+/* NOTE ABOUT PAGE Edit Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .about-pages-container .about-page .about-edit-btn').forEach(button => {
     button.addEventListener('click', () => {
         showAboutPageSubform(button.parentNode.dataset)
     })
 })
 
-/* NOTE About Page Remove Button */
+/* NOTE ABOUT PAGE Remove Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .about-pages-container .about-page .about-remove-btn').forEach(button => {
     button.addEventListener('click', () => {
         if (confirm(`Are you sure you want to remove ${button.parentNode.dataset.url} as an About Page?`)) {
@@ -174,7 +174,7 @@ document.querySelectorAll('.rank-main-wrapper .form-container .main-form .about-
     })
 })
 
-/* NOTE About Page SUBMIT Subform */
+/* NOTE ABOUT PAGE Subform Submit */
 document.querySelector('.rank-main-wrapper .form-container .about-page-overlay form').addEventListener('submit', (e) => {
     e.preventDefault()
     const form = e.target
@@ -225,19 +225,19 @@ document.querySelector('.rank-main-wrapper .form-container .about-page-overlay f
 
 })
 
-/* NOTE Contact Page Add Button */
+/* NOTE CONTACT PAGE Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-contact-page-btn').addEventListener('click', () => {
     showContactPageSubform()
 })
 
-/* NOTE Contact Page Edit Button */
+/* NOTE CONTACT PAGE Edit Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .contact-pages-container .contact-page .contact-edit-btn').forEach(button => {
     button.addEventListener('click', () => {
         showContactPageSubform(button.parentNode.dataset)
     })
 })
 
-/* NOTE Contact Page Remove Button */
+/* NOTE CONTACT PAGE Remove Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .contact-pages-container .contact-page .contact-remove-btn').forEach(button => {
     button.addEventListener('click', () => {
         if (confirm(`Are you sure you want to remove ${button.parentNode.dataset.url} as a Contact Page?`)) {
@@ -246,7 +246,7 @@ document.querySelectorAll('.rank-main-wrapper .form-container .main-form .contac
     })
 })
 
-/* NOTE Contact Page Submit Subform */
+/* NOTE CONTACT PAGE Subform Submit */
 document.querySelector('.rank-main-wrapper .form-container .contact-page-overlay form').addEventListener('submit', (e) => {
     e.preventDefault()
     const form = e.target
@@ -296,22 +296,112 @@ document.querySelector('.rank-main-wrapper .form-container .contact-page-overlay
     form.parentNode.style.display = 'none'
 })
 
-/* NOTE Add Service Page Button */
+/* NOTE SERVICE PAGE Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-service-page-btn').addEventListener('click', () => {
     showServicePageSubform()
 })
 
-/* NOTE Add Service Area Page Button */
+/* NOTE SERVICE AREA PAGE Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-service-area-page-btn').addEventListener('click', () => {
     showServiceAreaPageSubform()
 })
 
-/* NOTE Add Blog Post Page Button */
+/* NOTE SERVICE AREA PAGE Edit Buttons */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-area-page .service-area-edit-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        showServiceAreaPageSubform({
+            key: button.parentElement.dataset.key,
+            url: button.parentElement.dataset.url,
+            country: button.parentElement.dataset.country,
+            state: button.parentElement.dataset.state,
+            cityTown: button.parentElement.dataset.cityTown,
+            zipCodes: button.parentElement.dataset.zipCodes,
+            streetAddress: button.parentElement.dataset.streetAddress ?? undefined,
+            email: button.parentElement.dataset.email ?? undefined,
+            phone: button.parentElement.dataset.phone ?? undefined
+        })
+    })
+})
+
+/* NOTE SERVICE AREA PAGE Remove Buttons */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-area-page .service-area-remove-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove ${button.parentNode.dataset.cityTown}, ${button.parentNode.dataset.state} as a Service Area Page?`)) {
+            button.parentNode.parentNode.removeChild(button.parentNode)
+        }
+    })
+})
+
+/* NOTE SERVICE AREA Submit Subform */
+document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const form = e.target
+
+    const serviceAreaPageWrapper = document.createElement('div')
+    serviceAreaPageWrapper.className = 'service-area-page'
+
+    serviceAreaPageWrapper.dataset.key = form.url.value
+    serviceAreaPageWrapper.dataset.url = form.url.value
+    serviceAreaPageWrapper.dataset.country = form.country.value
+    serviceAreaPageWrapper.dataset.state = form.state.value
+    serviceAreaPageWrapper.dataset.cityTown = form.cityTown.value
+    serviceAreaPageWrapper.dataset.zipCodes = form.zipCodes.value
+    serviceAreaPageWrapper.dataset.streetAddress = form.streetAddress.value
+    serviceAreaPageWrapper.dataset.email = form.email.value
+    serviceAreaPageWrapper.dataset.phone = form.phone.value
+
+    const areaText = document.createElement('p')
+    areaText.innerHTML = `<span>${form.cityTown.value}, ${form.state.value}</span> - ${form.url.value}`
+    serviceAreaPageWrapper.appendChild(areaText)
+
+    const editBtn = document.createElement('button')
+    editBtn.className = 'service-area-edit-btn action-button'
+    editBtn.type = 'button'
+    editBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/edit_icon.svg">`
+    editBtn.addEventListener('click', () => {
+        showServiceAreaPageSubform({
+            key: serviceAreaPageWrapper.dataset.key,
+            url: serviceAreaPageWrapper.dataset.url,
+            country: serviceAreaPageWrapper.dataset.country,
+            state: serviceAreaPageWrapper.dataset.state,
+            cityTown: serviceAreaPageWrapper.dataset.cityTown,
+            zipCodes: serviceAreaPageWrapper.dataset.zipCodes,
+            streetAddress: serviceAreaPageWrapper.dataset.streetAddress ?? undefined,
+            email: serviceAreaPageWrapper.dataset.email ?? undefined,
+            phone: serviceAreaPageWrapper.dataset.phone ?? undefined
+        })
+    })
+    serviceAreaPageWrapper.appendChild(editBtn)
+
+    const removeBtn = document.createElement('button')
+    removeBtn.className = 'service-area-remove-btn action-button'
+    removeBtn.type = 'button'
+    removeBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/trash_icon.svg">`
+    removeBtn.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove ${serviceAreaPageWrapper.dataset.cityTown}, ${serviceAreaPageWrapper.dataset.state} as a Service Area Page?`)) {
+            document.querySelector('.rank-main-wrapper .form-container .main-form .service-area-pages-container').removeChild(serviceAreaPageWrapper)
+        }
+    })
+    serviceAreaPageWrapper.appendChild(removeBtn)
+
+    if (form.edit_key.value) {
+        // NOTE Update Service Area PAge Element with key of edit_key.value
+        document.querySelector('.rank-main-wrapper .form-container .main-form .service-area-pages-container').replaceChild(serviceAreaPageWrapper, document.querySelector(`.rank-main-wrapper .form-container .main-form .service-area-pages-container .service-area-page[data-key="${form.edit_key.value}"]`))
+    } else {
+        // NOTE Add as a new Service Area Page Element
+        document.querySelector('.rank-main-wrapper .form-container .main-form .service-area-pages-container').appendChild(serviceAreaPageWrapper)
+    }
+
+    form.reset()
+    form.parentNode.style.display = 'none'
+})
+
+/* NOTE BLOG POST PAGE Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-blog-post-page-btn').addEventListener('click', () => {
     showBlogPostPageSubform()
 })
 
-/* NOTE CLOSE Any of the SubForms */
+/* NOTE CLOSE & RESET Any of the SubForms */
 document.querySelectorAll('.rank-main-wrapper .form-container .overlay-wrapper .buttons .cancel-btn').forEach(button => {
     button.addEventListener('click', (e) => {
         e.target.parentNode.parentNode.reset()
@@ -320,7 +410,7 @@ document.querySelectorAll('.rank-main-wrapper .form-container .overlay-wrapper .
 })
 
 
-/* NOTE SHOW FAQ Subform */
+/* NOTE FAQ Show Subform */
 function showFaqSubform(data) {
     const form = document.querySelector('.rank-main-wrapper .form-container .faq-overlay form')
     form.edit_key.value = ''
@@ -337,7 +427,7 @@ function showFaqSubform(data) {
     document.querySelector('.rank-main-wrapper .form-container .faq-overlay').style.display = 'flex'
 }
 
-/* NOTE SHOW About Page Subform */
+/* NOTE ABOUT PAGE Show Subform */
 function showAboutPageSubform(data) {
     const form = document.querySelector('.rank-main-wrapper .form-container .about-page-overlay form')
     form.edit_key.value = ''
@@ -351,7 +441,7 @@ function showAboutPageSubform(data) {
     document.querySelector('.rank-main-wrapper .form-container .about-page-overlay').style.display = 'flex'
 }
 
-/* NOTE SHOW Contact Page Subform */
+/* NOTE CONTACT PAGE Show Subform */
 function showContactPageSubform(data) {
     const form = document.querySelector('.rank-main-wrapper .form-container .contact-page-overlay form')
     form.edit_key.value = ''
@@ -365,7 +455,7 @@ function showContactPageSubform(data) {
     document.querySelector('.rank-main-wrapper .form-container .contact-page-overlay').style.display = 'flex'
 }
 
-/* NOTE SHOW Service Page Subform */
+/* NOTE SERVICE PAGE Show Subform */
 function showServicePageSubform(data) {
     if (data) {
         // TODO Load Data
@@ -374,16 +464,28 @@ function showServicePageSubform(data) {
     document.querySelector('.rank-main-wrapper .form-container .services-overlay').style.display = 'flex'
 }
 
-/* NOTE SHOW Service Area Page Subform */
+/* NOTE SERVICE AREA PAGE Show Subform */
 function showServiceAreaPageSubform(data) {
+    const form = document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay form')
+    form.edit_key.value = ''
+
     if (data) {
-        // TODO Load Data
+        // NOTE Load Data
+        form.edit_key.value = data.key
+        form.url.value = data.url
+        form.streetAddress.value = data.streetAddress ?? ''
+        form.cityTown.value = data.cityTown
+        form.state.value = data.state
+        form.country.value = data.country
+        form.phone.value = data.phone ?? ''
+        form.email.value = data.email ?? ''
+        form.zipCodes.value = data.zipCodes
     }
 
     document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay').style.display = 'flex'
 }
 
-/* NOTE SHOW Blog Post Page Subform */
+/* NOTE BLOG POST PAGE Show Subform */
 function showBlogPostPageSubform(data) {
     if (data) {
         // TODO Load Data

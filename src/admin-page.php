@@ -163,7 +163,7 @@
                 <h2>Service Area Page</h2>
 
                 <!-- Hidden feilds -->
-                <input type="hidden" name="edit-key" value="">
+                <input type="hidden" name="edit_key" value="">
 
                 <div class="one-col-row">
                     <div class="input-wrapper">
@@ -180,7 +180,7 @@
 
                     <div class="input-wrapper">
                         <label>City/Town <span>*</span></label>
-                        <input name="streetAddress" type="text" required>
+                        <input name="cityTown" type="text" required>
                     </div>
                 </div>
 
@@ -968,13 +968,7 @@
 
             <div class="service-area-pages-container">
 
-                <div class="service-area-page">
-                    <p><span>Norristown, PA</span> - https://mexlandscaping.com/landscaping-services-in-norristown/</p>
-                    <button type="button" class="service-area-edit-btn action-button"><img
-                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                    <button type="button" class="service-area-remove-btn action-button"><img
-                            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                </div>
+                <?php include 'get-serviceareapages.php'; ?>
 
             </div>
 
