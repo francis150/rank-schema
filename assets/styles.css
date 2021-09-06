@@ -442,7 +442,7 @@
   padding: 2px;
   margin-left: 10px;
   border: none;
-  opacity: .6;
+  opacity: .2;
   -webkit-transition: .3s all ease-in-out;
   transition: .3s all ease-in-out;
   cursor: pointer;

@@ -301,7 +301,142 @@ document.querySelector('.rank-main-wrapper .form-container .contact-page-overlay
 
 /* NOTE SERVICE PAGE Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-service-page-btn').addEventListener('click', () => {
-    showServicePageSubform()
+    showServicePageSubform({
+        lvl_key: 1
+    })
+})
+
+/* NOTE SERVICE PAGE Add Subservice Buttons */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-pages-container .service-add-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        showServicePageSubform({
+            lvl_key: parseInt(button.parentNode.parentNode.dataset.lvl),
+            parent_key: button.parentNode.parentNode.dataset.url
+        })
+    })
+})
+
+/* NOTE SERVICE PAGE Edit Buttons */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-pages-container .service-edit-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        showServicePageSubform({
+            edit_key: button.parentNode.parentNode.dataset.url,
+            lvl_key: parseInt(button.parentNode.parentNode.dataset.lvl),
+            name: button.parentNode.parentNode.dataset.name,
+            url: button.parentNode.parentNode.dataset.url,
+            description: button.parentNode.parentNode.dataset.description
+        })
+    })
+})
+
+/* NOTE SERVICE PAGE Remove Buttons */
+document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-pages-container .service-remove-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove "${button.parentNode.parentNode.dataset.name}" as a Service Page?`)) {
+            button.parentNode.parentNode.parentNode.removeChild(button.parentNode.parentNode)
+        }
+    })
+})
+
+/* NOTE SERVICE PAGE Submit subform */
+document.querySelector('.rank-main-wrapper .form-container .services-overlay form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const form = e.target
+
+    const formData = {
+        lvl_key: form.lvl_key.value,
+        name: form.name.value,
+        url: form.url.value,
+        description: form.description.value
+    }
+
+    const servicePageWrapper = document.createElement('div')
+    servicePageWrapper.className = 'service-page'
+
+    servicePageWrapper.dataset.lvl = form.lvl_key.value
+    servicePageWrapper.dataset.name = form.name.value
+    servicePageWrapper.dataset.url = form.url.value
+    servicePageWrapper.dataset.description = form.description.value
+
+    const headWrapper = document.createElement('div')
+    headWrapper.className = 'head'
+
+    const text = document.createElement('p')
+    text.innerHTML = `<span>${form.name.value}</span> - ${form.url.value}`
+    headWrapper.appendChild(text)
+
+    if (parseInt(form.lvl_key.value) < 3) {
+        const addBtn = document.createElement('button')
+        addBtn.className = 'service-add-btn action-button'
+        addBtn.type = 'button'
+        addBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/add_icon_small.svg">`
+        addBtn.addEventListener('click', () => {
+            showServicePageSubform({
+                lvl_key: parseInt(formData.lvl_key),
+                parent_key: formData.url
+            })
+        })
+        headWrapper.appendChild(addBtn)
+    }
+
+    const editBtn = document.createElement('button')
+    editBtn.className = 'service-add-btn action-button'
+    editBtn.type = 'button'
+    editBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/edit_icon.svg">`
+    editBtn.addEventListener('click', () => {
+        showServicePageSubform({
+            edit_key: formData.url,
+            lvl_key: parseInt(formData.lvl_key),
+            name: formData.name,
+            url: formData.url,
+            description: formData.description
+        })
+    })
+    headWrapper.appendChild(editBtn)
+
+    const removeBtn = document.createElement('button')
+    removeBtn.className = 'service-add-btn action-button'
+    removeBtn.type = 'button'
+    removeBtn.innerHTML = `<img src="${PLUGIN_DIR}assets/trash_icon.svg">`
+    removeBtn.addEventListener('click', () => {
+        if (confirm(`Are you sure you want to remove "${formData.name}" as a Service Page?`)) {
+            if (parseInt(formData.lvl_key) == 1) {
+                document.querySelector('.rank-main-wrapper .form-container .main-form .service-pages-container').removeChild(servicePageWrapper)
+            } else {
+                document.querySelector(`.rank-main-wrapper .form-container .main-form .service-pages-container .service-page[data-url="${formData.url}"]`).parentNode.removeChild(document.querySelector(`.rank-main-wrapper .form-container .main-form .service-pages-container .service-page[data-url="${formData.url}"]`))
+            }
+        }
+    })
+    headWrapper.appendChild(removeBtn)
+
+    const subServiceWrapper = document.createElement('div')
+    subServiceWrapper.className = 'sub-services'
+
+    if (form.edit_key.value) {
+        // FOR EDIT
+        const orgNode = document.querySelector(`.rank-main-wrapper .form-container .main-form .service-pages-container .service-page[data-url="${form.edit_key.value}"]`)
+        orgNode.dataset.lvl = form.lvl_key.value
+        orgNode.dataset.name = form.name.value
+        orgNode.dataset.url = form.url.value
+        orgNode.dataset.description = form.description.value
+
+        orgNode.replaceChild(headWrapper, orgNode.childNodes[0])
+
+    } else {
+        // FOR ADD
+        servicePageWrapper.appendChild(headWrapper)
+        servicePageWrapper.appendChild(subServiceWrapper)
+
+        if (parseInt(form.lvl_key.value) == 1) {
+            document.querySelector('.rank-main-wrapper .form-container .main-form .service-pages-container').appendChild(servicePageWrapper)
+        } else {
+            document.querySelector(`.rank-main-wrapper .form-container .main-form .service-pages-container .service-page[data-url="${form.parent_key.value}"] .sub-services`).appendChild(servicePageWrapper)
+        }
+
+    }
+
+    form.reset()
+    form.parentNode.style.display = 'none'
 })
 
 /* NOTE SERVICE AREA PAGE Add Button */
@@ -568,8 +703,25 @@ function showContactPageSubform(data) {
 
 /* NOTE SERVICE PAGE Show Subform */
 function showServicePageSubform(data) {
-    if (data) {
-        // TODO Load Data
+    const form = document.querySelector('.rank-main-wrapper .form-container .services-overlay form')
+    form.edit_key.value = ''
+    form.parent_key.value = ''
+    form.lvl_key.value = ''
+
+    if (data.parent_key && !data.edit_key) {
+        // NOTE For adding subservice
+        form.parent_key.value = data.parent_key
+        form.lvl_key.value = data.lvl_key + 1
+    } else if (data.edit_key) {
+        // NOTE For Edit
+        if (data.parent_key) form.parent_key.value = data.parent_key
+        form.edit_key.value = data.edit_key
+        form.lvl_key.value = data.lvl_key
+        form.name.value = data.name
+        form.url.value = data.url
+        form.description.value = data.description
+    } else {
+        form.lvl_key.value = data.lvl_key
     }
 
     document.querySelector('.rank-main-wrapper .form-container .services-overlay').style.display = 'flex'
@@ -647,3 +799,9 @@ function loadMainFormData() {
         document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-input button').style.transform = 'translateX(0)'
     }
 }
+
+/* TODO FUTURE NOTES
+
+*When collecting data for the service pages, to check for subervices, check if the subform-div is !empty
+
+*/
