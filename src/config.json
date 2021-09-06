@@ -100,7 +100,14 @@
                 {
                     "name": "Tile Roofing",
                     "url": "http://localhost/advosy/services/tile-roofing/",
-                    "description": "Tile is one of the most attractive and durable materials you can use on your roof. When properly installed, tile roofs can last for decades: up to 30 or 40 years! When compared to the longevity of asphalt shingle and other materials, it’s no wonder that tile is considered to be one of the strongest and most weather-resistant materials you can choose."
+                    "description": "Tile is one of the most attractive and durable materials you can use on your roof. When properly installed, tile roofs can last for decades: up to 30 or 40 years! When compared to the longevity of asphalt shingle and other materials, it’s no wonder that tile is considered to be one of the strongest and most weather-resistant materials you can choose.",
+                    "subServices": [
+                        {
+                            "name": "Tile Roofing 2",
+                            "url": "http://localhost/advosy/services/tile-roofing-2/",
+                            "description": "When compared to the longevity of asphalt shingle and other materials, it’s no wonder that tile is considered to be one of the strongest and most weather-resistant materials you can choose."
+                        }
+                    ]
                 },
                 {
                     "name": "Shingle Roofing",

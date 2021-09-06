@@ -127,8 +127,9 @@
                 <h2>Service Page</h2>
 
                 <!-- Hidden feilds -->
-                <input type="hidden" name="edit-key" value="">
-                <input type="hidden" name="parent-key" value="">
+                <input type="hidden" name="edit_key" value="">
+                <input type="hidden" name="parent_key" value="">
+                <input type="hidden" name="lvl_key" value="">
 
                 <div class="one-col-row">
                     <div class="input-wrapper">
@@ -906,60 +907,7 @@
 
             <div class="service-pages-container">
 
-                <div class="service-page">
-                    <div class="head">
-                        <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
-                        <button type="button" class="service-add-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
-                        <button type="button" class="service-edit-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                        <button type="button" class="service-remove-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                    </div>
-                    <div class="sub-services">
-
-                        <div class="service-page">
-                            <div class="head">
-                                <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
-                                <button type="button" class="service-add-btn action-button"><img
-                                        src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
-                                <button type="button" class="service-edit-btn action-button"><img
-                                        src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                                <button type="button" class="service-remove-btn action-button"><img
-                                        src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                            </div>
-                            <div class="sub-services">
-
-                                <div class="service-page">
-                                    <div class="head">
-                                        <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/
-                                        </p>
-                                        <button type="button" class="service-edit-btn action-button"><img
-                                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                                        <button type="button" class="service-remove-btn action-button"><img
-                                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                                    </div>
-                                    <div class="sub-services"></div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="service-page">
-                    <div class="head">
-                        <p><span>Landscape Design</span> - https://mexlandscaping.com/landscape-design/</p>
-                        <button type="button" class="service-add-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon_small.svg'; ?>"></button>
-                        <button type="button" class="service-edit-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/edit_icon.svg'; ?>"></button>
-                        <button type="button" class="service-remove-btn action-button"><img
-                                src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/trash_icon.svg'; ?>"></button>
-                    </div>
-                    <div class="sub-services"></div>
-                </div>
+                <?php include 'get-servicepages.php'; ?>
 
             </div>
 

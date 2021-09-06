@@ -7,8 +7,8 @@ if (!empty($CONFIG['blogPosts'])) {
         data-date-published="'.$blogPost['datePublished'].'" 
         data-article-body="'.$blogPost['articleBody'].'" 
         data-in-language="'.$blogPost['inLanguage'].'" 
-        data-is-family-friendly="'.$blogPost['isFamilyFriendly'].'" 
-        data-blog-post-url="'.$blogPost['blogPostUrl'].'" '; 
+        data-blog-post-url="'.$blogPost['blogPostUrl'].'" ';
+        if ($blogPost['isFamilyFriendly']) { echo 'data-is-family-friendly="true" '; } else { echo 'data-is-family-friendly="false" '; }
         if (isset($blogPost['author'])) echo 'data-author="'.$blogPost['author'].'" ';
         if (isset($blogPost['genre'])) echo 'data-genre="'.$blogPost['genre'].'" ';
         if (isset($blogPost['thumbnailUrl'])) echo 'data-thumbnail-url="'.$blogPost['thumbnailUrl'].'" ';
