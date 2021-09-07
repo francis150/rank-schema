@@ -905,11 +905,7 @@
 
             <h2>Service Pages <img class="add-service-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
 
-            <div class="service-pages-container">
-
-                <?php include 'get-servicepages.php'; ?>
-
-            </div>
+            <div class="service-pages-container"><?php include 'get-servicepages.php'; ?></div>
 
             <h2>Service Area Pages <img class="add-service-area-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>">
             </h2>

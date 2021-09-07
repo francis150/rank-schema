@@ -776,7 +776,7 @@ function loadMainFormData() {
 
     MAIN_FORM.schemaType.value = CONFIG.schemaType
     MAIN_FORM.businessName.value = CONFIG.businessName
-    MAIN_FORM.ownersName.value = CONFIG.ownersName
+    MAIN_FORM.ownersName.value = CONFIG.ownersName || ''
     MAIN_FORM.imageURL.value = CONFIG.imageURL
     MAIN_FORM.slogan.value = CONFIG.slogan
     MAIN_FORM.description.innerHTML = CONFIG.description
@@ -789,16 +789,201 @@ function loadMainFormData() {
     MAIN_FORM.phone.value = CONFIG.phone
     MAIN_FORM.email.value = CONFIG.email
     MAIN_FORM.query.value = CONFIG.query
-    MAIN_FORM.privacyPolicyURL.value = CONFIG.privacyPolicyURL
+    MAIN_FORM.privacyPolicyURL.value = CONFIG.privacyPolicyURL || ''
     MAIN_FORM.keywords.value = CONFIG.keywords.join(', ')
-    MAIN_FORM.backlinks.value = CONFIG.backlinks.join("\r\n")
-    MAIN_FORM.faqURL.value = CONFIG.faqPage.url ?? ''
+    MAIN_FORM.backlinks.value = CONFIG.backlinks ? CONFIG.backlinks.join("\r\n") : ''
+    MAIN_FORM.faqURL.value = CONFIG.faqPage ? CONFIG.faqPage.url : ''
 
     // NOTE Popup Add FAQ Button if CONFIG.faqPage is not defined
-    if (CONFIG.faqPage.url) {
+    if (CONFIG.faqPage && CONFIG.faqPage.url) {
         document.querySelector('.rank-main-wrapper .form-container .main-form .faq-url-input button').style.transform = 'translateX(0)'
     }
 }
+
+
+/* NOTE MAIN FORM Save as Draft */
+document.querySelector('.rank-main-wrapper .form-container .main-form .buttons .draft').addEventListener('click', () => {
+    console.log('draft!')
+})
+
+/* NOTE DATA COLLECTION */
+function collectMainFormData(callback) {
+
+    const mainFormData = {
+        schemaType: MAIN_FORM.schemaType.value,
+        businessName: MAIN_FORM.businessName.value,
+        imageURL: MAIN_FORM.imageURL.value,
+        slogan: MAIN_FORM.slogan.value,
+        description: MAIN_FORM.description.value,
+        disambiguatingDescription: MAIN_FORM.disambiguatingDescription.value,
+        streetAddress: MAIN_FORM.streetAddress.value,
+        cityTown: MAIN_FORM.cityTown.value,
+        state: MAIN_FORM.state.value,
+        zipCode: MAIN_FORM.zipCode.value,
+        country: MAIN_FORM.country.value,
+        phone: MAIN_FORM.phone.value,
+        email: MAIN_FORM.email.value,
+        query: MAIN_FORM.query.value,
+        keywords: extractByComma(MAIN_FORM.keywords.value)
+    }
+    
+    // NOTE owner's Name
+    if (MAIN_FORM.ownersName.value) mainFormData['ownersName'] = MAIN_FORM.ownersName.value
+
+    // NOTE Privacy Polcy Page
+    if (MAIN_FORM.privacyPolicyURL.value) mainFormData['privacyPolicyURL'] = MAIN_FORM.privacyPolicyURL.value
+
+    // NOTE Backlinks
+    if (extractByLine(MAIN_FORM.backlinks.value).length > 0) {
+        mainFormData['backlinks'] = extractByLine(MAIN_FORM.backlinks.value)
+    }
+
+    // NOTE FAQ Page
+    if (MAIN_FORM.faqURL.value) {
+        
+        if (document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-container .faq').length > 0) {
+            mainFormData['faqPage'] = {
+                url: MAIN_FORM.faqURL.value,
+                faqs: []
+            }
+
+            document.querySelectorAll('.rank-main-wrapper .form-container .main-form .faqs-container .faq').forEach(faq => {
+                mainFormData.faqPage.faqs.push({
+                    question: faq.dataset.question,
+                    answer: faq.dataset.answer
+                })
+            })
+        } else {
+            displayNotice('It seems like you have added a FAQ Page URL. At least one pair of Question & Answer must be added.', 'notice-error')
+        }
+    }
+
+    // NOTE About Page
+    if (document.querySelectorAll('.rank-main-wrapper .form-container .main-form .about-pages-container .about-page').length > 0) {
+        mainFormData['aboutPages'] = []
+        document.querySelectorAll('.rank-main-wrapper .form-container .main-form .about-pages-container .about-page').forEach(aboutPage => {
+            mainFormData.aboutPages.push(aboutPage.dataset.url)
+        })
+    }
+
+    // NOTE Contact Page
+    if (document.querySelectorAll('.rank-main-wrapper .form-container .main-form .contact-pages-container .contact-page').length > 0) {
+        mainFormData['contactPages'] = []
+        document.querySelectorAll('.rank-main-wrapper .form-container .main-form .contact-pages-container .contact-page').forEach(contactPages => {
+            mainFormData.contactPages.push(contactPages.dataset.url)
+        })
+    }
+
+    // NOTE Service Page
+    if (document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-pages-container .service-page').length > 0) {
+        mainFormData['services'] = []
+
+        document.querySelector('.rank-main-wrapper .form-container .main-form .service-pages-container').childNodes.forEach(servicePage => {
+            const serviceData = {
+                name: servicePage.dataset.name,
+                url: servicePage.dataset.url,
+                description: servicePage.dataset.description
+            }
+
+            if (servicePage.childNodes[1].hasChildNodes()) {
+                serviceData['subServices'] = []
+                
+                servicePage.childNodes[1].childNodes.forEach(_servicePage => {
+
+                    const _serviceData = {
+                        name: _servicePage.dataset.name,
+                        url: _servicePage.dataset.url,
+                        description: _servicePage.dataset.description
+                    }
+
+                    if (_servicePage.childNodes[1].hasChildNodes()) {
+                        _serviceData['subServices'] = []
+
+                        _servicePage.childNodes[1].childNodes.forEach(__servicePage => {
+                            
+                            _serviceData.subServices.push({
+                                name: __servicePage.dataset.name,
+                                url: __servicePage.dataset.url,
+                                description: __servicePage.dataset.description
+                            })
+
+                        })
+                    }
+
+                    serviceData.subServices.push(_serviceData)
+                    
+                })
+
+            }
+
+            mainFormData.services.push(serviceData)
+        })
+    }
+
+    // NOTE Service Area
+    if (document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-area-pages-container .service-area-page').length > 0) {
+        mainFormData['areasServed'] = []
+        document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-area-pages-container .service-area-page').forEach(areaServe => {
+            const areaServeData = {
+                country: areaServe.dataset.country,
+                state: areaServe.dataset.state,
+                cityTown: areaServe.dataset.cityTown,
+                url: areaServe.dataset.url,
+                zipCodes: extractByComma(areaServe.dataset.zipCodes)
+            }
+
+            if (areaServe.dataset.streetAddress) areaServeData['streetAddress'] = areaServe.dataset.streetAddress
+            if (areaServe.dataset.email) areaServeData['email'] = areaServe.dataset.email
+            if (areaServe.dataset.phone) areaServeData['phone'] = areaServe.dataset.phone
+
+            mainFormData.areasServed.push(areaServeData)
+        })
+    }
+
+    // NOTE Blog Post
+    if (document.querySelectorAll('.rank-main-wrapper .form-container .main-form .blog-post-pages-container .blog-post-page').length > 0) {
+        mainFormData['blogPosts'] = []
+        document.querySelectorAll('.rank-main-wrapper .form-container .main-form .blog-post-pages-container .blog-post-page').forEach(blogPost => {
+            const blogPostData = {
+                headline: blogPost.dataset.blogPost,
+                datePublished: blogPost.dataset.datePublished,
+                articleBody: blogPost.dataset.articleBody,
+                inLanguage: blogPost.dataset.inLanguage,
+                isFamilyFriendly: JSON.parse(blogPost.dataset.isFamilyFriendly),
+                blogPostUrl: blogPost.dataset.blogPostUrl
+            }
+
+            if (blogPost.dataset.author) blogPostData['author'] = blogPost.dataset.author
+            if (blogPost.dataset.genre) blogPostData['genre'] = blogPost.dataset.genre
+            if (blogPost.dataset.thumbnailUrl) blogPostData['thumbnailUrl'] = blogPost.dataset.thumbnailUrl
+
+            mainFormData.blogPosts.push(blogPostData)
+        })
+    }
+
+    callback(mainFormData)
+}
+
+
+
+
+
+function extractByComma(input) {
+    return input.split(",").map((item)=>item.trim())
+}
+
+function extractByLine(input) {
+    const array = []
+    input.split(/\n/).forEach(item => { if (item.trim() !== '') array.push(item.trim()) })
+    return array
+}
+
+function displayNotice(message, type) {
+    document.querySelector('.rank-main-wrapper .notice-container').innerHTML = `<div class="notice ${type} is-dismissible">
+            <p>${message}</p>
+        </div>`
+}
+
 
 /* TODO FUTURE NOTES
 
