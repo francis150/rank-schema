@@ -4,15 +4,13 @@
 /* NOTE Create Config file when get started button is clicked */
 if (isset($_POST['get-started'])) {
     $skeletonData = array (
-        'schemaType' => '',
+        'schemaType' => 'LocalBusiness',
         'businessName' => '',
-        'ownersName' => '',
         'websiteURL' => '',
         'imageURL' => '',
         'description' => '',
         'disambiguatingDescription' => '',
         'slogan' => '',
-        'privacyPolicyURL' => '',
         'email' => '',
         'phone' => '',
         'streetAddress' => '',
@@ -21,17 +19,7 @@ if (isset($_POST['get-started'])) {
         'zipCode' => '',
         'country' => '',
         'query' => '',
-        'backlinks' => array (),
         'keywords' => array (),
-        'faqPage' => array (
-            'url' => '',
-            'faqs' => array (),
-        ),
-        'aboutPages' => array (),
-        'contactPages' => array (),
-        'services' => array (),
-        'areasServed' => array (),
-        'blogPosts' => array (),
         'activated' => false
     );
 
