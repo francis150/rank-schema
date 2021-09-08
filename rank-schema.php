@@ -18,8 +18,8 @@ class RankSchemaGenerator
     {
         add_action( 'admin_menu', array( $this, 'add_admin_pages' ) );
         add_action( 'wp_head', array( $this, 'apply_schema_markups' ) );
-        add_action('admin_enqueue_scripts', array($this, 'register_styles'));
-        add_action('admin_footer', array($this, 'register_scripts'));
+        add_action('admin_enqueue_scripts', array($this, 'register_head'));
+        add_action('admin_footer', array($this, 'register_body'));
     }
 
     public function apply_schema_markups()
@@ -75,12 +75,12 @@ class RankSchemaGenerator
         require_once plugin_dir_path(__FILE__) . 'src/admin-page.php';
     }
 
-    public function register_styles()
+    public function register_head()
     {
         wp_enqueue_style('main_style', plugins_url( '/assets/styles.css', __FILE__ ));
     }
 
-    public function register_scripts()
+    public function register_body()
     {
         wp_enqueue_script('main_script', plugins_url( '/assets/scripts.js', __FILE__ ));
     }

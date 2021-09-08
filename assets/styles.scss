@@ -27,6 +27,13 @@ $activeGreen: #389D48;
     &::-webkit-scrollbar-thumb {
         background-color: $primaryGrey;
     }
+
+    .notice-container {
+        display: flex;
+        padding: 0 20px;
+        margin-left: 50px;
+        background: #363636;
+    }
 }
 
 /*NOTE Get Started Styles */

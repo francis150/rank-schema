@@ -803,8 +803,62 @@ function loadMainFormData() {
 
 /* NOTE MAIN FORM Save as Draft */
 document.querySelector('.rank-main-wrapper .form-container .main-form .buttons .draft').addEventListener('click', () => {
-    console.log('draft!')
+    
+    collectMainFormData(data => {
+        const form = document.querySelector('.rank-main-wrapper .hidden-forms .hidden-form')
+        data['activated'] = false
+
+        form.configUpdate.value = JSON.stringify(data)
+
+        form.submit()
+    })
+    
 })
+
+/* NOTE MAIN FORM Build Schema */
+document.querySelector('.rank-main-wrapper .form-container .main-form').addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    validateMainFormData(err => {
+        if (err) return displayNotice(err, 'notice-error')
+
+        collectMainFormData(data => {
+
+            document.querySelector('.rank-main-wrapper .form-container').style.display = 'none'
+            document.querySelector('.rank-main-wrapper .building-load').style.display = 'flex'
+
+            const buildSchema = new XMLHttpRequest()
+            buildSchema.open('POST', 'http://localhost:5000/schema-generator/build', true)
+            buildSchema.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+
+            buildSchema.onload = function () {
+                if (this.status == 200) {
+
+                    // document.querySelector('.rank-main-wrapper .building-load').style.display = 'none'
+                    // document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit'
+
+                    // console.log(this.response.replace(/\\/g, ''))
+
+                    const form = document.querySelector('.rank-main-wrapper .hidden-forms .hidden-form') 
+                    data['activated'] = false
+
+                    form.configUpdate.value = JSON.stringify(data)
+                    form.markups.value = this.response
+                    
+                } else {
+                    document.querySelector('.rank-main-wrapper .building-load').style.display = 'none'
+                    document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit'
+                    displayNotice('Failed to Build your Schema Markup Code!', 'notice-error') 
+                }
+            }
+
+            buildSchema.send(JSON.stringify(data))
+
+        })
+    })
+})
+
+
 
 /* NOTE DATA COLLECTION */
 function collectMainFormData(callback) {
@@ -945,7 +999,7 @@ function collectMainFormData(callback) {
         mainFormData['blogPosts'] = []
         document.querySelectorAll('.rank-main-wrapper .form-container .main-form .blog-post-pages-container .blog-post-page').forEach(blogPost => {
             const blogPostData = {
-                headline: blogPost.dataset.blogPost,
+                headline: blogPost.dataset.headline,
                 datePublished: blogPost.dataset.datePublished,
                 articleBody: blogPost.dataset.articleBody,
                 inLanguage: blogPost.dataset.inLanguage,
@@ -964,6 +1018,22 @@ function collectMainFormData(callback) {
     callback(mainFormData)
 }
 
+/* NOTE Validate Data */
+function validateMainFormData(callback) {
+    if (MAIN_FORM.faqURL.value && !document.querySelector('.rank-main-wrapper .main-form .faqs-container').hasChildNodes()) {
+        // TODO It is invalid if faqUrl is available and has no faqs
+        callback('It seems that you have entered an FAQ Page URL but did not add any FAQ Items.')
+    } else if (!MAIN_FORM.faqURL.value && document.querySelector('.rank-main-wrapper .main-form .faqs-container').hasChildNodes()) {
+        // TODO It is invalid if faqs are available and has no faqURL
+        callback('It seems that you have added FAQ Items but did not enter an FAQ Page URL.')
+    } else if (!document.querySelector('.rank-main-wrapper .main-form .service-pages-container').hasChildNodes()) {
+        // TODO It is invalid when there is no at least 1 service page
+        callback('At least 1 Service Page is Required.')
+    } else {
+        callback()
+    }
+}
+
 
 
 
@@ -979,7 +1049,7 @@ function extractByLine(input) {
 }
 
 function displayNotice(message, type) {
-    document.querySelector('.rank-main-wrapper .notice-container').innerHTML = `<div class="notice ${type} is-dismissible">
+    document.querySelector('.notice-container').innerHTML = `<div class="notice ${type} is-dismissible">
             <p>${message}</p>
         </div>`
 }
