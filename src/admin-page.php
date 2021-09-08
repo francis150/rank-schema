@@ -8,10 +8,20 @@
     const PLUGIN_DIR = "'.plugin_dir_url(dirname(__FILE__)).'"
     </script>';
 
-    // NOTE if config.json file exists, set config variable for php and js
-    if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
+    if (isset($_POST['configUpdate'])) {
+
+        // NOTE If configData is being updated
+        if (file_put_contents(plugin_dir_path( __FILE__ ). 'config.json', stripslashes($_POST['configUpdate']))) {
+            $CONFIG = json_decode(stripslashes($_POST['configUpdate']), true);
+            echo '<script>CONFIG = '.json_encode($CONFIG).'</script>';
+        }
+        
+    } else if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
+
+        // NOTE If its not being updated and config.json is available
         $CONFIG = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'config.json'), true);
         echo '<script>CONFIG = '.json_encode($CONFIG).'</script>';
+        
     }
 
     if (file_exists(plugin_dir_path( __FILE__ ). 'markups.json')) {
@@ -22,6 +32,7 @@
 
 <!-- NOTE Admin Page UI -->
 <section class="rank-main-wrapper">
+
     <!-- NOTE Notice container -->
     <div class="notice-container"></div>
 
@@ -881,11 +892,7 @@
                 <div class="input-wrapper"></div>
             </div>
 
-            <div class="faqs-container">
-
-                <?php include plugin_dir_path( __FILE__ ). 'get-faqs.php'; ?>
-
-            </div>
+            <div class="faqs-container"><?php include plugin_dir_path( __FILE__ ). 'get-faqs.php'; ?></div>
 
             <h2>About Pages <img class="add-about-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>"></h2>
 
@@ -910,11 +917,7 @@
             <h2>Service Area Pages <img class="add-service-area-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>">
             </h2>
 
-            <div class="service-area-pages-container">
-
-                <?php include 'get-serviceareapages.php'; ?>
-
-            </div>
+            <div class="service-area-pages-container"><?php include 'get-serviceareapages.php'; ?></div>
 
             <h2>Blog Post Pages <img class="add-blog-post-page-btn" src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/add_icon.svg'; ?>">
             </h2>
@@ -962,7 +965,50 @@
         <h2 class="status">ACTIVE! 👍</h2>
         <button>Edit Schema Data</button>
     </section>
+
+    <!-- NOTE Hidden forms for sending data to functions.php -->
+    <section class="hidden-forms">
+
+        <!-- NOTE Save config -->
+        <form method="POST" action="#" class="hidden-form">
+            <textarea name="configUpdate"></textarea>
+            <textarea name="markups"></textarea>
+        </form>
+
+    </section>
 </section>
 
-<!-- NOTE This file stores all major php functions -->
-<?php include plugin_dir_path( __FILE__ ). 'functions.php'; ?>
+<!-- NOTE Bottom PHP -->
+<?php 
+
+/* NOTE Create Config file when get started button is clicked */
+if (isset($_POST['get-started'])) {
+    $skeletonData = array (
+        'schemaType' => 'LocalBusiness',
+        'businessName' => '',
+        'websiteURL' => '',
+        'imageURL' => '',
+        'description' => '',
+        'disambiguatingDescription' => '',
+        'slogan' => '',
+        'email' => '',
+        'phone' => '',
+        'streetAddress' => '',
+        'cityTown' => '',
+        'state' => '',
+        'zipCode' => '',
+        'country' => '',
+        'query' => '',
+        'keywords' => array (),
+        'activated' => false
+    );
+
+    if (file_put_contents(plugin_dir_path( __FILE__ ). 'config.json', json_encode($skeletonData, JSON_PRETTY_PRINT))) {
+        echo "<script>
+        document.querySelector('.rank-main-wrapper .get-started-container').style.display = 'none';
+        document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';
+        </script>";
+    }
+}
+
+?>
