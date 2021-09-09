@@ -3,8 +3,8 @@ const MAIN_FORM = document.querySelector('.rank-main-wrapper .form-container .ma
 
 if (CONFIG) {
     // NOTE SHOW Main Form
-    document.querySelector('.rank-main-wrapper .get-started-container').style.display = 'none';
-    document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';
+    // document.querySelector('.rank-main-wrapper .get-started-container').style.display = 'none';
+    // document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';
 
     // NOTE Load form data
     loadMainFormData()
