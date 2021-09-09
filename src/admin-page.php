@@ -967,7 +967,7 @@
     </section>
 
     <!-- NOTE Hidden forms for sending data to functions.php -->
-    <section class="hidden-forms">
+    <section class="hidden-forms" style="display: none;">
 
         <!-- NOTE Save config -->
         <form method="POST" action="#" class="hidden-form">
@@ -1004,11 +1004,24 @@ if (isset($_POST['get-started'])) {
     );
 
     if (file_put_contents(plugin_dir_path( __FILE__ ). 'config.json', json_encode($skeletonData, JSON_PRETTY_PRINT))) {
-        echo "<script>
-        document.querySelector('.rank-main-wrapper .get-started-container').style.display = 'none';
-        document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';
-        </script>";
+        echo "<script>document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';</script>";
+    }
+} else {
+
+    /* NOTE If page is fresh */
+    if (isset($CONFIG)) {
+
+        if ($CONFIG['activated'] && file_exists(plugin_dir_path( __FILE__ ). 'markups.json')) {
+            echo "<script>document.querySelector('.rank-main-wrapper .active-screen').style.display = 'flex';</script>";
+        } else {
+            echo "<script>document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';</script>";
+        }
+
+    } else {
+        echo "<script>document.querySelector('.rank-main-wrapper .get-started-container').style.display = 'flex';</script>";
     }
 }
+
+
 
 ?>
