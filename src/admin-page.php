@@ -5,7 +5,8 @@
     echo '<script>
     let CONFIG;
     let MARKUPS_AVAILABLE;
-    const PLUGIN_DIR = "'.plugin_dir_url(dirname(__FILE__)).'"
+    const PLUGIN_DIR = "'.plugin_dir_url(dirname(__FILE__)).'";
+    const SITE_URL = "'.get_site_url().'";
     </script>';
 
     if (isset($_POST['configUpdate'])) {
@@ -14,6 +15,10 @@
         if (file_put_contents(plugin_dir_path( __FILE__ ). 'config.json', stripslashes($_POST['configUpdate']))) {
             $CONFIG = json_decode(stripslashes($_POST['configUpdate']), true);
             echo '<script>CONFIG = '.json_encode($CONFIG).'</script>';
+
+            if (!empty($_POST['markups'])) {
+                file_put_contents(plugin_dir_path( __FILE__ ). 'markups.json', stripslashes($_POST['markups']));
+            }
         }
         
     } else if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
@@ -929,7 +934,7 @@
             </div>
 
             <div class="buttons">
-                <button class="submit" type="submit">Build Your Schema Code!</button>
+                <button class="submit" type="submit">Activate Your Schema Code!</button>
                 <button class="draft" type="button">Save as Draft</button>
             </div>
         </form>
@@ -963,7 +968,7 @@
             <p>is currently</p>
         </div>
         <h2 class="status">ACTIVE! 👍</h2>
-        <button>Edit Schema Data</button>
+        <button class="edit-config-btn">Edit Schema Data</button>
     </section>
 
     <!-- NOTE Hidden forms for sending data to functions.php -->
@@ -1009,7 +1014,7 @@ if (isset($_POST['get-started'])) {
 } else {
 
     /* NOTE If page is fresh */
-    if (isset($CONFIG)) {
+    if (isset($CONFIG) && empty($_POST['markups'])) {
 
         if ($CONFIG['activated'] && file_exists(plugin_dir_path( __FILE__ ). 'markups.json')) {
             echo "<script>document.querySelector('.rank-main-wrapper .active-screen').style.display = 'flex';</script>";
@@ -1017,6 +1022,8 @@ if (isset($_POST['get-started'])) {
             echo "<script>document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';</script>";
         }
 
+    } else if (isset($CONFIG) && !empty($_POST['markups'])) {
+        echo "<script>document.querySelector('.rank-main-wrapper .active-screen').style.display = 'flex';</script>";
     } else {
         echo "<script>document.querySelector('.rank-main-wrapper .get-started-container').style.display = 'flex';</script>";
     }
