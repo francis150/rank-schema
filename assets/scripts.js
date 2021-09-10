@@ -22,7 +22,7 @@ document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-enti
         input.disabled = true
 
         const validateWikiEntity = new XMLHttpRequest()
-        validateWikiEntity.open('POST', `https://rank-schema-plugin-server.herokuapp.com/schema-generator/validateQuery?niche=${input.value}`, true)
+        validateWikiEntity.open('POST', `http://localhost:5000/schema-generator/validateQuery?niche=${input.value}`, true)
 
         validateWikiEntity.onload = function () {
             input.disabled = false
@@ -834,16 +834,13 @@ document.querySelector('.rank-main-wrapper .form-container .main-form').addEvent
             buildSchema.onload = function () {
                 if (this.status == 200) {
 
-                    // document.querySelector('.rank-main-wrapper .building-load').style.display = 'none'
-                    // document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit'
-
-                    // console.log(this.response.replace(/\\/g, ''))
-
                     const form = document.querySelector('.rank-main-wrapper .hidden-forms .hidden-form') 
-                    data['activated'] = false
+                    data['activated'] = true
 
                     form.configUpdate.value = JSON.stringify(data)
                     form.markups.value = this.response
+
+                    form.submit()
                     
                 } else {
                     document.querySelector('.rank-main-wrapper .building-load').style.display = 'none'
@@ -858,6 +855,17 @@ document.querySelector('.rank-main-wrapper .form-container .main-form').addEvent
     })
 })
 
+/* NOTE Edit Config Button */
+document.querySelector('.rank-main-wrapper .active-screen .edit-config-btn').addEventListener('click', () => {
+    collectMainFormData(data => {
+        const form = document.querySelector('.rank-main-wrapper .hidden-forms .hidden-form')
+        data['activated'] = false
+
+        form.configUpdate.value = JSON.stringify(data)
+
+        form.submit()
+    })
+})
 
 
 /* NOTE DATA COLLECTION */
@@ -866,6 +874,7 @@ function collectMainFormData(callback) {
     const mainFormData = {
         schemaType: MAIN_FORM.schemaType.value,
         businessName: MAIN_FORM.businessName.value,
+        websiteURL: SITE_URL,
         imageURL: MAIN_FORM.imageURL.value,
         slogan: MAIN_FORM.slogan.value,
         description: MAIN_FORM.description.value,
@@ -1033,6 +1042,9 @@ function validateMainFormData(callback) {
         callback()
     }
 }
+
+
+
 
 
 

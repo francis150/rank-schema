@@ -32,7 +32,7 @@ class RankSchemaGenerator
             if ($config['activated']) {
                 if ( is_front_page() || is_home() ) {
 
-                    foreach ($markupFile['results'][0]['schemaMarkups'] as $markup) {
+                    foreach ($markupFile[0]['schemaMarkups'] as $markup) {
                         
                         echo '
                         <!-- Schema Markup by Rank Tools Generator-->
@@ -44,9 +44,10 @@ class RankSchemaGenerator
 
                 } else {
 
-                    foreach ($markupFile['results'] as $entity) {
+                    foreach ($markupFile as $entity) {
                         
                         if ($entity['url'] == get_page_link()) {
+                            
                             
                             foreach ($entity['schemaMarkups'] as $markup) {
                                 
