@@ -215,12 +215,12 @@
 
                 <div class="two-col-row">
                     <div class="input-wrapper">
-                        <label>Business Number for this Location</label>
+                        <label>Contact Number for this Location</label>
                         <input name="phone" type="text">
                     </div>
 
                     <div class="input-wrapper">
-                        <label>Business Email for this Location</label>
+                        <label>Email for this Location</label>
                         <input name="email" type="text">
                     </div>
                 </div>
@@ -975,7 +975,7 @@
     <section class="hidden-forms" style="display: none;">
 
         <!-- NOTE Save config -->
-        <form method="POST" action="#" class="hidden-form">
+        <form method="POST" class="hidden-form">
             <textarea name="configUpdate"></textarea>
             <textarea name="markups"></textarea>
         </form>

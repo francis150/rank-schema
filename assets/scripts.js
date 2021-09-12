@@ -22,7 +22,7 @@ document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-enti
         input.disabled = true
 
         const validateWikiEntity = new XMLHttpRequest()
-        validateWikiEntity.open('POST', `http://localhost:5000/schema-generator/validateQuery?niche=${input.value}`, true)
+        validateWikiEntity.open('POST', `https://rank-schema-plugin-server.herokuapp.com/schema-generator/validateQuery?niche=${input.value}`, true)
 
         validateWikiEntity.onload = function () {
             input.disabled = false
@@ -828,11 +828,13 @@ document.querySelector('.rank-main-wrapper .form-container .main-form').addEvent
             document.querySelector('.rank-main-wrapper .building-load').style.display = 'flex'
 
             const buildSchema = new XMLHttpRequest()
-            buildSchema.open('POST', 'http://localhost:5000/schema-generator/build', true)
+            buildSchema.open('POST', 'https://rank-schema-plugin-server.herokuapp.com/schema-generator/build', true)
             buildSchema.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
 
             buildSchema.onload = function () {
                 if (this.status == 200) {
+
+                    document.querySelector('.rank-main-wrapper .building-load .content h2').innerHTML = 'We are now saving your<br><b>Advanced Schema Markup Code</b>!<br>This might take a few minutes...'
 
                     const form = document.querySelector('.rank-main-wrapper .hidden-forms .hidden-form') 
                     data['activated'] = true
