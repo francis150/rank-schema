@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Rank Schema Generator
  * Description: Are you tired of having to code each page's unique schema code? Give your site the boost it needs by applying Rank Schema Markup today. We've eliminated any technical difficulties for you and worked with top SEO experts to ensure that we're providing a product that will benefit your website.
- * Version: 2.0.0
+ * Version: 2.0.4
  * Requires at least: 5.2
  * Requires PHP: 7.2
  * Author: Rankfortress Digital Agency
