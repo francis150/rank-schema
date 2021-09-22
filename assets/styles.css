@@ -133,8 +133,8 @@
 .get-started-container .landing-img {
   position: absolute;
   z-index: -50;
-  -webkit-transform: translateX(300px);
-          transform: translateX(300px);
+  -webkit-transform: translate(300px, -50px);
+          transform: translate(300px, -50px);
 }
 
 /* NOTE Form Styles */
