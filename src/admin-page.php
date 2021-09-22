@@ -61,7 +61,7 @@
             </form>
         </div>
         <img class="landing-img"
-            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/landing_illustration.svg'; ?>">
+            src="<?php echo plugin_dir_url(dirname(__FILE__)) . 'assets/landing-illustration.svg'; ?>">
     </section>
 
     <!-- NOTE Main Form and Sub forms View -->
