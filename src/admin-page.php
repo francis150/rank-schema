@@ -12,24 +12,23 @@
     if (isset($_POST['configUpdate'])) {
 
         // NOTE If configData is being updated
-        if (file_put_contents(plugin_dir_path( __FILE__ ). 'config.json', stripslashes($_POST['configUpdate']))) {
+        if (file_put_contents( WP_CONTENT_DIR. '/rank-schema-config/config.json' , stripslashes($_POST['configUpdate']))) {
             $CONFIG = json_decode(stripslashes($_POST['configUpdate']), true);
             echo '<script>CONFIG = '.json_encode($CONFIG).'</script>';
 
             if (!empty($_POST['markups'])) {
-                file_put_contents(plugin_dir_path( __FILE__ ). 'markups.json', stripslashes($_POST['markups']));
+                file_put_contents( WP_CONTENT_DIR. '/rank-schema-config/markups.json' , stripslashes($_POST['markups']));
             }
         }
         
-    } else if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
+    } else if (file_exists( WP_CONTENT_DIR. '/rank-schema-config/config.json' )) {
 
         // NOTE If its not being updated and config.json is available
-        $CONFIG = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'config.json'), true);
+        $CONFIG = json_decode(file_get_contents( WP_CONTENT_DIR. '/rank-schema-config/config.json' ), true);
         echo '<script>CONFIG = '.json_encode($CONFIG).'</script>';
-        
     }
 
-    if (file_exists(plugin_dir_path( __FILE__ ). 'markups.json')) {
+    if (file_exists( WP_CONTENT_DIR. '/rank-schema-config/markups.json' )) {
         $MARKUPS_AVAILABLE = true;
         echo '<script>MARKUPS_AVAILABLE = true</script>';
     }
@@ -1008,15 +1007,18 @@ if (isset($_POST['get-started'])) {
         'activated' => false
     );
 
-    if (file_put_contents(plugin_dir_path( __FILE__ ). 'config.json', json_encode($skeletonData, JSON_PRETTY_PRINT))) {
-        echo "<script>document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';</script>";
+    if (wp_mkdir_p( WP_CONTENT_DIR . '/rank-schema-config' )) {
+        if (file_put_contents(WP_CONTENT_DIR. '/rank-schema-config/config.json', json_encode($skeletonData, JSON_PRETTY_PRINT))) {
+            echo "<script>document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';</script>";
+        }
     }
+
 } else {
 
     /* NOTE If page is fresh */
     if (isset($CONFIG) && empty($_POST['markups'])) {
 
-        if ($CONFIG['activated'] && file_exists(plugin_dir_path( __FILE__ ). 'markups.json')) {
+        if ($CONFIG['activated'] && file_exists( WP_CONTENT_DIR. '/rank-schema-config/markups.json' )) {
             echo "<script>document.querySelector('.rank-main-wrapper .active-screen').style.display = 'flex';</script>";
         } else {
             echo "<script>document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit';</script>";
