@@ -876,7 +876,7 @@ function collectMainFormData(callback) {
     const mainFormData = {
         schemaType: MAIN_FORM.schemaType.value,
         businessName: MAIN_FORM.businessName.value,
-        websiteURL: SITE_URL,
+        websiteURL: `${SITE_URL}/`,
         imageURL: MAIN_FORM.imageURL.value,
         slogan: MAIN_FORM.slogan.value,
         description: MAIN_FORM.description.value,
