@@ -23,45 +23,33 @@ class RankSchemaGenerator
         add_action('admin_footer', array($this, 'register_body'));
     }
 
-    public function apply_schema_markups()
-    {
-        if (file_exists(plugin_dir_path( __FILE__ ). 'src/config.json') && file_exists(plugin_dir_path( __FILE__ ). 'src/markups.json')) {
+    public function apply_schema_markups() {
+        if (file_exists( WP_CONTENT_DIR. '/rank-schema-config/config.json' ) && file_exists( WP_CONTENT_DIR. '/rank-schema-config/markups.json' )) {
             
-            $config = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'src/config.json'), true);
-            $markupFile = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'src/markups.json'), true);
+            $config = json_decode(file_get_contents( WP_CONTENT_DIR. '/rank-schema-config/config.json' ), true);
+            $markupFile = json_decode(file_get_contents( WP_CONTENT_DIR. '/rank-schema-config/markups.json' ), true);
 
             if ($config['activated']) {
-                if ( is_front_page() || is_home() ) {
+                foreach ($markupFile['schemaMap'] as $markup) {
+                    
+                    if ($markup['url'] == get_page_link()) {
 
-                    foreach ($markupFile[0]['schemaMarkups'] as $markup) {
-                        
                         echo '
-                        <!-- Schema Markup by Rank Tools Generator-->
-                        <script type="application/ld+json">
-                        '.$markup.'
-                        </script>
+                        <!-- Schema Markup by Rank Schema Plugin | for '.$markup['url'].'-->
                         ';
-                    }
-
-                } else {
-
-                    foreach ($markupFile as $entity) {
                         
-                        if ($entity['url'] == get_page_link()) {
+                        foreach ($markup['indexMap'] as $index) {
                             
-                            
-                            foreach ($entity['schemaMarkups'] as $markup) {
-                                
-                                echo '
-                                <!-- Schema Markup by Rank Tools Generator for '.$entity['url'].'-->
-                                <script type="application/ld+json">
-                                '.$markup.'
-                                </script>
-                                ';
-                                
-                            }
+                            echo '
+                            <script type="application/ld+json">
+                            '.$markupFile['schemaMarkups'][$index].'
+                            </script>
+                            ';
+
                         }
+
                     }
+
                 }
             }
         }

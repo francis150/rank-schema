@@ -26,6 +26,25 @@
         // NOTE If its not being updated and config.json is available
         $CONFIG = json_decode(file_get_contents( WP_CONTENT_DIR. '/rank-schema-config/config.json' ), true);
         echo '<script>CONFIG = '.json_encode($CONFIG).'</script>';
+
+    } else if (file_exists(plugin_dir_path( __FILE__ ). 'config.json')) {
+        
+        // NOTE If config.json exist in the old location (for v2.0.3 and below)
+
+        // Set Config variable
+        $CONFIG = json_decode(file_get_contents(plugin_dir_path( __FILE__ ). 'config.json'), true);
+        echo '<script>CONFIG = '.json_encode($CONFIG).'</script>';
+
+        // Create rank-schema-config folder in wp-content
+        if (wp_mkdir_p( WP_CONTENT_DIR . '/rank-schema-config' )) {
+            // Save config.json file
+            if (file_put_contents(WP_CONTENT_DIR. '/rank-schema-config/config.json', json_encode($CONFIG, JSON_PRETTY_PRINT))) {
+                echo '<script>console.log("config.json location updated")</script>';
+                // Delete old config.json
+                wp_delete_file( plugin_dir_path( __FILE__ ). 'config.json' );
+            }
+        }
+
     }
 
     if (file_exists( WP_CONTENT_DIR. '/rank-schema-config/markups.json' )) {
