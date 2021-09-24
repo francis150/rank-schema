@@ -41,6 +41,11 @@ document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-enti
             }
         }
 
+        validateWikiEntity.onerror = function () {
+            helpTip.innerHTML = 'Something went wrong while validating Wikipedia Entity.'
+            helpTip.style.color = '#B50000'
+        }
+
         validateWikiEntity.send()
 
 
@@ -849,6 +854,12 @@ document.querySelector('.rank-main-wrapper .form-container .main-form').addEvent
                     document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit'
                     displayNotice('Failed to Build your Schema Markup Code!', 'notice-error') 
                 }
+            }
+
+            buildSchema.onerror = function () {
+                document.querySelector('.rank-main-wrapper .building-load').style.display = 'none'
+                document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit'
+                displayNotice('Failed to Build your Schema Markup Code!', 'notice-error') 
             }
 
             buildSchema.send(JSON.stringify(data))
