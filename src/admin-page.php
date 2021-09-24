@@ -26,6 +26,7 @@
         // NOTE If its not being updated and config.json is available
         $CONFIG = json_decode(file_get_contents( WP_CONTENT_DIR. '/rank-schema-config/config.json' ), true);
         echo '<script>CONFIG = '.json_encode($CONFIG).'</script>';
+
     }
 
     if (file_exists( WP_CONTENT_DIR. '/rank-schema-config/markups.json' )) {

@@ -41,6 +41,11 @@ document.querySelector('.rank-main-wrapper .form-container .main-form .wiki-enti
             }
         }
 
+        validateWikiEntity.onerror = function () {
+            helpTip.innerHTML = 'Something went wrong while validating Wikipedia Entity.'
+            helpTip.style.color = '#B50000'
+        }
+
         validateWikiEntity.send()
 
 
@@ -851,6 +856,12 @@ document.querySelector('.rank-main-wrapper .form-container .main-form').addEvent
                 }
             }
 
+            buildSchema.onerror = function () {
+                document.querySelector('.rank-main-wrapper .building-load').style.display = 'none'
+                document.querySelector('.rank-main-wrapper .form-container').style.display = 'inherit'
+                displayNotice('Failed to Build your Schema Markup Code!', 'notice-error') 
+            }
+
             buildSchema.send(JSON.stringify(data))
 
         })
@@ -876,7 +887,7 @@ function collectMainFormData(callback) {
     const mainFormData = {
         schemaType: MAIN_FORM.schemaType.value,
         businessName: MAIN_FORM.businessName.value,
-        websiteURL: SITE_URL,
+        websiteURL: `${SITE_URL}/`,
         imageURL: MAIN_FORM.imageURL.value,
         slogan: MAIN_FORM.slogan.value,
         description: MAIN_FORM.description.value,
