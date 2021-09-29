@@ -3,6 +3,16 @@
 
 <p>&nbsp;</p>
 
+### Contents
+
+- 🚀 [Installation](#-installation)
+- 💡 [License Activation](#-license-activation)
+- 📜 [WikiPedia Entity](#-wikipedia-entity)
+- 📁 [Config File](#-config-file)
+- 🙋‍♂️ [Developers](#-developers)
+
+<p>&nbsp;</p>
+
 ---
 
 <p>&nbsp;</p>
