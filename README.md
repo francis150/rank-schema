@@ -8,7 +8,11 @@
 - 🚀 [Installation](#-installation)
 - 💡 [License Activation](#-license-activation)
 - 📜 [WikiPedia Entity](#-wikipedia-entity)
+    * [Manual Validation](#manual-validation)
+    * [On-Page Validation](#on-page-validation)
 - 📁 [Config File](#-config-file)
+    * [Download/Export](#downloadexport)
+    * [Upload/Import](#uploadimport)
 - 🙋‍♂️ [Developers](#%EF%B8%8F-developers)
 
 <p>&nbsp;</p>
