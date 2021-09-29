@@ -105,7 +105,7 @@ The `config.json` file contains all of the information you have set up in this p
 
 1. Install & Activate `Wp File Manager`.  <p>![Wp File Manager](https://i.ibb.co/bPz0HX7/image-7.png)</p>
 
-2. Go and use `Wp File Manager` and go to `wp-content > rank-schema-config` and select the `config.json` file. <p>![config file](https://i.ibb.co/DCrsfjz/image-8.png)</p>
+2. Go and use `Wp File Manager` and go to `wp-content > rank-schema-config` and right click the `config.json` file and click `Download`. <p>![config file](https://i.ibb.co/DCrsfjz/image-8.png)</p>
 
 ### Upload/Import
 
