@@ -1,7 +1,11 @@
 # 👨‍💻 Rank Schema Plugin
 **Hassle-free** WordPress plugin that creates Search-Engine-Optmized Schema Markup Cod and embeds them to your pages. **No Coding Required!**
 
+<p>&nbsp;</p>
+
 ---
+
+<p>&nbsp;</p>
 
 ## 🚀 Installation
 
@@ -17,7 +21,15 @@
 
 6. All Good! 👍
 
+<p>&nbsp;</p>
+
+[Back To The Top](#-rank-schema-plugin)
+
+<p>&nbsp;</p>
+
 ---
+
+<p>&nbsp;</p>
 
 ## 💡 License Activation
 
@@ -29,7 +41,15 @@
 
 4. All Good! 👍
 
+<p>&nbsp;</p>
+
+[Back To The Top](#-rank-schema-plugin)
+
+<p>&nbsp;</p>
+
 ---
+
+<p>&nbsp;</p>
 
 ## 📜 WikiPedia Entity
 **WikiPedia Entity** is an word or phrase that is most relevant to your niche and exists or is available in [Wikipedia](https://www.wikipedia.org/). These are the two ways you can check if your keyword is a Wikipedia Entity;
@@ -54,7 +74,42 @@ Go to [Wikipedia](https://www.wikipedia.org/) and try searching for your keyword
 
 4. In this example, the user enters `Metal Roofing` and it shows that it is an Invalid WikiPedia Entity. <p>![Invalid Query](https://i.ibb.co/1vyK7T8/image-6-2.png)</p>
 
+<p>&nbsp;</p>
+
+[Back To The Top](#-rank-schema-plugin)
+
+<p>&nbsp;</p>
+
 ---
+
+<p>&nbsp;</p>
+
+## 📁 Config File
+The `config.json` file contains all of the information you have set up in this plugin.
+
+### Download/Export
+
+1. Install & Activate `Wp File Manager`.  <p>![Wp File Manager](https://i.ibb.co/bPz0HX7/image-7.png)</p>
+
+2. Go and use `Wp File Manager` and go to `wp-content > rank-schema-config` and select the `config.json` file. <p>![config file](https://i.ibb.co/DCrsfjz/image-8.png)</p>
+
+### Upload/Import
+
+1. Install & Activate `Wp File Manager`.  <p>![Wp File Manager](https://i.ibb.co/bPz0HX7/image-7.png)</p>
+
+2. Go and use `Wp File Manager` and go to `wp-content` and find the `rank-schema-config` folder, if there is none, create one.
+
+3. Upload and place your `config.json` file into the `rank-schema-config` folder. <p>![Upload config](https://i.ibb.co/NTZvd7M/image-8-1.png)</p>
+
+<p>&nbsp;</p>
+
+[Back To The Top](#-rank-schema-plugin)
+
+<p>&nbsp;</p>
+
+---
+
+<p>&nbsp;</p>
 
 ## 🙋‍♂️ Developers
 
@@ -68,4 +123,4 @@ Go to [Wikipedia](https://www.wikipedia.org/) and try searching for your keyword
 
 ---
 
-[Back To The Top](#read-me-template)
+[Back To The Top](#-rank-schema-plugin)
