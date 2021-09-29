@@ -9,7 +9,7 @@
 - 💡 [License Activation](#-license-activation)
 - 📜 [WikiPedia Entity](#-wikipedia-entity)
 - 📁 [Config File](#-config-file)
-- 🙋‍♂️ [Developers](#-developers)
+- 🙋‍♂️ [Developers](#%EF%B8%8F-developers)
 
 <p>&nbsp;</p>
 
