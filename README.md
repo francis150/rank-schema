@@ -15,6 +15,8 @@
 
 5. And finally Click `Activate Plugin` <p>![Activate Plugin](https://i.ibb.co/PxY5NGK/image-1.png)</p>
 
+6. All Good! 👍
+
 ---
 
 ## 💡 License Activation
@@ -24,6 +26,33 @@
 2. Copy the licsense key included in your order email. <p>![License Key](https://i.ibb.co/fx7ZgJL/Group-67-1.png)</p>
 
 3. Paste it into the `License Settings` page & hit Activate License. <p>![Paste License](https://i.ibb.co/N2BfYSk/image-3.png)</p>
+
+4. All Good! 👍
+
+---
+
+## 📜 WikiPedia Entity
+**WikiPedia Entity** is an word or phrase that is most relevant to your niche and exists or is available in [Wikipedia](https://www.wikipedia.org/). These are the two ways you can check if your keyword is a Wikipedia Entity;
+
+### Manual Validation
+
+Go to [Wikipedia](https://www.wikipedia.org/) and try searching for your keyword or niche.
+
+1. For this example, the user searched for `Arborist` and it shows the user the exact phrase the user searched for which means the user can use `Arborist` as the most relevant WikiPedia Entity. <p>![Valid Entity Page](https://i.ibb.co/pf6THsx/image-4-1.png)</p>
+
+2. For this example, the user searched for `Metal Roofing` and it shows the user `Metal Roof` instead which means that `Metal Roofing` is not a Valid WikiPedia Entity and `Metal Roof` is. So in this case, the user can use `Metal Roof` as the most relevant WikiPedia Entity. <p>![Entity Page](https://i.ibb.co/7nNyS7Y/image-4.png)</p>
+
+3. For this example, the user searched for `Solar Roof` and it does not show a an entity page, instead it shows the Search Results with the most relevant entities. In this case, the user can only choose from the listed entities as the user's most relevant WikiPedia Entity. <p>![Wiki Results](https://i.ibb.co/MhbMJFP/Group-68.png)</p>
+
+### On-Page Validation
+
+1. Go to your WordPress Website and go to `Rank Schema > Rank Schema`.
+
+2. Go to your config form and scroll down to the `SEO Section` and enter your prefered keyword or phrase and click the `Validate` button.
+
+3. In this example, the user enters `Metal Roof` and it shows that it is a Valid WikiPedia Entity. <p>![Valid Query](https://i.ibb.co/L1HcWMB/image-6.png)</p>
+
+4. In this example, the user enters `Metal Roofing` and it shows that it is an Invalid WikiPedia Entity. <p>![Invalid Query](https://i.ibb.co/1vyK7T8/image-6-2.png)</p>
 
 ---
 
