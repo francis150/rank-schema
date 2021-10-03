@@ -1,5 +1,5 @@
 # Changelogs
-[Back to README](README.md)
+[Back to README](https://github.com/francis150/rank-schema)
 
 <p>&nbsp;</p>
 
