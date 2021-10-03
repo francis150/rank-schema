@@ -1,7 +1,7 @@
 # 👨‍💻 Rank Schema Plugin
 **Hassle-free** WordPress plugin that creates Search-Engine-Optimized Schema Markup Code and embeds them to your pages. **No Coding Required!**
 
-<p>&nbsp;</p>
+> This is not the original project repository. Email me at [francisdelavictoria150@gmail.com](mailto:francisdelavictoria150@gmail.com) if you want to see the original repository.
 
 ### Contents
 
@@ -13,6 +13,7 @@
 - 📁 [Config File](#-config-file)
     * [Download/Export](#downloadexport)
     * [Upload/Import](#uploadimport)
+- 🚩 [Changelog](CHANGELOG.md)
 - 🙋‍♂️ [Developers](#%EF%B8%8F-developers)
 
 <p>&nbsp;</p>
@@ -23,7 +24,7 @@
 
 ## 🚀 Installation
 
-1. After completing your order from [RankFortress](https://rankfortress.com/product-category/gmb-tools/), you will receive an email with the download link and your license key. <p>![Download Button](https://i.ibb.co/wWR68jC/download-link.png)</p>
+1. After completing your order from [RankFortress](https://rankfortress.com/product-category/gmb-tools/), you will receive an email with the download link and your license key. You can also download here for [Lifetime](https://github.com/francis150/rank-schema-plugin/releases/download/v3.0.0/rank-schema-lifetime.zip) & [Monthly](https://github.com/francis150/rank-schema-plugin/releases/download/v3.0.0/rank-schema-monthly.zip) <p>![Download Button](https://i.ibb.co/wWR68jC/download-link.png)</p>
 
 2. After downloading your .zip file from the download link in your email, go to your WordPress site, and go to `Plugins > Add New > Upload Plugin`
 
@@ -135,6 +136,12 @@ The `config.json` file contains all of the information you have set up in this p
 - [Facebook](https://www.facebook.com/seyluap)
 - [Email](mailto:pbreyes63937@gmail.com)
 
----
+<p>&nbsp;</p>
 
 [Back To The Top](#-rank-schema-plugin)
+
+<p>&nbsp;</p>
+
+---
+
+© Powered by [RankFortress](https://rankfortress.com/) 2021 🤟.
