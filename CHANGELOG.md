@@ -1,5 +1,6 @@
 # Changelogs
-[Back to README](https://github.com/francis150/rank-schema)
+
+[Back to README](https://github.com/francis150/rank-schema#-rank-schema-plugin)
 
 <p>&nbsp;</p>
 
