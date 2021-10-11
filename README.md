@@ -191,7 +191,7 @@ That should be all to get you up and running! 👍
 <p>&nbsp;</p>
 
 ## 📜 WikiPedia Entity
-**WikiPedia Entity** is an word or phrase that is most relevant to your niche and exists or is available in [Wikipedia](https://www.wikipedia.org/). These are the two ways you can check if your keyword is a Wikipedia Entity;
+**WikiPedia Entity** is a word or phrase that is most relevant to your niche and exists or is available in [Wikipedia](https://www.wikipedia.org/). These are the two ways you can check if your keyword is a Wikipedia Entity;
 
 ### Manual Validation
 
