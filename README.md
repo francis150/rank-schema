@@ -1,7 +1,14 @@
 # 👨‍💻 Rank Schema Plugin
-**Hassle-free** WordPress plugin that creates Search-Engine-Optimized Schema Markup Code and embeds them to your pages. **No Coding Required!**
+**Hassle-free** Wordpress plugin that creates Search-Engine-Optimized Schema Markup Code and embeds them to your pages. **No Coding Required!**
 
-> This is not the original project repository. Email me at [francisdelavictoria150@gmail.com](mailto:francisdelavictoria150@gmail.com) if you want to see the original repository.
+### Techs Used
+
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Js](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![Sass](https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![Xampp](https://img.shields.io/badge/Xampp-F37623?style=for-the-badge&logo=xampp&logoColor=white)
+![WordPress](https://img.shields.io/badge/Wordpress-21759B?style=for-the-badge&logo=wordpress&logoColor=white)
+
 
 ### Contents
 
