@@ -504,14 +504,11 @@ document.querySelector('.rank-main-wrapper .form-container .main-form .add-servi
 
 
 function populateServiceAreaFields(data, selector){
-    console.log(data)
     let selectHTML = document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay form ' + selector);
-    console.log(selectHTML ?true : false)
     let availableOptions = ''
 
     data.forEach(area=>{
-        const {iso2, name} = area
-        availableOptions += `<option value="${iso2}">${name}</option>`;
+        availableOptions += `<option value="${area.iso2 ?? area.name}">${area.name}</option>`;
     })
 
     selectHTML.innerHTML += availableOptions;
