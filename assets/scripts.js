@@ -508,7 +508,7 @@ function populateServiceAreaFields(data, selector){
     let availableOptions = ''
 
     data.forEach(area=>{
-        availableOptions += `<option value="${area.iso2 ?? area.name}">${area.name}</option>`;
+        availableOptions += `<option value="${area.name}">${area.name}</option>`;
     })
 
     selectHTML.innerHTML += availableOptions;
