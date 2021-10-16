@@ -197,19 +197,25 @@
 
                     <div class="input-wrapper">
                         <label>City/Town <span>*</span></label>
-                        <input name="cityTown" type="text" required>
+                        <select name="cityTown" id="cityTown">
+                            <option value="cityTown" selected disabled>Select a City / Town</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="two-col-row">
                     <div class="input-wrapper">
                         <label>State <span>*</span></label>
-                        <input name="state" type="text" required>
+                        <select name="state" id="state">
+                            <option value="state" selected disabled>Select a State</option>
+                        </select>
                     </div>
 
                     <div class="input-wrapper">
                         <label>Country <span>*</span></label>
-                        <input name="country" type="text" required>
+                        <select name="country" id="country">
+                            <option value="country" selected disabled>Select a Country</option>
+                        </select>
                     </div>
                 </div>
 

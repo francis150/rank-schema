@@ -447,7 +447,77 @@ document.querySelector('.rank-main-wrapper .form-container .services-overlay for
 /* NOTE SERVICE AREA PAGE Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-service-area-page-btn').addEventListener('click', () => {
     showServiceAreaPageSubform()
+
+
+    // Populate Country Options
+    const headers = new Headers();
+    headers.append("X-CSCAPI-KEY", "eGtkaVQ2NVRYa1Y1eDZEUXl1VEdVUHlib0lYUHliNktUWW5yQmxnUA==");
+
+    const requestOptions = {
+    method: 'GET',
+    headers: headers,
+    redirect: 'follow'
+    };
+
+    fetch(`https://api.countrystatecity.in/v1/countries`, requestOptions)
+    .then(response => response.json())
+    .then(result => populateServiceAreaFields(result, '#country'))
+    .catch(error => console.log(error))
+
+    
+    /* Check for Country Selection Change*/
+    document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay form #country').onchange = (e)=>{
+
+        // Reset State Selection Value
+        document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay form #state').innerHTML = `<option value="state" selected disabled>Select a State</option>`
+
+        // Reset City/Town Selection Value
+        document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay form #cityTown').innerHTML = `<option value="cityTown" selected disabled>Select a City / Town</option>`
+
+        const countryISO = e.target.value;
+
+        fetch(`https://api.countrystatecity.in/v1/countries/${countryISO}/states`, requestOptions)
+        .then(response => response.json())
+        .then(result => populateServiceAreaFields(result, '#state'))
+        .catch(error => console.log('error', error));
+
+
+
+        /* Check for State Selection Change*/
+        document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay form #state').onchange  = (e)=>{
+            // Reset City/Town Selection Value
+            document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay form #cityTown').innerHTML = `<option value="cityTown" selected disabled>Select a City / Town</option>`
+
+
+
+            const stateISO = e.target.value;
+            fetch(` https://api.countrystatecity.in/v1/countries/${countryISO}/states/${stateISO}/cities`, requestOptions)
+            .then(response => response.json())
+            .then(result => populateServiceAreaFields(result, '#cityTown'))
+            .catch(error => console.log('error', error));
+
+        }
+    }
+
+
 })
+
+
+function populateServiceAreaFields(data, selector){
+    console.log(data)
+    let selectHTML = document.querySelector('.rank-main-wrapper .form-container .service-areas-overlay form ' + selector);
+    console.log(selectHTML ?true : false)
+    let availableOptions = ''
+
+    data.forEach(area=>{
+        const {iso2, name} = area
+        availableOptions += `<option value="${iso2}">${name}</option>`;
+    })
+
+    selectHTML.innerHTML += availableOptions;
+}
+
+
 
 /* NOTE SERVICE AREA PAGE Edit Buttons */
 document.querySelectorAll('.rank-main-wrapper .form-container .main-form .service-area-page .service-area-edit-btn').forEach(button => {
@@ -538,6 +608,8 @@ document.querySelector('.rank-main-wrapper .form-container .service-areas-overla
     form.reset()
     form.parentNode.style.display = 'none'
 })
+
+
 
 /* NOTE BLOG POST PAGE Add Button */
 document.querySelector('.rank-main-wrapper .form-container .main-form .add-blog-post-page-btn').addEventListener('click', () => {
