@@ -268,4 +268,4 @@ The `config.json` file contains all of the information you have set up in this p
 
 ---
 
-© Powered by [RankFortress](https://rankfortress.com/) 2021 🤟.
+© Powered by [SEO Rocket Tools](https://seorocket.dev/) 2021 🤟.
